@@ -22,8 +22,11 @@ We will be using the [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) metho
 
 ## Guest functional requirements
 These activities can be performed by all visitors. Registering or logging in on the site is not mandatory.
-    * FR105 - Viewing the News Bulletin
-    : A list of news, sorted by date and time, will be displayed on the right side of the webpage. It will show the news' title, publisher and the time of publishing.
+
+- FR105 - Viewing the News Bulletin
+
+A list of news, sorted by date and time, will be displayed on the right side of the webpage. It will show the news' title, publisher and the time of publishing.
+
 ## User functional requirements
 ## Bike holder functional requirements
 ## City admin functional requirements

@@ -1,5 +1,5 @@
 require 'sinatra'
-require_relative './config'
+require 'bikesurf/config'
 
 module Bikesurf
   class Server < Sinatra::Base

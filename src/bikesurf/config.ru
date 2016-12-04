@@ -1,3 +1,4 @@
-require File.expand_path("../lib/bikesurf/server.rb", __FILE__)
+$:.unshift("./lib").uniq!
+require 'bikesurf/server'
 
 run Bikesurf::Server

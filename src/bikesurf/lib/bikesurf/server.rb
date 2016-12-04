@@ -9,6 +9,7 @@ module Bikesurf
 
     get '/' do
       'Hello world!'
+      # ENV["TEST_ENV"]
     end
   end
 end

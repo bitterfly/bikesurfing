@@ -1,3 +1,5 @@
-require_relative './lib/bikesurf/server'
+$:.unshift("./lib").uniq!
+
+require 'bikesurf/server'
 
 run Bikesurf::Server

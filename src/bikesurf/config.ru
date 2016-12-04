@@ -2,6 +2,9 @@
 require 'dotenv'
 Dotenv.load
 
-require_relative './lib/bikesurf/server'
+# Use require with path relative to /lib
+$:.unshift("./lib").uniq!
+
+require 'bikesurf/server'
 
 run Bikesurf::Server

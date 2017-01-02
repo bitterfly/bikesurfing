@@ -10,9 +10,10 @@ Every requirement has its own unique identification code, e.g. `FR305`. The lett
 
 1. Guest
 2. User
-3. Bike holder
-4. City admin
-5. Sysadmin
+2.1. Bike renter
+2.2. Bike lender
+3. City admin
+4. Sysadmin
 
 ### Requirement priority
 
@@ -23,11 +24,64 @@ We will be using the [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) metho
 ## Guest functional requirements
 These activities can be performed by all visitors. Registering or logging in on the site is not mandatory.
 
-- FR105 - Viewing the News Bulletin
+- ?FR105 - Viewing the News Bulletin
 
 A list of news, sorted by date and time, will be displayed on the right side of the webpage. It will show the news' title, publisher and the time of publishing.
 
+<!-- TODO: FIX numbers -->
+<!-- TODO: Add description to FR and users -->
+
+- FR110 - Choose city (front page)
+- FR105 - Choose similar websites (front page)
+- FR105 - Terms and Conditions page
+- ?FR105 - Donate + Bitcoin wallet (fp + city page)
+- FR105 - Sign up (fp + cp)
+    - FR110 - Create account
+    - ?FR110 - Sign up with facebook/couchsurfing
+- FR105 - Log in (fp + cp)
+- FR105 - Review the blog
+- FR105 - View bikes
+    - FR110 - View graphic calendar
+    - FR110 - Search bikes
+- FR105 - View bike locations
+- FR105 - Read FAQ
+- FR105 - Browse bike lenders
+- FR105 - Use social media links
+- FR105 - View press snippets (fp)
+- FR105 - View city guide
+
+
 ## User functional requirements
-## Bike holder functional requirements
+### Bike renter
+
+- FR110 - Rent a bike
+- FR110 - Receive e-mail alerts
+- FR110 - Edit personal profile
+- FR110 - Access to other user's profiles
+- FR110 - Access to forum page
+- FR110 - Leave a note for future bike renters (bike page)
+- FR110 - Apply for page translator
+- FR110 - Become bike lender (fp)
+
+### Bike lender
+
+- FR110 - Approve/Decline rent requests
+- ?FR110 - Add blog post
+- ?FR110 - Edit rent requests
+- FR110 - Add bikes to system
+
 ## City admin functional requirements
+
+- FR110 - Customise city page
+- FR110 - Add blog post !! unless in bike lender
+- FR110 - Edit rent requests !! unless in bike lender
+- FR110 - Approve bike lenders
+- FR110 - Delete bike lenders
+- FR110 - Set up bike stations
+
 ## Sysadmin functional requirements
+
+- FR110 - Add/Remove city admins
+- FR110 - Detele BikeSurfer account
+- FR110 - Review BikeSurfer
+- FR110 - Real time statistics (total profiles, total days "surfed")

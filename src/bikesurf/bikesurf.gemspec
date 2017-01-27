@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
     'https://github.com/bitterfly/bikesurf'
   s.license       = 'MIT'
   s.executables   = []
+
   s.add_runtime_dependency 'data_mapper', '~> 1.2.0'
   s.add_runtime_dependency 'dm-postgres-adapter', '~> 1.2.0'
   s.add_runtime_dependency 'thin', '~> 1.7'

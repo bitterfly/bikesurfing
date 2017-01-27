@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.executables   = []
   s.add_development_dependency 'rspec', '~> 3'
   s.add_development_dependency 'data_mapper', '~> 1.2.0'
+  s.add_development_dependency 'dotenv', '~> 2.1.2'
 end

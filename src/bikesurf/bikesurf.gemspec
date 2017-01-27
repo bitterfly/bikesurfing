@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'data_mapper', '~> 1.2.0'
   s.add_runtime_dependency 'dm-postgres-adapter', '~> 1.2.0'
   s.add_development_dependency 'rspec', '~> 3'
-  s.add_development_dependency 'namey', '~> 0'
+  s.add_development_dependency 'faker', '~> 1.7.2'
   s.add_development_dependency 'dotenv', '~> 2.1.2'
 end

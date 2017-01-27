@@ -3,9 +3,9 @@ Gem::Specification.new do |s|
   s.name          = 'bikesurf'
   s.version       = '0.1.0'
   s.description   = "BikeSurf site"
-  s.authors       = ["Diana Geneva", "Zvezdalina Dimitrova", "Georgi Pavlov", "Angel Angelov"]
+  s.authors       = ["Zvezdalina Dimitrova", "Georgi Pavlov", "Angel Angelov", "Diana Geneva"]
   s.summary       = "Bike sharing platform"
-  s.email         = 'dageneva@gmail.com'
+  s.email         = ["zvezdi.dim@gmail.com", "georgipavlov94@gmail.com", "hextwoa@gmail.com", "dageneva@gmail.com"]
   s.files         = `git ls-files`.split("\n")
   s.homepage      =
     'https://github.com/bitterfly/bikesurf'

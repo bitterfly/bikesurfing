@@ -1,0 +1,23 @@
+# Use require with path relative to /lib
+$:.unshift("./lib").uniq!
+
+require 'bikesurf/database/dummy_data'
+
+namespace :database do
+	task :migrate do
+		DataMapper.auto_migrate!
+		DataMapper.auto_upgrade!
+		puts "Recreating database"
+	end
+
+	task :fill_dummy do
+		DataMapper.auto_migrate!
+		DataMapper.auto_upgrade!
+		
+		puts "Database dropped and created"	
+
+		Bikesurf::Database.fill_dummy_data
+
+		puts "Database filled"
+	end
+end

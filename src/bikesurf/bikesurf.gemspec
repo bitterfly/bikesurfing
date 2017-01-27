@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   s.executables   = []
   s.add_development_dependency 'rspec', '~> 3'
+  s.add_development_dependency 'data_mapper', '~> 1.2.0'
 end

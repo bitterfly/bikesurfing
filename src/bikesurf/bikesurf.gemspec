@@ -11,5 +11,6 @@ Gem::Specification.new do |s|
     'https://github.com/bitterfly/bikesurf'
   s.license       = 'MIT'
   s.executables   = []
+  s.add_runtime_dependency 'dotenv-rails', '~> 2'
   s.add_development_dependency 'rspec', '~> 3'
 end

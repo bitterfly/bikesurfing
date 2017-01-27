@@ -5,7 +5,7 @@ require 'bikesurf/database/models'
 require 'faker'
 require 'securerandom'
 
-class Fixnum
+class Integer
   SECONDS_IN_DAY = 24 * 60 * 60
 
   def days

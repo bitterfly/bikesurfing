@@ -1,10 +1,20 @@
-# Install all of the gem's dependencies
-0.1. `gem install bundler`
-0.2. `bundle install --path ~/.gem` or wherever your gem instalation folder is
+# Installation and running
+First, go to the `bikesurf` subfolder (the actual backend code)
 
-## How to run:
-1. create the database and set up .env file with environmental variables
-2. `cd bikesurf`
+## Install all of the gem's dependencies
+1. `$ gem install bundler`
+2. `$ bundle install --path ~/.gem` or wherever your gem instalation folder is
+
+## Run checking tools like rubocop
+Code checking tools (currently rubocop, in the future unit tests as well) are
+combined in a default rake task. Just run
+
+    `$ rake`
+
+and you'll get a glorious list of errors :)
+
+## How to run the server:
+1. create the database and set up .env file with environmental variables (see next section)
 3. `rackup -p 1234`
 
 ## How to manage database

@@ -7,22 +7,26 @@ require 'rubocop/rake_task'
 RuboCop::RakeTask.new(:rubocop)
 
 namespace :database do
-	task :migrate do
-		DataMapper.auto_migrate!
-		DataMapper.auto_upgrade!
-		puts "Recreating database"
-	end
+  task :migrate do
+    DataMapper.auto_migrate!
+    DataMapper.auto_upgrade!
+    puts "Recreating database"
+  end
 
-	task :fill_dummy do
-		DataMapper.auto_migrate!
-		DataMapper.auto_upgrade!
+  task :fill_dummy do
+    DataMapper.auto_migrate!
+    DataMapper.auto_upgrade!
 
-		puts "Database dropped and created"
+    puts "Database dropped and created"
 
-		Bikesurf::Database.fill_dummy_data
+    Bikesurf::Database.fill_dummy_data
 
-		puts "Database filled"
-	end
+    puts "Database filled"
+  end
+end
+
+task :serve do
+  %x[rackup -p 1234 -s thin]
 end
 
 task default: [:rubocop]

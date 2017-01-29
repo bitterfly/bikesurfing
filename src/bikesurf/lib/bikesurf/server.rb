@@ -3,13 +3,10 @@ require 'bikesurf/config'
 
 module Bikesurf
   class Server < Sinatra::Base
-    set :bind, '0.0.0.0'
-    set :server, 'thin'
     set :public_folder, Config::Public
 
     get '/' do
-      'Hello world!'
-      # ENV["TEST_ENV"]
+      redirect '/index.html'    # fixme: this is stupid, don't redirect
     end
   end
 end

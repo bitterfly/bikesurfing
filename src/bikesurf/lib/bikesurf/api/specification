@@ -1,21 +1,88 @@
+Конвенция:
+Изпращан json:
+{
+  data: {
+    данни за заявката
+  }
+  session_id: 234234
+  timestamp: 234234
+}
+
+Приеман json
+Ако ok: T, резултатът се пази в data
+ако ok: F в дата се пази масив с грешки:
+
+{
+  ok: T
+  data: {...}
+}
+
+{
+  ok: F
+  data: {
+    errors: []
+  }
+}
+
 ============BikePage============
-bike_info 
-{data: {bike_id: 5}, session_id: 4234, timestamp: 324322} -> {ok: T, data : {bike: Bike[...]
-																reservations: [...]}}
-
-bike_photo
-{data: {bike_id: 5}, session_id: 4234, timestamp: 324322} -> {ok: T, data: {images: [...]}}
-
+/bike_info 
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+} 
+-> 
+{
+  ok: T,
+  data : {
+    bike: Bike
+    reservations: [...]
+  }
+}
+----------------------------------
+/bike_photos
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    images: [...]
+  }
+}
+------------------------------------
 bike_comments
-{data: {bike_id: 5}, session_id: 4234, timestamp: 324322} -> {ok: T, data: {commens: [Comment(...), Comment(...)]}}
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    commens: [Comment(...), Comment(...)]
+  }
+}
 ================================
 
 ===========MainPage===========
 post /bike_search
 {
-  from: "24/2/2017",
-  to:  "27/2/2017",
-  size: "medium",
+  data: {
+    from: "24/2/2017",
+    to:  "27/2/2017",
+    size: "medium",
+  },
   session_id: 91839,
   timestamp: 1938938
 }
@@ -38,16 +105,18 @@ post /bike_search
 ===========SearchPage===========
 post /filter_bikes
 {
-  from: "24/2/2017",
-  to:  "27/2/2017",
-  size: "medium",
+  data{
+    from: "24/2/2017",
+    to:  "27/2/2017",
+    size: "medium",
+    lights: true,
+    backpedal: true,
+    gears: 3,
+    quick_release_sadle: true,
+    stand:  
+  },
   session_id: 91839,
   timestamp: 1938938,
-  lights: true,
-  backpedal: true,
-  gears: 3,
-  quick_release_sadle: true,
-  stand: 
   # check min-max borrow days
 }
 ->
@@ -63,18 +132,23 @@ post /filter_bikes
 -----------------
 /user_borrow
 {
-  data: { user_id: 5},
+  data: {
+    user_id: 5
+  },
   session_id: 892384,
   timestamp:743298
 }
 ->
 {
   ok: T
+ //или data: {}
 }
 
 {
   ok: F,
-  errors: []
+  data: {
+    errors: []
+  }
 }
 ================================
 

@@ -25,4 +25,8 @@ namespace :database do
   end
 end
 
+task :serve do
+  %x[rackup -p 1234 -s thin]
+end
+
 task default: [:rubocop]

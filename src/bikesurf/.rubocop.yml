@@ -1,0 +1,18 @@
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - '**/*_spec.rb'
+
+AllCops:
+  Exclude:
+    - '**/spec_helper.rb'
+    - 'bikesurf.gemspec'

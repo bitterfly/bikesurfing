@@ -2,7 +2,7 @@ require 'rubygems'
 require 'data_mapper'
 
 module Bikesurf
-  module Database 
+  module Database
     module Models
       class Permission
         include DataMapper::Resource

@@ -81,15 +81,15 @@ module Bikesurf
           email: 'hextwoa@gmail.com', verified: false, role: roles.sample
         )
         users << fill_person(
-          name: 'Diana Geneva', username: 'dageneva', passowrd: 'iamthewalrus',
+          name: 'Diana Geneva', username: 'dageneva', password: 'iamthewalrus',
           email: 'dageneva@gmail.com', verified: true, role: roles.sample
         )
         users << fill_person(
-          name: 'Zvezdalina Dimitrova', username: 'zi', passowrd: 'passw0rd',
+          name: 'Zvezdalina Dimitrova', username: 'zi', password: 'passw0rd',
           email: 'zvezdi.dim@gmail.com', verified: true, role: roles.sample
         )
         users << fill_person(
-          name: 'Georgi Pavlov', username: 'wanker94', passowrd: 'ilovehorde',
+          name: 'Georgi Pavlov', username: 'wanker94', password: 'ilovehorde',
           email: 'georgipavlov94@gmail.com', verified: true, role: roles.sample
         )
         users

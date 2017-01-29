@@ -16,7 +16,6 @@ require 'bikesurf/database/models/role_permission'
 require 'bikesurf/database/models/stand'
 require 'bikesurf/database/models/user'
 
-
 module Bikesurf
   module Database
     DataMapper.finalize

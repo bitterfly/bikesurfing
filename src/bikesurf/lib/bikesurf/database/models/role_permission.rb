@@ -3,7 +3,7 @@ require 'data_mapper'
 
 module Bikesurf
   module Database
-    module Models  
+    module Models
       class RolePermission
         include DataMapper::Resource
 

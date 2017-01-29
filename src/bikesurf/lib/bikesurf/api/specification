@@ -1,3 +1,12 @@
+Functions:
+/comments - Takes comments or messages from database
+/bike_photos - Given a bike id returns array with photos
+/reservation_info - Given a reservation id returns information for the reservation
+/bike_info - Given a bike id returns all the information for it
+/bike_search - Search for bikes which satisfy the time and size requirement
+/filter_bikes - Search for bikes which satisfy all the given criteria
+/user_borrow - 
+
 Конвенция:
 Изпращан json:
 {
@@ -25,7 +34,7 @@
 }
 
 ==========CommonRequests========
-comments
+/comments
 {
   data: {
     type: bike or reservation
@@ -41,6 +50,49 @@ comments
     commens: [Comment(...), Comment(...)]
   }
 }
+
+----------------------------------
+/bike_photos
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    images: [...]
+  }
+}
+================================
+
+========BikeReservation=========
+/reservation_info
+{
+  data: {
+    id: 5
+  }
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T
+  data:{
+   status: 
+   from:
+   until:
+   bike: Bike()
+   owner: User() 
+   pick_up_code:
+   pick_up_location:
+
+  }
+}
+
 
 ================================
 
@@ -59,22 +111,6 @@ comments
   data : {
     bike: Bike
     reservations: [...]
-  }
-}
-----------------------------------
-/bike_photos
-{
-  data: {
-    bike_id: 5
-  },
-  session_id: 4234,
-  timestamp: 324322
-}
-->
-{
-  ok: T,
-  data: {
-    images: [...]
   }
 }
 ================================

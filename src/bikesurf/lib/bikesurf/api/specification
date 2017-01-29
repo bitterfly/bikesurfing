@@ -9,3 +9,73 @@ bike_photo
 bike_comments
 {data: {bike_id: 5}, session_id: 4234, timestamp: 324322} -> {ok: T, data: {commens: [Comment(...), Comment(...)]}}
 ================================
+
+===========MainPage===========
+post /bike_search
+{
+  from: "24/2/2017",
+  to:  "27/2/2017",
+  size: "medium",
+  session_id: 91839,
+  timestamp: 1938938
+}
+->
+{
+  ok: T,
+  data: { bikes: [
+            Bike,
+            Bike,
+            Bike
+          ],
+          stands: [
+            Stand,
+            Stand
+          ]
+        }
+  }
+================================
+
+===========SearchPage===========
+post /filter_bikes
+{
+  from: "24/2/2017",
+  to:  "27/2/2017",
+  size: "medium",
+  session_id: 91839,
+  timestamp: 1938938,
+  lights: true,
+  backpedal: true,
+  gears: 3,
+  quick_release_sadle: true,
+  stand: 
+  # check min-max borrow days
+}
+->
+{
+  ok: T,
+  data: { bikes: [
+            Bike,
+            Bike,
+            Bike
+          ]
+        }
+  }
+-----------------
+/user_borrow
+{
+  data: { user_id: 5},
+  session_id: 892384,
+  timestamp:743298
+}
+->
+{
+  ok: T
+}
+
+{
+  ok: F,
+  errors: []
+}
+================================
+
+

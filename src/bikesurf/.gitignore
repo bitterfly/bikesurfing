@@ -1,2 +1,12 @@
+# ruby stuff
 Gemfile.lock
+*.gem
+.bundle
+
+# vim stuff
+*~
+*.swp
+*.swo
+
+# environment file
 .env

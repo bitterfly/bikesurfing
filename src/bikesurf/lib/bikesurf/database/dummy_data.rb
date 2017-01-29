@@ -27,7 +27,7 @@ module Bikesurf
       def fill_random_bikes(stands)
         bikes = []
         10.times do
-          bikes << Bikesurf::Database::Models::Bike.create(
+          bikes << Models::Bike.create(
             stand: stands.sample,
             name: Faker::Name.title,
             registration_number: SecureRandom.base64(12),
@@ -49,22 +49,22 @@ module Bikesurf
 
       def fill_roles
         roles = []
-        roles << Bikesurf::Database::Models::Role.create(
+        roles << Models::Role.create(
           name: 'user'
         )
 
-        roles << Bikesurf::Database::Models::Role.create(
+        roles << Models::Role.create(
           name: 'admin'
         )
 
-        roles << Bikesurf::Database::Models::Role.create(
+        roles << Models::Role.create(
           name: 'owner'
         )
         roles
       end
 
       def fill_person(data)
-        Bikesurf::Database::Models::User.create(
+        Models::User.create(
           name: data[:name],
           username: data[:username],
           password: data[:password],
@@ -98,7 +98,7 @@ module Bikesurf
       def fill_random_stands(users)
         stands = []
         10.times do
-          stands << Bikesurf::Database::Models::Stand.create(
+          stands << Models::Stand.create(
             user: users.sample,
             location: Faker::Address.street_name
           )
@@ -124,7 +124,7 @@ module Bikesurf
       def fill_random_reservations(users, bikes)
         reservations = []
         10.times do
-          reservations = Bikesurf::Database::Models::Reservation.create(
+          reservations = Models::Reservation.create(
             user:         users.sample,
             bike:         bikes.sample,
             from:         Faker::Date.between(2.days.ago, Date.today),

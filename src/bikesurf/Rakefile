@@ -2,6 +2,9 @@
 $:.unshift("./lib").uniq!
 
 require 'bikesurf/database/dummy_data'
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new(:rubocop)
 
 namespace :database do
 	task :migrate do
@@ -13,11 +16,13 @@ namespace :database do
 	task :fill_dummy do
 		DataMapper.auto_migrate!
 		DataMapper.auto_upgrade!
-		
-		puts "Database dropped and created"	
+
+		puts "Database dropped and created"
 
 		Bikesurf::Database.fill_dummy_data
 
 		puts "Database filled"
 	end
 end
+
+task default: [:rubocop]

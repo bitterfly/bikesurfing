@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rake', '~> 12.0'
   s.add_runtime_dependency 'sinatra', '~> 1.4'
   s.add_development_dependency 'rspec', '~> 3'
+  s.add_development_dependency 'rubocop', '~> 0.47'
   s.add_development_dependency 'faker', '~> 1.7.2'
   s.add_development_dependency 'dotenv', '~> 2.1.2'
 end

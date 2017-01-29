@@ -24,6 +24,26 @@
   }
 }
 
+==========CommonRequests========
+comments
+{
+  data: {
+    type: bike or reservation
+    id: the corresponding id
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    commens: [Comment(...), Comment(...)]
+  }
+}
+
+================================
+
 ============BikePage============
 /bike_info 
 {
@@ -55,22 +75,6 @@
   ok: T,
   data: {
     images: [...]
-  }
-}
-------------------------------------
-bike_comments
-{
-  data: {
-    bike_id: 5
-  },
-  session_id: 4234,
-  timestamp: 324322
-}
-->
-{
-  ok: T,
-  data: {
-    commens: [Comment(...), Comment(...)]
   }
 }
 ================================

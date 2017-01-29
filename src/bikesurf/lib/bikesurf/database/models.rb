@@ -3,8 +3,8 @@ require 'data_mapper'
 require 'dotenv/load'
 
 module Bikesurf
-	module Database
-    DataMapper.setup(:default, ENV["DATABASE_URN"])
+  module Database
+    DataMapper.setup(:default, ENV['DATABASE_URN'])
 
     class Bike
       include DataMapper::Resource
@@ -37,7 +37,7 @@ module Bikesurf
       property   :name,      String
       property   :email,     String
       property   :verified,  Boolean
-     
+
       belongs_to :role
       has n, :reservations
     end
@@ -62,7 +62,7 @@ module Bikesurf
       belongs_to :bike
       belongs_to :user
     end
-    
+
     class Role
       include DataMapper::Resource
       property :id,         Serial
@@ -70,7 +70,7 @@ module Bikesurf
 
       has n, :users
       has n, :role_permissions
-      has n, :permissions,  :through => :role_permissions
+      has n, :permissions, through: :role_permissions
     end
 
     class Permission
@@ -79,13 +79,13 @@ module Bikesurf
       property :name,   String
 
       has n, :role_permissions
-      has n, :roles,    :through => :role_permissions
+      has n, :roles, through: :role_permissions
     end
 
     class RolePermission
       include DataMapper::Resource
 
-      property :id,         Serial
+      property :id, Serial
 
       belongs_to :role
       belongs_to :permission

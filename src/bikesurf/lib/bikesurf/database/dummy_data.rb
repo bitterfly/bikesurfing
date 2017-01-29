@@ -1,5 +1,5 @@
 # Use require with path relative to /lib
-$:.unshift("./lib").uniq!
+$LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/database/models'
 require 'faker'
@@ -21,111 +21,128 @@ class Integer
   end
 end
 
-
 module Bikesurf
-	module Database
-    def self.fill_dummy_data()
-  	  roles = []
-      roles << Bikesurf::Database::Role.create(
-        name: "user"
-      )
+  module Database
+    class DummyData
+      def fill_random_bikes(stands)
+        bikes = []
+        10.times do
+          bikes << Bikesurf::Database::Bike.create(
+            stand: stands.sample,
+            name: Faker::Name.title,
+            registration_number: SecureRandom.base64(12),
+            desctiption: Faker::Lorem.sentence,
+            frame: Random.rand(15),
+            crossbar: Random.rand(15),
+            size: [:medium, :large, :small].sample,
+            front_lights: [:yd, :yb, :n].sample,
+            back_lights: [:yd, :yb, :n].sample,
+            backpedal_breaking_system: [true, false].sample,
+            quick_release_saddle: [true, false].sample,
+            gears_number: Random.rand(10),
+            min_borrow_days: Random.rand(6) + 1,
+            max_borrow_days: Random.rand(6) + 1
+          )
+        end
+        bikes
+      end
 
-      roles << Bikesurf::Database::Role.create(
-        name: "admin"
-      )
-      
-      roles << Bikesurf::Database::Role.create(
-        name: "owner"
-      )
+      def fill_roles
+        roles = []
+        roles << Bikesurf::Database::Role.create(
+          name: 'user'
+        )
 
-      users = []
-      users << Bikesurf::Database::User.create(
-        name: "Angel Angelov",
-        username: "hextwoa",
-        password: "password",
-        email:"hextwoa@gmail.com",
-        verified: false,
-        role: roles.sample,
-      )
+        roles << Bikesurf::Database::Role.create(
+          name: 'admin'
+        )
 
-      users << Bikesurf::Database::User.create(
-        name: "Diana Geneva",
-        username: "dageneva",
-        password: "iamthewalrus",
-        email:"dageneva@gmail.com",
-        verified: true,
-        role: roles.sample,
-      )
+        roles << Bikesurf::Database::Role.create(
+          name: 'owner'
+        )
+        roles
+      end
 
-      users << Bikesurf::Database::User.create(
-        name: "Zvezdalina Dimitrova",
-        username: "zi",
-        password: "passw0rd",
-        email:"zvezdi.dim@gmail.com",
-        verified: true,
-        role: roles.sample,
-      )
-
-      users << owner = Bikesurf::Database::User.create(
-        name: "Georgi Pavlov",
-        username: "gogopal",
-        password: "iamhorde",
-        email: "georgi@not.real",
-        verified: true,
-        role: roles.sample,
-      )
-
-      10.times do 
-        n = Faker::Name.name
-        uname = n.downcase.gsub(/ .*/, '') + Random.rand(200).to_s
-
-        users << Bikesurf::Database::User.create(
-          name: n,
-          username: uname,
-          password: uname + " password",
-          email: n.downcase.gsub(/ /, '.') + '@example.com',
-          verified: [true, false].sample,
-          role: roles.sample,
+      def fill_person(data)
+        Bikesurf::Database::User.create(
+          name: data[:name],
+          username: data[:username],
+          password: data[:password],
+          email: data[:email],
+          verified: data[:verified],
+          role: data[:role]
         )
       end
 
-      stands = []
-      10.times do
-        stands << Bikesurf::Database::Stand.create(
-          user: users.sample,
-          location: Faker::Address.street_name,
+      def fill_us_as_users(roles)
+        users = []
+        users << fill_person(
+          name: 'Angel Angelov', username: 'hextwoa', password: 'password',
+          email: 'hextwoa@gmail.com', verified: false, role: roles.sample
         )
+        users << fill_person(
+          name: 'Diana Geneva', username: 'dageneva', passowrd: 'iamthewalrus',
+          email: 'dageneva@gmail.com', verified: true, role: roles.sample
+        )
+        users << fill_person(
+          name: 'Zvezdalina Dimitrova', username: 'zi', passowrd: 'passw0rd',
+          email: 'zvezdi.dim@gmail.com', verified: true, role: roles.sample
+        )
+        users << fill_person(
+          name: 'Georgi Pavlov', username: 'wanker94', passowrd: 'ilovehorde',
+          email: 'georgipavlov94@gmail.com', verified: true, role: roles.sample
+        )
+        users
       end
 
-      bikes = []
-      10.times do
-        bikes << Bikesurf::Database::Bike.create(
-          stand: stands.sample,
-          name: Faker::Name.title,
-          registration_number: SecureRandom.base64(12) ,
-          desctiption: Faker::Lorem.sentence,
-          frame: Random.rand(15),
-          crossbar: Random.rand(15) ,
-          size: [:medium, :large, :small].sample,
-          front_lights: [:yd, :yb, :n].sample,
-          back_lights: [:yd, :yb, :n].sample,
-          backpedal_breaking_system: [true, false].sample,
-          quick_release_saddle: [true, false].sample,
-          gears_number: Random.rand(10),
-          min_borrow_days: Random.rand(6) + 1,
-          max_borrow_days: Random.rand(6) + 1,
-        )
+      def fill_random_stands(users)
+        stands = []
+        10.times do
+          stands << Bikesurf::Database::Stand.create(
+            user: users.sample,
+            location: Faker::Address.street_name
+          )
+        end
+        stands
       end
 
-      10.times do
-        Bikesurf::Database::Reservation.create(
-          user:         users.sample,
-          bike:         bikes.sample,
-          from:         Faker::Date.between(2.days.ago, Date.today),
-          until:        Faker::Date.between(Date.today, 2.days.from_now) ,
-          pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
-        )
+      def fill_random_users(users, roles)
+        10.times do
+          name = Faker::Name.name
+          username = name.downcase.split(' ').first + Random.rand(200).to_s
+
+          users << fill_person(
+            name: name, username: username, password: username + ' password',
+            email: name.downcase.tr(' ', '.') + '@example.com',
+            verified: [true, false].sample,
+            role: roles.sample
+          )
+        end
+        users
+      end
+
+      def fill_random_reservations(users, bikes)
+        reservations = []
+        10.times do
+          reservations = Bikesurf::Database::Reservation.create(
+            user:         users.sample,
+            bike:         bikes.sample,
+            from:         Faker::Date.between(2.days.ago, Date.today),
+            until:        Faker::Date.between(Date.today, 2.days.from_now),
+            pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all)
+          )
+        end
+        reservations
+      end
+
+      def fill_dummy_data
+        roles = fill_roles
+        us = fill_us_as_users(roles)
+        users = fill_random_users(us, roles)
+        stands = fill_random_stands(users)
+        bikes = fill_random_bikes(stands)
+        fill_random_reservations(users, bikes)
       end
     end
-	end
+  end
 end

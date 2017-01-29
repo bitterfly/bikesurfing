@@ -3,7 +3,7 @@ require 'dotenv'
 Dotenv.load
 
 # Use require with path relative to /lib
-$:.unshift("./lib").uniq!
+$LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/server'
 

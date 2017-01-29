@@ -1,5 +1,5 @@
 # Use require with path relative to /lib
-$:.unshift("./lib").uniq!
+$LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/database/dummy_data'
 require 'rubocop/rake_task'
@@ -10,23 +10,23 @@ namespace :database do
   task :migrate do
     DataMapper.auto_migrate!
     DataMapper.auto_upgrade!
-    puts "Recreating database"
+    puts 'Recreating database'
   end
 
   task :fill_dummy do
     DataMapper.auto_migrate!
     DataMapper.auto_upgrade!
 
-    puts "Database dropped and created"
+    puts 'Database dropped and created'
 
-    Bikesurf::Database.fill_dummy_data
+    Bikesurf::Database::DummyData.new.fill_dummy_data
 
-    puts "Database filled"
+    puts 'Database filled'
   end
 end
 
 task :serve do
-  %x[rackup -p 1234 -s thin]
+  `rackup -p 1234 -s thin`
 end
 
 task default: [:rubocop]

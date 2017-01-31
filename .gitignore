@@ -5,7 +5,7 @@ Gemfile.lock
 
 # vim stuff
 *~
-*.~
+.~*
 *.swp
 *.swo
 

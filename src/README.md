@@ -20,7 +20,7 @@ and you'll get a glorious list of errors :)
 
 ## How to manage database
 1. `$ psql -d database_name`
-2. add 'DATABASE_URN="postgres://localhost/database_name"' to .env
+2. add 'DATABASE_URN="postgres://user:password@localhost/database_name"' to .env
 3. `$ cd path_to_project/src/bikesurf`
 	
 ### How to create empty database or delete rows from tables 

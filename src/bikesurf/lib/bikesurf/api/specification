@@ -1,0 +1,195 @@
+Functions:
+/comments - Takes comments or messages from database
+/bike_photos - Given a bike id returns array with photos
+/reservation_info - Given a reservation id returns information for the reservation
+/bike_info - Given a bike id returns all the information for it
+/bike_search - Search for bikes which satisfy the time and size requirement
+/filter_bikes - Search for bikes which satisfy all the given criteria
+/user_borrow - 
+
+Конвенция:
+Изпращан json:
+{
+  data: {
+    данни за заявката
+  }
+  session_id: 234234
+  timestamp: 234234
+}
+
+Приеман json
+Ако ok: T, резултатът се пази в data
+ако ok: F в дата се пази масив с грешки:
+
+{
+  ok: T
+  data: {...}
+}
+
+{
+  ok: F
+  data: {
+    errors: []
+  }
+}
+
+==========CommonRequests========
+/comments
+{
+  data: {
+    type: bike or reservation
+    id: the corresponding id
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    commens: [Comment(...), Comment(...)]
+  }
+}
+
+----------------------------------
+/bike_photos
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T,
+  data: {
+    images: [...]
+  }
+}
+================================
+
+========BikeReservation=========
+/reservation_info
+{
+  data: {
+    id: 5
+  }
+  session_id: 4234,
+  timestamp: 324322
+}
+->
+{
+  ok: T
+  data:{
+   status: 
+   from:
+   until:
+   bike: Bike()
+   owner: User() 
+   pick_up_code:
+   pick_up_location:
+
+  }
+}
+
+
+================================
+
+============BikePage============
+/bike_info 
+{
+  data: {
+    bike_id: 5
+  },
+  session_id: 4234,
+  timestamp: 324322
+} 
+-> 
+{
+  ok: T,
+  data : {
+    bike: Bike
+    reservations: [...]
+  }
+}
+================================
+
+===========MainPage===========
+post /bike_search
+{
+  data: {
+    from: "24/2/2017",
+    to:  "27/2/2017",
+    size: "medium",
+  },
+  session_id: 91839,
+  timestamp: 1938938
+}
+->
+{
+  ok: T,
+  data: { bikes: [
+            Bike,
+            Bike,
+            Bike
+          ],
+          stands: [
+            Stand,
+            Stand
+          ]
+        }
+  }
+================================
+
+===========SearchPage===========
+post /filter_bikes
+{
+  data{
+    from: "24/2/2017",
+    to:  "27/2/2017",
+    size: "medium",
+    lights: true,
+    backpedal: true,
+    gears: 3,
+    quick_release_sadle: true,
+    stand:  
+  },
+  session_id: 91839,
+  timestamp: 1938938,
+  # check min-max borrow days
+}
+->
+{
+  ok: T,
+  data: { bikes: [
+            Bike,
+            Bike,
+            Bike
+          ]
+        }
+  }
+-----------------
+/user_borrow
+{
+  data: {
+    user_id: 5
+  },
+  session_id: 892384,
+  timestamp:743298
+}
+->
+{
+  ok: T
+ //или data: {}
+}
+
+{
+  ok: F,
+  data: {
+    errors: []
+  }
+}
+================================
+
+

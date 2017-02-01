@@ -3,7 +3,6 @@ $LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/database/dummy_data'
 require 'rubocop/rake_task'
-require 'rakeup'
 
 RuboCop::RakeTask.new(:rubocop)
 
@@ -30,11 +29,17 @@ task :serve do
   `rackup -p 1234 -s thin`
 end
 
-RakeUp::ServerTask.new do |t|
-  t.port = 1234
-  t.pid_file = '/tmp/bikesurf_server.pid'   # fixme: support windoze
-  t.rackup_file = 'config.ru'
-  t.server = :thin
+namespace :server do
+  task :start do
+    exec('rackup -p 1234 -P /tmp/bikesurf_server.pid -s thin') if fork.nil?
+  end
+
+  task :stop do
+    `kill $(cat /tmp/bikesurf_server.pid)`
+    sleep 1
+  end
+
+  task restart: [:stop, :start]
 end
 
 task :css => ['public/css/styles.css']

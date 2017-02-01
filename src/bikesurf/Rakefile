@@ -30,7 +30,7 @@ task :serve do
 end
 
 namespace :server do
-  task :start do
+  task start: [:css] do
     exec('rackup -p 1234 -P /tmp/bikesurf_server.pid -s thin') if fork.nil?
   end
 
@@ -51,4 +51,3 @@ rule '.css' => '.scss' do |t|
 end
 
 task default: [:rubocop]
-task start: [:css]

@@ -1,9 +1,10 @@
 # Use require with path relative to /lib
 $LOAD_PATH.unshift('./lib').uniq!
 
-require 'bikesurf/database/models'
 require 'faker'
 require 'securerandom'
+require 'bikesurf/database/setup'
+require 'bikesurf/database/models'
 
 class Integer
   SECONDS_IN_DAY = 24 * 60 * 60

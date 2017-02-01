@@ -1,6 +1,8 @@
+require 'rubygems'
 require 'sinatra'
 require 'bikesurf/config'
 require 'bikesurf/requests'
+require 'bikesurf/database/setup'
 
 module Bikesurf
   class Server < Sinatra::Base
@@ -15,7 +17,7 @@ module Bikesurf
     before do
       return unless request.post?
       request.body.rewind
-      input = JSON.parse request.body.read
+      input = MultiJson.load request.body.read
       @data = input['data']
       @session_id = input['session_id']
       @timestamp = input['timestamp']
@@ -39,6 +41,11 @@ module Bikesurf
 
     post '/api/bike' do
       result = find_bike(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/bikes' do
+      result = find_bikes
       respond result
     end
   end

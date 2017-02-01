@@ -13,6 +13,7 @@ module Bikesurf
     # The before filter deserialises the json
     # if it follows the specification
     before do
+      return unless request.post?
       request.body.rewind
       input = JSON.parse request.body.read
       @data = input['data']

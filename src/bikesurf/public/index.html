@@ -10,6 +10,7 @@
 
 
     <!-- libs -->
+    <script src="lib/knockout-3.4.1.min.js"></script>
 
     <!-- TODO: Use local lib files instead of CDN. -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -24,7 +25,23 @@
 </head>
 
 <body>
-    hi
+    <div>
+        <p>First name: <input data-bind='value: firstName' /></p>
+        <p>Last name: <input data-bind='value: lastName' /></p>
+        <h2>Hello, <span data-bind='text: fullName'> </span>!</h2>
+    </div>
+
+    <script>
+        App.ExampleViewModel = function() {
+            this.firstName = ko.observable("Weird Al");
+            this.lastName = ko.observable("Yankovich");
+            this.fullName = ko.pureComputed(function() {
+                return this.firstName() + " " + this.lastName();
+            }, this);
+        }
+
+        ko.applyBindings(new App.ExampleViewModel());
+    </script>
 </body>
 
 </html>

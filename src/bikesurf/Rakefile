@@ -29,4 +29,11 @@ task :serve do
   `rackup -p 1234 -s thin`
 end
 
-task default: [:rubocop]
+task :css => ['public/css/main.css']
+
+rule '.css' => '.scss' do |t|
+    p t
+  `sass #{t.source} #{t.name}`
+end
+
+task default: [:rubocop, :css]

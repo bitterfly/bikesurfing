@@ -18,7 +18,7 @@ module Bikesurf
     before do
       return unless request.post?
       request.body.rewind
-      input = MultiJson.load  request.body.read
+      input = MultiJson.load request.body.read
       @data = input['data']
       @session_id = input['session_id']
       @timestamp = input['timestamp']
@@ -27,13 +27,13 @@ module Bikesurf
     # When a crash occures this block is called
     # so if you want a custom error just implement to_json
     error do
-      MultiJson.dump({ ok: false, data: env['sinatra.error'] })
+      MultiJson.dump(ok: false, data: env['sinatra.error'])
     end
 
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      MultiJson.dump({ ok: true, data: result })
+      MultiJson.dump(ok: true, data: result)
     end
 
     get '/' do

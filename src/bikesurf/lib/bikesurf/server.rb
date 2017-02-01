@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'multi_json'
 require 'bikesurf/config'
 require 'bikesurf/requests'
 require 'bikesurf/database/setup'
@@ -27,13 +26,13 @@ module Bikesurf
     # When a crash occures this block is called
     # so if you want a custom error just implement to_json
     error do
-      MultiJson.dump(ok: false, data: env['sinatra.error'])
+      { ok: false, data: env['sinatra.error'] }.to_json
     end
 
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      MultiJson.dump(ok: true, data: result)
+      { ok: true, data: result }.to_json
     end
 
     get '/' do
@@ -42,6 +41,11 @@ module Bikesurf
 
     post '/api/bike' do
       result = find_bike(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/bikes' do
+      result = find_bikes
       respond result
     end
   end

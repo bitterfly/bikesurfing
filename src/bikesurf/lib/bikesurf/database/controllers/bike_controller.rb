@@ -1,3 +1,4 @@
+require 'bikesurf/database/models'
 require 'singleton'
 
 module Bikesurf

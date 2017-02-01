@@ -9,6 +9,10 @@ module Bikesurf
       def get_by_id(id)
         Models::Bike.get! id
       end
+
+      def get_all
+        Models::Bike.all
+      end
     end
   end
 end

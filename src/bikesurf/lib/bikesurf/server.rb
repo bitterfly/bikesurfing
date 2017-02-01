@@ -44,5 +44,10 @@ module Bikesurf
       result = find_bike(@data['bike_id'])
       respond result
     end
+
+    post '/api/bikes' do
+      result = find_bikes
+      respond result
+    end
   end
 end

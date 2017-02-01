@@ -1,6 +1,9 @@
+require 'rubygems'
 require 'sinatra'
+require 'multi_json'
 require 'bikesurf/config'
 require 'bikesurf/requests'
+require 'bikesurf/database/setup'
 
 module Bikesurf
   class Server < Sinatra::Base
@@ -15,7 +18,7 @@ module Bikesurf
     before do
       return unless request.post?
       request.body.rewind
-      input = JSON.parse request.body.read
+      input = MultiJson.load  request.body.read
       @data = input['data']
       @session_id = input['session_id']
       @timestamp = input['timestamp']
@@ -24,13 +27,13 @@ module Bikesurf
     # When a crash occures this block is called
     # so if you want a custom error just implement to_json
     error do
-      { ok: false, data: env['sinatra.error'] }.to_json
+      MultiJson.dump({ ok: false, data: env['sinatra.error'] })
     end
 
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      { ok: true, data: result }.to_json
+      MultiJson.dump({ ok: true, data: result })
     end
 
     get '/' do

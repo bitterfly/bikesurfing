@@ -8,7 +8,6 @@ module Bikesurf
         Database::BikeController.instance.get_by_id data
       end
 
-
       def find_bikes
         Database::BikeController.instance.get_all
       end

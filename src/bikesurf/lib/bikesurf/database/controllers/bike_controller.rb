@@ -1,11 +1,11 @@
-require "bikesurf/database/models"
+require 'singleton'
 
 module Bikesurf
   module Database
     class BikeController
       include Singleton
       def get_by_id(id)
-        Bike.get!(id)
+        42
       end
     end
   end

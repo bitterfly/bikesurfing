@@ -4,8 +4,8 @@ Gemfile.lock
 .bundle
 
 # sass
-*/css/*.css
-*/css/*.css.map
+**/css/*.css
+**/css/*.css.map
 .sass-cache
 
 # vim stuff

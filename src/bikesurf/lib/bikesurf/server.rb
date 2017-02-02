@@ -7,6 +7,7 @@ require 'bikesurf/database/setup'
 module Bikesurf
   class Server < Sinatra::Base
     include Requests::Bike
+    include Requests::Search
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
@@ -47,6 +48,10 @@ module Bikesurf
     post '/api/bikes' do
       result = find_bikes
       respond result
+    end
+
+    post '/api/bike_search' do
+      respond bike_search(@data['from'], @data['to'], @data['size'])
     end
   end
 end

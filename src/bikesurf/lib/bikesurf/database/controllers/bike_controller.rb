@@ -17,6 +17,10 @@ module Bikesurf
       def get_all
         Models::Bike.all
       end
+
+      def free_bikes(reserved_ids, size)
+        Models::Bike.all(:size => size, :id.not => reserved_ids)
+      end
     end
   end
 end

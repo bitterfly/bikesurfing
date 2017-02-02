@@ -48,6 +48,19 @@ module Bikesurf
         bikes
       end
 
+      def fill_random_comments(users)
+        comments = []
+        20.times do
+          comments << Models::Comment.create(
+            user: users.sample,
+            message: Faker::Lorem.sentence,
+            post_time: Time.now
+          )
+        end
+        comments
+      end
+        
+
       def fill_roles
         roles = []
         roles << Models::Role.create(
@@ -125,7 +138,7 @@ module Bikesurf
       def fill_random_reservations(users, bikes)
         reservations = []
         10.times do
-          reservations = Models::Reservation.create(
+          reservations << Models::Reservation.create(
             user:         users.sample,
             bike:         bikes.sample,
             from:         Faker::Date.between(2.days.ago, Date.today),
@@ -136,13 +149,39 @@ module Bikesurf
         reservations
       end
 
+      def fill_random_resevation_comments(comments, reservations)
+        reservation_comments = []
+        10.times do
+          reservation_comments << Models::ReservationComment.create(
+            comment: comments.sample(),
+            reservation: reservations.sample()  
+          )
+        end
+        reservation_comments      
+      end
+
+
+      def fill_random_bike_comments(comments, bikes)
+        bike_comments = []
+        10.times do
+          bike_comments << Models::BikeComment.create(
+            comment: comments.sample(),
+            bike: bikes.sample()  
+          )
+        end
+        bike_comments      
+      end
+
       def fill_dummy_data
         roles = fill_roles
         us = fill_us_as_users(roles)
         users = fill_random_users(us, roles)
         stands = fill_random_stands(users)
         bikes = fill_random_bikes(stands)
-        fill_random_reservations(users, bikes)
+        reservations = fill_random_reservations(users, bikes)
+        comments = fill_random_comments(users)
+        fill_random_resevation_comments(comments, reservations)
+        fill_random_bike_comments(comments, bikes)
       end
     end
   end

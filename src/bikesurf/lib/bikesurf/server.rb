@@ -36,7 +36,7 @@ module Bikesurf
     end
 
     get '/' do
-      redirect '/index.html' # FIXME: this is stupid, don't redirect
+      send_file File.expand_path(Config::PUBLIC) + '/index.html'
     end
 
     post '/api/bike' do

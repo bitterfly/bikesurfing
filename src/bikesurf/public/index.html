@@ -17,20 +17,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sammy.js/0.7.6/sammy.min.js"></script>
 
     <!-- scripts -->
-
     <script>
         App = {};
     </script>
+
+    <script src="utils/ajax_queries.js"></script>
     <script src="view_models/bikesurf.js"></script>
+    <script src="view_models/bike_page.js"></script>
+    <script src="utils/component_manager.js"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
-    <div id="bikesurf">
+    <div data-bind="if: selectedComponent">
+        <p data-bind="text: asd">ekjghkt</p>
         <div id="menu">hi
         </div>
+        <div data-bind="component: selectedComponent"></div>
     </div>
-    <div id="component"></div>
 </body>
 
 </html>

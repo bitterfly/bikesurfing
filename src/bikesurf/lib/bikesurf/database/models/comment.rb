@@ -8,7 +8,7 @@ module Bikesurf
         include DataMapper::Resource
 
         property :id,                        Serial
-        property :message,                   String
+        property :message,                   Text
         property :post_time,                 DateTime
 
         belongs_to :user

@@ -48,6 +48,18 @@ module Bikesurf
         bikes
       end
 
+      def fill_random_comments(users)
+        comments = []
+        20.times do
+          comments << Models::Comment.create(
+            user: users.sample,
+            message: Faker::Lorem.sentence,
+            post_time: Time.now
+          )
+        end
+        comments
+      end
+        
 
       def fill_roles
         roles = []
@@ -137,39 +149,27 @@ module Bikesurf
         reservations
       end
 
-      def fill_random_resevation_comments(users, reservations)
+      def fill_random_resevation_comments(comments, reservations)
         reservation_comments = []
         10.times do
-          comment = Models::Comment.create(
-            user: users.sample,
-            message: Faker::Lorem.sentence,
-            post_time: Time.now
-          )
-          puts "created comment: ", comment.id.to_s
           reservation_comments << Models::ReservationComment.create(
-            comment: comment,
-            reservation: reservations.sample()
+            comment: comments.sample(),
+            reservation: reservations.sample()  
           )
-          p reservation_comments.last
         end
-        reservation_comments
+        reservation_comments      
       end
 
 
-      def fill_random_bike_comments(users, bikes)
+      def fill_random_bike_comments(comments, bikes)
         bike_comments = []
         10.times do
-          comment = Models::Comment.create(
-            user: users.sample,
-            message: Faker::Lorem.sentence,
-            post_time: Time.now
-          )
           bike_comments << Models::BikeComment.create(
-            comment: comment,
-            bike: bikes.sample()
+            comment: comments.sample(),
+            bike: bikes.sample()  
           )
         end
-        bike_comments
+        bike_comments      
       end
 
       def fill_dummy_data
@@ -179,8 +179,9 @@ module Bikesurf
         stands = fill_random_stands(users)
         bikes = fill_random_bikes(stands)
         reservations = fill_random_reservations(users, bikes)
-        fill_random_resevation_comments(users, reservations)
-        fill_random_bike_comments(users, bikes)
+        comments = fill_random_comments(users)
+        fill_random_resevation_comments(comments, reservations)
+        fill_random_bike_comments(comments, bikes)
       end
     end
   end

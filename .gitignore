@@ -3,6 +3,11 @@ Gemfile.lock
 *.gem
 .bundle
 
+# sass
+**/css/*.css
+**/css/*.css.map
+.sass-cache
+
 # vim stuff
 *~
 .~*

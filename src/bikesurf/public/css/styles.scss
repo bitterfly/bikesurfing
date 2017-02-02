@@ -1,8 +1,124 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  background-color: red;
+  background-color: #eef;
+}
+
+.page_container {
+    background-color: white;
+
+    position: relative;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    width: 980px;
+    max-width: 90vw;
+    min-height: 95vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bike_name_container {
+    text-align: center;
+}
+
+.bike_name {
+    font-size: 2em;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 5px;
+    margin: 20px;
+}
+
+.bike_images {
+    padding: 20px;
+}
+
+.bike_image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    max-width: 100%;
+    border: 1px solid red;
+}
+
+.bike_image img {
+    width: 100%;
+}
+
+.bike_info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+}
+
+.bike_stats {
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
+
+.bike_stats ul {
+    display: table;
+    padding: 10px;
+    margin: 0px;
+}
+
+.bike_stats ul li {
+    list-style: none;
+    display: table-row;
+}
+
+.bike_stats ul li span {
+    list-style: none;
+    display: table-cell;
+}
+
+.bike_stat {
+    padding-left: 120px;
+}
+
+.bike_comments {
+    border: 1px solid blue;
+    padding: 20px;
+    margin: 10px;
+}
+
+.comment {
+    position: relative;
+    overflow: auto;
+}
+
+.comment_profile_image {
+    margin-right: 20px;
+    width: 80px;
+    float: left;
+    display: inline-block;
+}
+
+.comment_profile_image img {
+    width: 100%;
+}
+
+.comment_user_info {
+    border-bottom: 1px solid #ddd;
+    display: inline-block;
+}
+
+.comment .username {
+    font-size: 1.1em;
+    margin-right: 15px;
+}
+
+.comment .timestamp {
+    font-size: 0.8em;
+    color: #999;
+}
+
+.comment_content {
+    margin-top: 10px;
+}
+
+form, body, textarea, li, input, ul, div, aside, nav, section {
+    box-sizing: border-box;
 }

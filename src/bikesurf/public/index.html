@@ -21,27 +21,21 @@
     <script>
         App = {};
     </script>
+    <script src="view_models/bikesurf.js"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
-    <div>
-        <p>First name: <input data-bind='value: firstName' /></p>
-        <p>Last name: <input data-bind='value: lastName' /></p>
-        <h2>Hello, <span data-bind='text: fullName'> </span>!</h2>
+    <div id="bikesurf">
+        <div id="menu">
+        </div>
+        <div>
+            <p>First name: <input data-bind='value: firstName' /></p>
+            <p>Last name: <input data-bind='value: lastName' /></p>
+            <h2>Hello, <span data-bind='text: fullName'> </span>!</h2>
+        </div>
     </div>
-
-    <script>
-        App.ExampleViewModel = function() {
-            this.firstName = ko.observable("Weird Al");
-            this.lastName = ko.observable("Yankovich");
-            this.fullName = ko.pureComputed(function() {
-                return this.firstName() + " " + this.lastName();
-            }, this);
-        }
-
-        ko.applyBindings(new App.ExampleViewModel());
-    </script>
+    <div id="component"></div>
 </body>
 
 </html>

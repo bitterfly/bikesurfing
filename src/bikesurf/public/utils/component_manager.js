@@ -7,25 +7,26 @@
 
     App.ComponentManager = function(viewModel) {
         this.viewModel = viewModel;
-        this.selectedComponent = {}
+        this.selectedComponent = ko.observable();
     }
 
     App.ComponentManager.prototype.selectComponent = function(component, params) {
+        var self = this;
         var comp = components[component];
-        if (comp[loaded]) {
-            this.selectedComponent = {name: component, params: params};
+        if (comp['loaded']) {
+            self.selectedComponent({name: component, params: params});
         }
         else {
-            var url = '../templates/' + component;
+            var url = '../templates/' + component + '.html';
             $.get(url, function(template) {
-                $('body').append("<script id='" + component + "'>" + template + "</script>");
+                $('body').append("<script type='text/template' id='" + component + "'>" + template + "</script>");
                 ko.components.register(component, {
                     template: {element: component},
-                    viewModel: comp[viewModel]
+                    viewModel: App[comp['viewModel']]
                 });
-                comp[loaded] = true;
+                comp['loaded'] = true;
+                self.selectedComponent({name: component, params: params});
             });
         }
     }
-
 })();

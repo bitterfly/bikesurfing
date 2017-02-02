@@ -1,0 +1,18 @@
+require 'rubygems'
+require 'data_mapper'
+
+module Bikesurf
+  module Database
+    module Models
+      class Comment
+        include DataMapper::Resource
+
+        property :id,                        Serial
+        property :message,                   String
+        property :post_time,                 DateTime
+
+        belongs_to :user
+      end
+    end
+  end
+end

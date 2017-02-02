@@ -2,7 +2,7 @@ App.BikePageViewModel = function(id) {
     this.id = ko.observable(id);
     this.bike = ko.observable({});
     ko.computed(function() {
-        App.request('/api/bike', { bike_id: this.id() }, this.bike);
+        App.request('bike', { bike_id: this.id() }, this.bike);
     }, this);
 
     this.bike_pretty_json = ko.pureComputed(function() {

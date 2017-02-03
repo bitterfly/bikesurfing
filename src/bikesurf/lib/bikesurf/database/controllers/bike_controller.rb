@@ -16,13 +16,16 @@ module Bikesurf
       end
 
       def get_images_by_id(id)
-        {
-          images: Models::Image.all(bike_image: Models::BikeImage.first(bike_id: id))
-        }
+        images = Models::Image.all(bike_image: Models::BikeImage.all(bike_id: id))
+        images.map do |image|
+          {
+            filename: image.filename
+          }
+        end
       end
 
       def get_comments_by_id(id)
-        comments = Models::Comment.all(bike_comment: Models::BikeComment.first(bike_id: id))
+        comments = Models::Comment.all(bike_comment: Models::BikeComment.all(bike_id: id))
 
         comments.map do |comment|
           {

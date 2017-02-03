@@ -5,8 +5,7 @@
         bike_page: {viewModel: 'BikePageViewModel', loaded: false}
     }
 
-    App.ComponentManager = function(viewModel) {
-        this.viewModel = viewModel;
+    App.ComponentManager = function() {
         this.selectedComponent = ko.observable();
     }
 

@@ -3,7 +3,7 @@ $(document).ready(function() {
     Sammy(function() {
 
         var bikesurfViewModel = new App.BikesurfViewModel();
-        var componentManager = new App.ComponentManager(bikesurfViewModel);
+        var componentManager = new App.ComponentManager();
         bikesurfViewModel.selectedComponent = componentManager.selectedComponent;
 
         ko.applyBindings(bikesurfViewModel);

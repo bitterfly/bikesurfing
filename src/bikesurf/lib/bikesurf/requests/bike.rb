@@ -11,6 +11,14 @@ module Bikesurf
       def find_bikes
         Database::BikeController.instance.get_all
       end
+
+      def find_bike_images(data)
+        Database::BikeController.instance.get_images_by_id data
+      end  
+
+      def find_bike_comments(data)
+        Database::BikeController.instance.get_comments_by_id data
+      end  
     end
   end
 end

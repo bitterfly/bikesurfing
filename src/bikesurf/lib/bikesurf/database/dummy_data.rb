@@ -5,6 +5,9 @@ require 'faker'
 require 'securerandom'
 require 'bikesurf/database/setup'
 require 'bikesurf/database/models'
+require 'bikesurf/images/image'
+require 'open-uri'
+require 'dotenv/load'
 
 class Integer
   SECONDS_IN_DAY = 24 * 60 * 60
@@ -172,6 +175,36 @@ module Bikesurf
         bike_comments      
       end
 
+      def fill_random_image
+        a = Time.now
+        image = open('https://unsplash.it/900/600?random').read
+        puts(Time.now - a)
+        Images::save_to_database(image)
+      end
+
+      def fill_random_images
+        Dir.foreach(ENV['IMAGES']) do |f| 
+          fn = File.join(ENV['IMAGES'], f)
+          File.delete(fn) if f != '.' && f != '..'
+        end
+        images = []
+        10.times do
+          images << fill_random_image
+        end
+        images
+      end
+
+      def fill_random_bike_images(bikes, images)
+        bikes.each do |bike|
+          3.times do
+            Models::BikeImage.create(
+              image: images.sample(),
+              bike: bike  
+            )
+          end
+        end
+      end
+
       def fill_dummy_data
         roles = fill_roles
         us = fill_us_as_users(roles)
@@ -182,6 +215,8 @@ module Bikesurf
         comments = fill_random_comments(users)
         fill_random_resevation_comments(comments, reservations)
         fill_random_bike_comments(comments, bikes)
+        images = fill_random_images
+        fill_random_bike_images(bikes, images)
       end
     end
   end

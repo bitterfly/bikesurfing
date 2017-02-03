@@ -1,8 +1,24 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  background-color: red;
+  background-color: #eef;
 }
+
+.page_container {
+    background-color: white;
+
+    position: relative;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    width: 980px;
+    max-width: 90vw;
+    min-height: 95vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form, body, textarea, li, input, ul, div, aside, nav, section {
+    box-sizing: border-box;
+}
+
+@import 'bike_page';

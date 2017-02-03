@@ -1,5 +1,50 @@
-<div id="bike_page">
-    <p>ID: <input data-bind='value: id'></input>.</p>
-    <p>data:</p>
-    <pre data-bind='text: bike_pretty_json'></pre>
+<div id="bike_page" class="bike_page">
+    <div data-bind='ifnot: bike'>
+        LOADING!!!!!!1!!!!!!one!!!!!
+    </div>
+    <div data-bind='if: bike'>
+        <div class="page_container">
+            <div class="images">
+                <div class="image">
+                    <img data-bind="attr: { 'src': bike_image }"/>
+                </div>
+            </div>
+            <div data-bind='with: bike'>
+                <div class="name_container">
+                    <div class="name" data-bind='text: name'></div>
+                </div>
+                <div class="info">
+                    <div class="stats">
+                        <ul>
+                            <li>
+                                <span class="stat_title">Frame</span>
+                                <span class="stat" data-bind='text: frame'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Crossbar</span>
+                                <span class="stat" data-bind='text: crossbar'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Size</span>
+                                <span class="stat" data-bind='text: size'></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="description" data-bind='text: desctiption'></div>
+                </div>
+            </div>
+            <div class="comments comments" data-bind='foreach: comments'>
+                <div class="comment">
+                    <div class="comment_profile_image profile_image">
+                        <img data-bind="attr: { 'src': user_avatar }"/>
+                    </div>
+                    <div class="comment_user_info">
+                        <span class="username" data-bind='text: username'></span>
+                        <span class="timestamp" data-bind='text: timestamp'></span>
+                    </div>
+                    <div class="comment_content" data-bind='text: content'></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

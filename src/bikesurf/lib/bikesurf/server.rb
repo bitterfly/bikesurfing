@@ -36,7 +36,7 @@ module Bikesurf
     end
 
     get '/' do
-      send_file File.expand_path(Config::PUBLIC) + '/index.html'
+      send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
     end
 
     post '/api/bike' do
@@ -47,6 +47,15 @@ module Bikesurf
     post '/api/bikes' do
       result = find_bikes
       respond result
+    end
+
+    get '/image/:filename' do
+      filename = params['filename']
+      if /[\w\d]*/ =~ filename
+        return send_file File.expand_path(File.join(ENV['IMAGES'], params['filename'])), type: 'image/jpeg'
+      end
+      status 403
+      body 'Forbidden file'
     end
   end
 end

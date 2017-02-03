@@ -21,6 +21,10 @@ $(document).ready(function() {
             componentManager.selectComponent('borrow_bike');
         });
 
+        this.get('#/request', function() {
+            componentManager.selectComponent('request_bike');
+        });
+
         this.get('#/', function() {
             componentManager.selectComponent('main_page');
         });

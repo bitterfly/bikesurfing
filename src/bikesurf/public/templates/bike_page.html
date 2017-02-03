@@ -6,7 +6,9 @@
         <div class="page_container">
             <div class="images">
                 <div class="image" data-bind="click: next_image">
-                    <img data-bind="attr: { 'src': bike_image_link }"/>
+                    <a data-bind="attr: { 'href': bike_image_link }">
+                        <img data-bind="attr: { 'src': bike_image_link }"/>
+                    </a>
                 </div>
             </div>
             <div data-bind='with: bike'>

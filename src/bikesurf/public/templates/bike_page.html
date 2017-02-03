@@ -5,8 +5,8 @@
     <div data-bind='if: bike'>
         <div class="page_container">
             <div class="images">
-                <div class="image">
-                    <img data-bind="attr: { 'src': bike_image }"/>
+                <div class="image" data-bind="click: next_image">
+                    <img data-bind="attr: { 'src': bike_image_link }"/>
                 </div>
             </div>
             <div data-bind='with: bike'>

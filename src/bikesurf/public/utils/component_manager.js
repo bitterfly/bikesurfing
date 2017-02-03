@@ -4,7 +4,8 @@
     var components = {
         bike_page: {viewModel: 'BikePageViewModel', loaded: false},
         main_page: {viewModel: 'MainPageViewModel', loaded: false},
-        search_page: {viewModel: 'SearchPageViewModel', loaded: false}
+        search_page: {viewModel: 'SearchPageViewModel', loaded: false},
+        borrow_bike: {viewModel: 'BorrowBikeViewModel', loaded: false}
     }
 
     App.ComponentManager = function() {

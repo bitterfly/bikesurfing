@@ -17,6 +17,10 @@ $(document).ready(function() {
             componentManager.selectComponent('search_page');
         });
 
+        this.get('#/borrow', function() {
+            componentManager.selectComponent('borrow_bike');
+        });
+
         this.get('#/', function() {
             componentManager.selectComponent('main_page');
         });

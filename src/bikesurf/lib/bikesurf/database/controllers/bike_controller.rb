@@ -23,15 +23,20 @@ module Bikesurf
 
       def get_comments_by_id(id)
         comments = Models::Comment.all(bike_comment: Models::BikeComment.first(bike_id: id))
-        
-        fyck = []
-        comments.each do |comment|
-         fyck << {
-            comment: comment,
-            user: comment.user
+
+        comments.map do |comment|
+          {
+            id: comment.id,
+            message: comment.message,
+            post_time: comment.post_time, # todo: convert to proper timestamp
+
+            user: {
+              id: comment.user.id,
+              name: comment.user.name,
+              username: comment.user.username
+            }
           }
         end
-        {comments: fyck}
       end
 
       def get_all

@@ -25,6 +25,10 @@ $(document).ready(function() {
             componentManager.selectComponent('request_bike');
         });
 
+        this.get('#/add-bike', function() {
+            componentManager.selectComponent('add_bike');
+        });
+
         this.get('#/', function() {
             componentManager.selectComponent('main_page');
         });

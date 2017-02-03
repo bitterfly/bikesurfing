@@ -13,6 +13,10 @@ $(document).ready(function() {
             componentManager.selectComponent('bike_page', {id: this.params['id']});
         });
 
+        this.get('#/search', function() {
+            componentManager.selectComponent('search_page');
+        });
+
         this.get('#/', function() {
             componentManager.selectComponent('main_page');
         });

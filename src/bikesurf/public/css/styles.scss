@@ -1,5 +1,6 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
+$logo-size: 100px;
 
 body {
     font: 100% $font-stack;
@@ -27,9 +28,10 @@ body {
             padding: 0;
             a {
                 white-space: nowrap;
-                padding: 8px 8px 8px 24px;
+                padding: 8px 0;
                 text-decoration: none;
                 font-size: 20px;
+                text-align: center;
                 color: black;
                 display: block;
                 transition: 0.3s;
@@ -51,7 +53,11 @@ body {
         .bikesurf-img {
             display: block;
             transition: 0.5s;
-            padding: 8px 8px 8px 24px;
+            text-align: center;
+            img {
+                width: $logo-size;
+                height: $logo-size;
+            }
         }
     }
     #page {

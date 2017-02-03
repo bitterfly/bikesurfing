@@ -11,6 +11,7 @@ module Bikesurf
         property :location, String
 
         belongs_to :user
+        has n, :bikes
       end
     end
   end

@@ -9,6 +9,8 @@ module Bikesurf
 
         property :id,       Serial
         property :filename, Text
+
+        has 1, :bike_image
       end
     end
   end

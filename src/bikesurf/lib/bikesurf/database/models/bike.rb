@@ -24,6 +24,7 @@ module Bikesurf
 
         belongs_to :stand
         has n, :reservations
+        has n, :bike_images
       end
     end
   end

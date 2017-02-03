@@ -9,10 +9,15 @@ module Bikesurf
     class BikeController
       include Singleton
       def get_by_id(id)
+        #image_ids = Models::BikeImage.all(bike_id: id, :only=>[:image_id])
+        image_ids = [1, 2, 3]
+        image_files = Models::Image.all(id: image_ids, fields: [:filename])
+
+        puts(image_ids)
         {
           bike: Models::Bike.get!(id),
           reservations: Models::Reservation.all(bike_id: id),
-          image: Models.BikeImage.all(bike_id: id)
+          images: Models::Image.all(bike_image: Models::BikeImage.all(bike_id: id))
         }
       end
 

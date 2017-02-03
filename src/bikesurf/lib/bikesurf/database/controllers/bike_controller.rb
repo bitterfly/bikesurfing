@@ -11,7 +11,7 @@ module Bikesurf
       def get_by_id(id)
         {
           bike: Models::Bike.get!(id),
-          reservations: Models::Reservation.all(bike_id: id)
+          reservations: Models::Reservation.all(bike_id: id),
           image: Models.BikeImage.all(bike_id: id)
         }
       end

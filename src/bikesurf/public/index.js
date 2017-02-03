@@ -9,12 +9,17 @@ $(document).ready(function() {
         ko.applyBindings(bikesurfViewModel);
 
 
-        this.get('/#/bike/:id', function() {
-            componentManager.selectComponent('bike_page', {id: this.params['id']})
+        this.get('#/bike/:id', function() {
+            componentManager.selectComponent('bike_page', {id: this.params['id']});
+        });
+
+        this.get('#/', function() {
+            componentManager.selectComponent('main_page');
         });
 
         this.get('', function() {
-            this.redirect('/#/bike/4');
+            this.redirect('#/');
         });
-    }).run();
+
+    }).run('#/');
 });

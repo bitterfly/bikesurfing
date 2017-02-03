@@ -2,7 +2,8 @@
     "use strict";
 
     var components = {
-        bike_page: {viewModel: 'BikePageViewModel', loaded: false}
+        bike_page: {viewModel: 'BikePageViewModel', loaded: false},
+        main_page: {viewModel: 'MainPageViewModel', loaded: false}
     }
 
     App.ComponentManager = function() {

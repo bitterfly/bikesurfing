@@ -2,7 +2,59 @@ $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  background-color: red;
+    font: 100% $font-stack;
+    color: $primary-color;
+    background-color: #dbe0e0;
+}
+
+
+// Bikesurf main page
+#bikesurf {
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #edeadc;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 30px;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            a {
+                white-space: nowrap;
+                padding: 8px 8px 8px 24px;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                display: block;
+                transition: 0.3s;
+                &:hover {
+                    background-color: #282720;
+                    color: #edeadc;
+                }
+            }
+        }
+        .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            color: #818181;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+        .bikesurf-img {
+            display: block;
+            transition: 0.5s;
+            padding: 8px 8px 8px 24px;
+        }
+    }
+    #page {
+        transition: margin-left .5s;
+    }
 }

@@ -3,6 +3,7 @@ $LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/database/dummy_data'
 require 'rubocop/rake_task'
+require 'sinatra'
 
 RuboCop::RakeTask.new(:rubocop)
 
@@ -22,6 +23,20 @@ namespace :database do
     Bikesurf::Database::DummyData.new.fill_dummy_data
 
     puts 'Database filled'
+  end
+end
+
+task :github_listener do
+  class GithubListener < Sinatra::Base
+    set :port, 1235
+
+    post '/push' do
+      puts `git pull`
+
+      'thanks'
+    end
+
+    run!
   end
 end
 

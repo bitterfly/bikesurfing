@@ -5,8 +5,12 @@
     <div data-bind='if: bike'>
         <div class="page_container">
             <div class="images">
-                <div class="image">
-                    <img data-bind="attr: { 'src': bike_image }"/>
+                <div class="image" data-bind="click: next_image">
+                    <div data-bind='if: bike_image_link'>
+                        <a data-bind="attr: { 'href': bike_image_link }">
+                            <img data-bind="attr: { 'src': bike_image_link }"/>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div data-bind='with: bike'>
@@ -36,13 +40,13 @@
             <div class="comments comments" data-bind='foreach: comments'>
                 <div class="comment">
                     <div class="comment_profile_image profile_image">
-                        <img data-bind="attr: { 'src': user_avatar }"/>
+                        <!-- <img data-bind="attr: { 'src': user_avatar }"/> -->
                     </div>
                     <div class="comment_user_info">
-                        <span class="username" data-bind='text: username'></span>
-                        <span class="timestamp" data-bind='text: timestamp'></span>
+                        <span class="username" data-bind='text: user.name'></span>
+                        <span class="timestamp" data-bind='text: post_time'></span>
                     </div>
-                    <div class="comment_content" data-bind='text: content'></div>
+                    <div class="comment_content" data-bind='text: message'></div>
                 </div>
             </div>
         </div>

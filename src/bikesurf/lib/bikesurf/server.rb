@@ -11,7 +11,7 @@ module Bikesurf
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
-    set :dump_errors, false
+    #set :dump_errors, false
 
     # The before filter deserialises the json
     # if it follows the specification
@@ -42,6 +42,16 @@ module Bikesurf
 
     post '/api/bike' do
       result = find_bike(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/comments/bike' do
+      result = find_bike_comments(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/images/bike' do
+      result = find_bike_images(@data['bike_id'])
       respond result
     end
 

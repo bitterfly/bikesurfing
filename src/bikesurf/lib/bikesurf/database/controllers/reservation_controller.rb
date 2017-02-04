@@ -10,7 +10,7 @@ module Bikesurf
 
       def free_fitting_criteria_bikes(from, to, criteria)
         {
-          bikes: bikes_fitting_creteria(criteria) - reserved_bikes(from, to)
+          bikes: bikes_fitting_criteria(criteria) - reserved_bikes(from, to)
         }
       end
 
@@ -29,7 +29,7 @@ module Bikesurf
         Models::Bike.all - reserved_bikes(from, to)
       end
 
-      def bikes_fitting_creteria(criteria)
+      def bikes_fitting_criteria(criteria)
         Models::Bike.all(criteria)
       end
     end

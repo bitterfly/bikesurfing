@@ -11,7 +11,6 @@ module Bikesurf
       def free_bikes(from, to, size)
         # Models::Reservation.all(fields: [:id])
         # Models::Bike.all(reservation: Models::Reservation.all(:from.gt => to))
-        all_bikes = Models::Bike.all
         # reserved_bikes = Models::Bike.all(
         #   reservations: Models::Reservation.all(
         #     conditions: [
@@ -20,15 +19,18 @@ module Bikesurf
         #   )
         # )
 
-        reserved_bikes = Models::Bike.all(
-          conditions: [
-            'size = ? or size = ?', "medium", "small"
-          ]
-        )
+        # reserved_bikes = Models::Bike.all(
+        #   conditions: [
+        #     'size = ? or size = ?', "medium", "small"
+        #   ]
+        # )
+        all_bikes = Models::Bike.all
+        reserved_bikes = Models::Bike.all(reservations: Models::Reservation.all(:from.lt => from, :until.gt => from)) +
+                         Models::Bike.all(reservations: Models::Reservation.all(:from.lt => to, :until.gt => to)) +
+                         Models::Bike.all(reservations: Models::Reservation.all(:from.gt => from, :until.lt => to))
 
-        
         {
-          bikes: reserved_bikes
+          bikes: all_bikes - reserved_bikes
         }
       end
     end

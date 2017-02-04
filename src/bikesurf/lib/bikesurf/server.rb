@@ -61,7 +61,7 @@ module Bikesurf
     end
 
     post '/api/bike_search' do
-      respond get_free_bikes(@data['from'], @data['to'], @data['size'])
+      respond free_bikes(@data['from'], @data['to'], @data['size'])
     end
 
     get '/image/:filename' do

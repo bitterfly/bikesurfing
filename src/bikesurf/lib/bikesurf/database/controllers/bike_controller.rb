@@ -46,8 +46,8 @@ module Bikesurf
         Models::Bike.all
       end
 
-      def free_bikes(reserved_ids, size)
-        Models::Bike.all(:size => size, :id.not => reserved_ids)
+      def not_matching(ids)
+        Models::Bike.all(:id.not => reserved_ids)
       end
     end
   end

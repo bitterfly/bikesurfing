@@ -11,11 +11,6 @@ module Bikesurf
         from_sql_datetime = timestamp_to_date(criteria['from'])
         to_sql_datetime = timestamp_to_date(criteria['to'])
 
-        errors = []
-        errors << 'Please select time period.' unless from_sql_datetime && to_sql_datetime
-        errors << 'Please select a valid time period.' unless valid_period?(from_sql_datetime, to_sql_datetime)
-        return { errors: errors } unless errors.empty?
-
         transform criteria
 
         Database::ReservationController

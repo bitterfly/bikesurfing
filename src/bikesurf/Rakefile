@@ -58,11 +58,8 @@ namespace :server do
   task restart: [:stop, :start]
 end
 
-task :css => ['public/css/styles.css']
-
-rule '.css' => '.scss' do |t|
-    p t
-  `sass #{t.source} #{t.name}`
+task :css do
+  `sass 'public/css/styles.scss' 'public/css/styles.css'`
 end
 
 task default: [:rubocop]

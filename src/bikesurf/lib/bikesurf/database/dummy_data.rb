@@ -5,6 +5,9 @@ require 'faker'
 require 'securerandom'
 require 'bikesurf/database/setup'
 require 'bikesurf/database/models'
+require 'bikesurf/images/image'
+require 'open-uri'
+require 'dotenv/load'
 
 class Integer
   SECONDS_IN_DAY = 24 * 60 * 60
@@ -47,6 +50,19 @@ module Bikesurf
         end
         bikes
       end
+
+      def fill_random_comments(users)
+        comments = []
+        20.times do
+          comments << Models::Comment.create(
+            user: users.sample,
+            message: Faker::Lorem.sentence,
+            post_time: Time.now
+          )
+        end
+        comments
+      end
+        
 
       def fill_roles
         roles = []
@@ -125,7 +141,7 @@ module Bikesurf
       def fill_random_reservations(users, bikes)
         reservations = []
         10.times do
-          reservations = Models::Reservation.create(
+          reservations << Models::Reservation.create(
             user:         users.sample,
             bike:         bikes.sample,
             from:         Faker::Date.between(2.days.ago, Date.today),
@@ -136,13 +152,71 @@ module Bikesurf
         reservations
       end
 
+      def fill_random_resevation_comments(comments, reservations)
+        reservation_comments = []
+        10.times do
+          reservation_comments << Models::ReservationComment.create(
+            comment: comments.sample(),
+            reservation: reservations.sample()  
+          )
+        end
+        reservation_comments      
+      end
+
+
+      def fill_random_bike_comments(comments, bikes)
+        bike_comments = []
+        10.times do
+          bike_comments << Models::BikeComment.create(
+            comment: comments.sample(),
+            bike: bikes.sample()  
+          )
+        end
+        bike_comments      
+      end
+
+      def fill_random_image
+        a = Time.now
+        image = open('https://unsplash.it/900/600?random').read
+        puts(Time.now - a)
+        Images::save_to_database(image)
+      end
+
+      def fill_random_images
+        Dir.foreach(ENV['IMAGES']) do |f| 
+          fn = File.join(ENV['IMAGES'], f)
+          File.delete(fn) if f != '.' && f != '..'
+        end
+        images = []
+        10.times do
+          images << fill_random_image
+        end
+        images
+      end
+
+      def fill_random_bike_images(bikes, images)
+        bikes.each do |bike|
+          3.times do
+            Models::BikeImage.create(
+              image: images.sample(),
+              bike: bike  
+            )
+          end
+        end
+      end
+
       def fill_dummy_data
         roles = fill_roles
         us = fill_us_as_users(roles)
         users = fill_random_users(us, roles)
         stands = fill_random_stands(users)
         bikes = fill_random_bikes(stands)
-        fill_random_reservations(users, bikes)
+        reservations = fill_random_reservations(users, bikes)
+        comments = fill_random_comments(users)
+        fill_random_resevation_comments(comments, reservations)
+        fill_random_bike_comments(comments, bikes)
+        images = fill_random_images
+        fill_random_bike_images(bikes, images)
       end
     end
   end

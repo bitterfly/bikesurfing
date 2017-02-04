@@ -37,7 +37,7 @@ module Bikesurf
     end
 
     get '/' do
-      redirect '/index.html' # FIXME: this is stupid, don't redirect
+      send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
     end
 
     post '/api/bike' do
@@ -52,6 +52,14 @@ module Bikesurf
 
     post '/api/bike_search' do
       respond bike_search(@data['from'], @data['to'], @data['size'])
+
+    get '/image/:filename' do
+      filename = params['filename']
+      if /[\w\d]*/ =~ filename
+        return send_file File.expand_path(File.join(ENV['IMAGES'], params['filename'])), type: 'image/jpeg'
+      end
+      status 403
+      body 'Forbidden file'
     end
   end
 end

@@ -4,14 +4,13 @@ require 'data_mapper'
 module Bikesurf
   module Database
     module Models
-      class Stand
+      class ReservationComment
         include DataMapper::Resource
 
-        property :id,       Serial
-        property :location, String
+        property :id, Serial
 
-        belongs_to :user
-        has n, :bikes
+        belongs_to :comment
+        belongs_to :reservation
       end
     end
   end

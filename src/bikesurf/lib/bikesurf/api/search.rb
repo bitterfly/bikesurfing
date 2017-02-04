@@ -6,18 +6,26 @@ module Bikesurf
   module Requests
     module Search
       include ::Bikesurf::Helpers::DateHelper
-      def bike_search(from, to, size)
-        from = date_of(from)
-        to = date_of(to)
 
-        reserved_ids = Database::ReservationController.instance.get_reserved_bike_ids(from, to)
-        Database::BikeController.instance.free_bikes(reserved_ids, size)
+      def fitting_criteria_bikes(criteria)
+        from_sql_datetime = timestamp_to_date(criteria['from'])
+        to_sql_datetime = timestamp_to_date(criteria['to'])
+
+        errors = []
+        errors << 'Please select time period.' unless from_sql_datetime && to_sql_datetime
+        errors << 'Please select a valid time period.' unless valid_period?(from_sql_datetime, to_sql_datetime)
+        return { errors: errors } unless errors.empty?
+
+        transform criteria
+
+        Database::ReservationController
+          .instance
+          .free_fitting_criteria_bikes(from_sql_datetime, to_sql_datetime, criteria)
       end
 
-      def free_bikes(from_timestamp, to_timestamp, size)
-        from_sql_datetime = timestamp_to_date(from_timestamp)
-        to_sql_datetime = timestamp_to_date(to_timestamp)
-        Database::ReservationController.instance.free_bikes(from_sql_datetime, to_sql_datetime, size)
+      def transform(criteria)
+        criteria.delete_if { |key, value| value.to_s.strip.empty? || key == 'from' || key == 'to' }
+        criteria.map { |key, value| [key.to_sym, value] }.to_h
       end
     end
   end

@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'bikesurf/config'
-require 'bikesurf/requests'
+require 'bikesurf/api'
 require 'bikesurf/database/setup'
 
 module Bikesurf
@@ -61,7 +61,7 @@ module Bikesurf
     end
 
     post '/api/bike_search' do
-      respond bike_search(@data['from'], @data['to'], @data['size'])
+      respond get_free_bikes(@data['from'], @data['to'], @data['size'])
     end
 
     get '/image/:filename' do

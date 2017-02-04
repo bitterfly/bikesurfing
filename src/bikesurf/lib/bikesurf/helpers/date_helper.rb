@@ -1,7 +1,7 @@
 require 'date'
 
 module Bikesurf
-  module Helpes
+  module Helpers
     module DateHelper
       def self.timestamp_to_date(timestamp)
         Time.at(timestamp).utc.to_datetime.to_date

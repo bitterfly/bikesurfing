@@ -9,7 +9,7 @@ module Bikesurf
       include Singleton
 
       def get_reserved_bike_ids(from, to)
-        Models::Reservation.all(:fields => [:id], :until.date)
+        Models::Reservation.all(fields: [:id])
       end
     end
   end

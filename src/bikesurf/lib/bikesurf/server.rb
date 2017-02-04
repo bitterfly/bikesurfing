@@ -52,6 +52,7 @@ module Bikesurf
 
     post '/api/bike_search' do
       respond bike_search(@data['from'], @data['to'], @data['size'])
+    end
 
     get '/image/:filename' do
       filename = params['filename']

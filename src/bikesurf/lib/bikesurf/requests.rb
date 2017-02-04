@@ -1,2 +1,2 @@
-require 'bikesurf/requests/bike'
-require 'bikesurf/requests/search'
+require 'bikesurf/api/bike'
+require 'bikesurf/api/search'

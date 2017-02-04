@@ -8,19 +8,29 @@ module Bikesurf
     class ReservationController
       include Singleton
 
-      def free_bikes(from, to, size)
-        all_bikes_of_size = Models::Bike.all(size: size)
+      def free_fitting_criteria_bikes(from, to, criteria)
+        {
+          bikes: bikes_fitting_creteria(criteria) - reserved_bikes(from, to)
+        }
+      end
 
-        reserved_bikes = Models::Bike.all(
+      private
+
+      def reserved_bikes(from, to)
+        Models::Bike.all(
           reservations: Models::Reservation.all(
             :from.lte => to,
             :until.gte => from
           )
         )
-        
-        {
-          bikes: all_bikes_of_size - reserved_bikes
-        }
+      end
+
+      def free_bikes(from, to)
+        Models::Bike.all - reserved_bikes(from, to)
+      end
+
+      def bikes_fitting_creteria(criteria)
+        Models::Bike.all(criteria)
       end
     end
   end

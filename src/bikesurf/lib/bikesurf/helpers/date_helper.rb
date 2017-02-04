@@ -18,6 +18,10 @@ module Bikesurf
       def time_to_timestamp(time)
         time.to_i
       end
+
+      def valid_period?(from, to)
+        from <= to
+      end
     end
   end
 end

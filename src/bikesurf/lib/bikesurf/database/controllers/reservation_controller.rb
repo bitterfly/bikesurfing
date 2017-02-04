@@ -25,9 +25,9 @@ module Bikesurf
         #   ]
         # )
         all_bikes = Models::Bike.all
-        reserved_bikes = Models::Bike.all(reservations: Models::Reservation.all(:from.lt => from, :until.gt => from)) +
-                         Models::Bike.all(reservations: Models::Reservation.all(:from.lt => to, :until.gt => to)) +
-                         Models::Bike.all(reservations: Models::Reservation.all(:from.gt => from, :until.lt => to))
+        reserved_bikes = Models::Bike.all(reservations: Models::Reservation.all(:from.lte => from, :until.gte => from)) +
+                         Models::Bike.all(reservations: Models::Reservation.all(:from.lte => to, :until.gte => to)) +
+                         Models::Bike.all(reservations: Models::Reservation.all(:from.gte => from, :until.lte => to))
 
         {
           bikes: all_bikes - reserved_bikes

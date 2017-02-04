@@ -14,8 +14,8 @@ module Bikesurf
       end
 
       def get_free_bikes(from_timestamp, to_timestamp, size)
-        from_sql_datetime = DateHelper.date_of(from_timestamp)
-        to_sql_datetime = DateHelper.date_of(to_timestamp)
+        from_sql_datetime = DateHelper.timestamp_to_date(from_timestamp)
+        to_sql_datetime = DateHelper.timestamp_to_date(to_timestamp)
         Database::ReservationController.instance.free_bikes(from_sql_datetime, to_sql_datetime, size)
       end
     end

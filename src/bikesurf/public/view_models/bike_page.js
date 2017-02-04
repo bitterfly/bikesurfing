@@ -42,11 +42,21 @@
             }
         }, this);
 
+        this.bike_images.subscribe(function(images) {
+            $('.slick_images').slick({
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true
+            });
+            for (var i = 0; i < images.length; i++) {
+                $('.slick_images').slick('slickAdd', '<div><img src="' + App.image_url(images[i]) + '" /></div>');
+            }
+            $('.slick_images').slick('next')
+        });
+
         this.next_image = function() {
             var num_images = this.bike_images().length;
             this.bike_image_index((this.bike_image_index() + 1) % num_images);
         };
-
-
     }
 })();

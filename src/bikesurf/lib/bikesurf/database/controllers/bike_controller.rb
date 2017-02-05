@@ -36,7 +36,7 @@ module Bikesurf
             user: {
               id: comment.user.id,
               name: comment.user.name,
-              username: comment.user.username
+              username: comment.user.username,
               avatar: comment.user.image
             }
           }

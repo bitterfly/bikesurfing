@@ -198,7 +198,6 @@ module Bikesurf
 
       def fill_random_image(address)
         a = Time.now
-        puts address
         image = open(address).read
         puts(Time.now - a)
         Images.save_to_database(image)
@@ -257,13 +256,12 @@ module Bikesurf
 
       def fill_random_images
         puts 'Filling bike images'
-        width = rand(600) + 900
-        height = rand(300) + 600
-        address = "https://unsplash.it/#{width}/#{height}?random"
         images = []
-
         10.times do
           begin
+            width = rand(600) + 900
+            height = rand(300) + 600
+            address = "https://unsplash.it/#{width}/#{height}?random"
             images << fill_random_image(address)
           rescue OpenURI::HTTPError
             images << nil

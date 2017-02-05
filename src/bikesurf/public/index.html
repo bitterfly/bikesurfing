@@ -43,7 +43,7 @@
 
 <body>
     <div data-bind="if: selectedComponent" id="bikesurf">
-        <nav class="sidenav">
+        <nav id="sidenav">
             <i class="fa fa-times closeBtn" data-bind="click: closeMenu" aria-hidden="true"></i>
             <a href="#/" class="bikesurf-img"><img src="resources/logo.png" alt="Bikesurf logo"/></a>
             <ul>
@@ -54,37 +54,37 @@
                 <li><a href="#/borrow">Borrow a bike (dev)</a></li>
             </ul>
         </nav>
+
         <div id="page">
             <div id="login">
                 <i class="fa fa-bars fa-2x" data-bind="click: openMenu"></i>
             </div>
-            <div class="flex">
-                <div data-bind="component: selectedComponent" id="component"></div>
-                <div id="links">
-                    <!-- TODO: Add donate links -->
-                    <!-- TODO: Some of the links are only for bikesurf BERLIN -->
-                    <div id="donate">
-                        <ul>
-                            <li><a href="#">Plz d0n8 ;(</a></li>
-                            <li><a href="#"><i class="fa fa-cc-paypal fa-5x" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-credit-card fa-5x" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-btc fa-5x" aria-hidden="true"></i></a></li>
-                        </ul>
-                    <div>
-                    <div class="footer">
-                        <div>Follow us:</div>
-                        <div>
-                            <a href="https://www.facebook.com/BikeSurf/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="https://twitter.com/bikesurfberlin" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="http://www.bewelcome.org/members/bikesurfberlin" target="_blank">BW</a>
-                        </div>
-                        <div>Contact us:</div>
-                        <div>
-                            <a href="mailto:bikesurfberlin@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                            <a href="https://www.couchsurfing.com/people/bikesurfberlin/" target="_blank"><i class="fa fa-wheelchair-alt" aria-hidden="true"></i></a>
-                            <a href="http://de.linkedin.com/in/bikesurfberlin" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
+            <div data-bind="component: selectedComponent" id="component"></div>
+        </div>
+
+        <div id="links">
+            <!-- TODO: Add donate links -->
+            <!-- TODO: Some of the links are only for bikesurf BERLIN -->
+            <div class="donate">
+                <ul>
+                    <li><a href="#">Plz d0n8 ;(</a></li>
+                    <li><a href="#"><i class="fa fa-cc-paypal fa-5x" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-credit-card fa-5x" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-btc fa-5x" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>Follow us:</div>
+                <div>
+                    <a href="https://www.facebook.com/BikeSurf/" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/bikesurfberlin" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                    <a href="http://www.bewelcome.org/members/bikesurfberlin" target="_blank">BW</a>
+                </div>
+                <div>Contact us:</div>
+                <div>
+                    <a href="mailto:bikesurfberlin@gmail.com" target="_blank"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://www.couchsurfing.com/people/bikesurfberlin/" target="_blank"><i class="fa fa-wheelchair-alt fa-2x" aria-hidden="true"></i></a>
+                    <a href="http://de.linkedin.com/in/bikesurfberlin" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>

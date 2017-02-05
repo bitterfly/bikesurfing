@@ -55,10 +55,10 @@ module Bikesurf
       def fill_random_comments(users)
         puts 'Filling comments'
         comments = []
-        20.times do
+        30.times do
           comments << Models::Comment.create(
             user: users.sample,
-            message: Faker::Lorem.sentence,
+            message: [true, false].sample ? Faker::Lorem.sentence : Faker::Lorem.paragraph,
             post_time: Time.now
           )
         end
@@ -167,11 +167,13 @@ module Bikesurf
       def fill_random_resevation_comments(comments, reservations)
         puts 'Filling reservation comments'
         reservation_comments = []
-        10.times do
-          reservation_comments << Models::ReservationComment.create(
-            comment: comments.sample(),
-            reservation: reservations.sample()  
-          )
+        reservations.each do |reservation|
+          5.times do
+            reservation_comments << Models::ReservationComment.create(
+              comment: comments.sample(),
+              reservation: reservation  
+            )
+          end
         end
         reservation_comments      
       end
@@ -180,11 +182,13 @@ module Bikesurf
       def fill_random_bike_comments(comments, bikes)
         puts 'Filling bike comments'
         bike_comments = []
-        10.times do
-          bike_comments << Models::BikeComment.create(
-            comment: comments.sample(),
-            bike: bikes.sample()  
-          )
+        bikes.each do |bike|
+          8.times do
+            bike_comments << Models::BikeComment.create(
+              comment: comments.sample(),
+              bike: bike  
+            )
+          end
         end
         bike_comments      
       end

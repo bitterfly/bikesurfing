@@ -33,7 +33,11 @@ module Bikesurf
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      { ok: true, data: result }.to_json
+      if result[:errors]
+        { ok: false, data: result }.to_json
+      else
+        { ok: true, data: result }.to_json
+      end
     end
 
     get '/' do
@@ -60,8 +64,8 @@ module Bikesurf
       respond result
     end
 
-    post '/api/bike_search' do
-      respond get_free_bikes(@data['from'], @data['to'], @data['size'])
+    post '/api/search_bikes' do
+      respond fitting_criteria_bikes(@data)
     end
 
     get '/image/:filename' do

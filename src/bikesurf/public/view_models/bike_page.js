@@ -1,5 +1,13 @@
 (function() {
     App.BikePageViewModel = function(params) {
+        this.avatar_url = function(image) {
+            if (image) {
+                return App.image_url(image);
+            } else {
+                return 'resources/avatar_placeholder.png';
+            }
+        }
+
         this.id = ko.observable(params['id']);
         this.bike_info = ko.observable();
         this.bike_images = ko.observable();

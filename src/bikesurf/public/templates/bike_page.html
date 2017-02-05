@@ -41,10 +41,10 @@
                     <div class="description" data-bind='text: desctiption'></div>
                 </div>
             </div>
-            <div class="comments comments" data-bind='foreach: comments'>
+            <div class="comments" data-bind='foreach: comments'>
                 <div class="comment">
                     <div class="comment_profile_image profile_image">
-                        <!-- <img data-bind="attr: { 'src': user_avatar }"/> -->
+                        <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
                     </div>
                     <div class="comment_user_info">
                         <span class="username" data-bind='text: user.name'></span>

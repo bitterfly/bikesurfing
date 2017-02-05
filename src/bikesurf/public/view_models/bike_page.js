@@ -46,6 +46,7 @@
             $('.slick_images').slick({
                 slidesToShow: 1,
                 centerMode: true,
+                dots: true,
                 variableWidth: true
             });
             for (var i = 0; i < images.length; i++) {

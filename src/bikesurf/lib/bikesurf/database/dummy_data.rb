@@ -29,6 +29,7 @@ module Bikesurf
   module Database
     class DummyData
       def fill_random_bikes(stands)
+        puts 'Filling bikes'
         bikes = []
         10.times do
           bikes << Models::Bike.create(
@@ -52,6 +53,7 @@ module Bikesurf
       end
 
       def fill_random_comments(users)
+        puts 'Filling comments'
         comments = []
         20.times do
           comments << Models::Comment.create(
@@ -91,28 +93,34 @@ module Bikesurf
         )
       end
 
-      def fill_us_as_users(roles)
+      def fill_us_as_users(roles, avatars)
+        puts 'Filling us'
         users = []
         users << fill_person(
           name: 'Angel Angelov', username: 'hextwoa', password: 'password',
-          email: 'hextwoa@gmail.com', verified: false, role: roles.sample
+          email: 'hextwoa@gmail.com', verified: false, role: roles.sample,
+          image: avatars[0]
         )
         users << fill_person(
           name: 'Diana Geneva', username: 'dageneva', password: 'iamthewalrus',
-          email: 'dageneva@gmail.com', verified: true, role: roles.sample
+          email: 'dageneva@gmail.com', verified: true, role: roles.sample,
+          image: avatars[1]
         )
         users << fill_person(
           name: 'Zvezdalina Dimitrova', username: 'zi', password: 'passw0rd',
-          email: 'zvezdi.dim@gmail.com', verified: true, role: roles.sample
+          email: 'zvezdi.dim@gmail.com', verified: true, role: roles.sample,
+          image: avatars[2]
         )
         users << fill_person(
           name: 'Georgi Pavlov', username: 'wanker94', password: 'ilovehorde',
-          email: 'georgipavlov94@gmail.com', verified: true, role: roles.sample
+          email: 'georgipavlov94@gmail.com', verified: true, role: roles.sample,
+          image: avatars[3]
         )
         users
       end
 
       def fill_random_stands(users)
+        puts 'Filling stands'
         stands = []
         10.times do
           stands << Models::Stand.create(
@@ -123,7 +131,8 @@ module Bikesurf
         stands
       end
 
-      def fill_random_users(users, roles)
+      def fill_random_users(users, roles, avatars)
+        puts 'Filling users'
         10.times do
           name = Faker::Name.name
           username = name.downcase.split(' ').first + Random.rand(200).to_s
@@ -132,13 +141,14 @@ module Bikesurf
             name: name, username: username, password: username + ' password',
             email: name.downcase.tr(' ', '.') + '@example.com',
             verified: [true, false].sample,
-            role: roles.sample
+            role: roles.sample, image: avatars.sample
           )
         end
         users
       end
 
       def fill_random_reservations(users, bikes)
+        puts 'Filling reservations'
         reservations = []
         10.times do
           reservations << Models::Reservation.create(
@@ -153,6 +163,7 @@ module Bikesurf
       end
 
       def fill_random_resevation_comments(comments, reservations)
+        puts 'Filling reservation comments'
         reservation_comments = []
         10.times do
           reservation_comments << Models::ReservationComment.create(
@@ -165,6 +176,7 @@ module Bikesurf
 
 
       def fill_random_bike_comments(comments, bikes)
+        puts 'Filling bike comments'
         bike_comments = []
         10.times do
           bike_comments << Models::BikeComment.create(
@@ -175,26 +187,77 @@ module Bikesurf
         bike_comments      
       end
 
-      def fill_random_image
+      def fill_random_image(address='https://unsplash.it/900/600?random')
         a = Time.now
-        image = open('https://unsplash.it/900/600?random').read
+        image = open(address).read
         puts(Time.now - a)
-        Images::save_to_database(image)
+        Images::save_to_database(image)  
+      end
+      
+      def fill_random_avatar
+        address = "https://www.heroesofnewerth.com/images/heroes/%d/icon_128.jpg" % [rand(2...197)]
+        fill_random_image(address)
+      end
+
+      def hon_avatar
+        begin
+          return fill_random_avatar
+        rescue OpenURI::HTTPError => error
+          return hon_avatar
+        end
+      end
+
+      def fill_random_avatars
+        puts 'Filling avatars'
+        avatars = []
+        10.times do
+          begin
+            avatars << hon_avatar
+          end
+        end
+        avatars
+      end
+
+      def fill_specific_avatars
+        puts 'Filling our avatars'
+        avatars = []
+        # Angel
+        address = "https://www.heroesofnewerth.com/images/heroes/124/icon_128.jpg"
+        avatars << fill_random_image(address)
+
+
+        # Dodo
+        address = "https://www.heroesofnewerth.com/images/heroes/21/icon_128.jpg"
+        avatars << fill_random_image(address)
+
+
+        # Zvezdi
+        address = "https://www.heroesofnewerth.com/images/heroes/125/icon_128.jpg"
+        avatars << fill_random_image(address)
+
+
+        # Georgi
+        address = "https://www.heroesofnewerth.com/images/heroes/6/icon_128.jpg"
+        avatars << fill_random_image(address)
+
+        avatars
       end
 
       def fill_random_images
-        Dir.foreach(ENV['IMAGES']) do |f| 
-          fn = File.join(ENV['IMAGES'], f)
-          File.delete(fn) if f != '.' && f != '..'
-        end
+        puts 'Filling bike images'
         images = []
         10.times do
-          images << fill_random_image
+          begin
+            images << fill_random_image
+          rescue OpenURI::HTTPError => error
+            images << nil
+          end
         end
         images
       end
 
       def fill_random_bike_images(bikes, images)
+        puts 'Filling bike images'
         bikes.each do |bike|
           3.times do
             Models::BikeImage.create(
@@ -206,16 +269,24 @@ module Bikesurf
       end
 
       def fill_dummy_data
+        # delete all the images for bikes and avatars and download new
+        Dir.foreach(ENV['IMAGES']) do |f| 
+          fn = File.join(ENV['IMAGES'], f)
+          File.delete(fn) if f != '.' && f != '..'
+        end
+
         roles = fill_roles
-        us = fill_us_as_users(roles)
-        users = fill_random_users(us, roles)
+        images = fill_random_images
+        avatars = fill_random_avatars
+        specific_avatars = fill_specific_avatars
+        us = fill_us_as_users(roles, specific_avatars)
+        users = fill_random_users(us, roles, avatars)
         stands = fill_random_stands(users)
         bikes = fill_random_bikes(stands)
         reservations = fill_random_reservations(users, bikes)
         comments = fill_random_comments(users)
         fill_random_resevation_comments(comments, reservations)
         fill_random_bike_comments(comments, bikes)
-        images = fill_random_images
         fill_random_bike_images(bikes, images)
       end
     end

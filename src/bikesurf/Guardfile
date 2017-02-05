@@ -16,5 +16,5 @@
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
 guard 'rake', task: 'server:restart' do
-  watch(/{.*\.(rb|scss)$}/)
+  watch(/.*\.(rb|scss)$/)
 end

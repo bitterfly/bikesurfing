@@ -3,7 +3,7 @@
 
     var components = {
         bike_page: {viewModel: 'BikePageViewModel', loaded: false},
-        main_page: {viewModel: 'MainPageViewModel', loaded: false},
+        intro_page: {viewModel: 'IntroPageViewModel', loaded: false},
         search_page: {viewModel: 'SearchPageViewModel', loaded: false},
         borrow_bike: {viewModel: 'BorrowBikeViewModel', loaded: false},
         request_bike: {viewModel: 'RequestBikeViewModel', loaded: false},

@@ -30,7 +30,7 @@ $(document).ready(function() {
         });
 
         this.get('#/', function() {
-            componentManager.selectComponent('main_page');
+            componentManager.selectComponent('intro_page');
         });
 
         this.get('', function() {

@@ -69,7 +69,7 @@ module Bikesurf
       if /[\w\d]*/ =~ filename
         return send_file(
           File.expand_path(
-            File.join(ENV['IMAGES'],params['filename'])
+            File.join(ENV['IMAGES'], params['filename'])
           ),
           type: 'image/jpeg'
         )

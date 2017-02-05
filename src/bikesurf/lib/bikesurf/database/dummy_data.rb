@@ -8,6 +8,8 @@ require 'bikesurf/database/models'
 require 'bikesurf/images/image'
 require 'open-uri'
 require 'dotenv/load'
+require 'bikesurf/config'
+require 'mini_magick'
 
 class Integer
   SECONDS_IN_DAY = 24 * 60 * 60
@@ -199,8 +201,20 @@ module Bikesurf
       def fill_random_image(address)
         a = Time.now
         image = open(address).read
+
         puts(Time.now - a)
-        Images.save_to_database(image)
+        database_image = Images.save_to_database(image)
+
+        Config::IMAGE_SIZES.each do |size|
+          image = MiniMagick::Image.open(
+            File.join(ENV['IMAGES'], database_image.filename)
+          )
+          image.resize size
+
+          new_filename = [database_image.filename, size.to_s].join('_')
+          image.write File.join(ENV['IMAGES'], new_filename)
+        end
+        database_image
       end
 
       def fill_random_avatar
@@ -210,11 +224,9 @@ module Bikesurf
       end
 
       def hon_avatar
-        begin
-          return fill_random_avatar
-        rescue OpenURI::HTTPError
-          return hon_avatar
-        end
+        return fill_random_avatar
+      rescue OpenURI::HTTPError
+        return hon_avatar
       end
 
       def fill_random_avatars

@@ -11,7 +11,7 @@ module Bikesurf
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
-    #set :dump_errors, false
+    # set :dump_errors, false
 
     # The before filter deserialises the json
     # if it follows the specification
@@ -33,7 +33,11 @@ module Bikesurf
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      { ok: true, data: result }.to_json
+      if result[:errors]
+        { ok: false, data: result }.to_json
+      else
+        { ok: true, data: result }.to_json
+      end
     end
 
     get '/' do
@@ -60,14 +64,19 @@ module Bikesurf
       respond result
     end
 
-    post '/api/bike_search' do
-      respond get_free_bikes(@data['from'], @data['to'], @data['size'])
+    post '/api/search_bikes' do
+      respond fitting_criteria_bikes(@data)
     end
 
     get '/image/:filename' do
       filename = params['filename']
       if /[\w\d]*/ =~ filename
-        return send_file File.expand_path(File.join(ENV['IMAGES'], params['filename'])), type: 'image/jpeg'
+        return send_file(
+          File.expand_path(
+            File.join(ENV['IMAGES'],params['filename'])
+          ),
+          type: 'image/jpeg'
+        )
       end
       status 403
       body 'Forbidden file'

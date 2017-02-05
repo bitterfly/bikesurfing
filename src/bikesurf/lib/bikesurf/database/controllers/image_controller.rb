@@ -7,9 +7,9 @@ module Bikesurf
     class ImageController
       include Singleton
       def add(filename)
-          Models::Image.create(
-            filename: filename
-          )
+        Models::Image.create(
+          filename: filename
+        )
       end
     end
   end

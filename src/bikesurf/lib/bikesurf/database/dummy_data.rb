@@ -56,7 +56,7 @@ module Bikesurf
         20.times do
           comments << Models::Comment.create(
             user: users.sample,
-            message: Faker::Lorem.sentence,
+            message: [true, false].sample ? Faker::Lorem.sentence : Faker::Lorem.paragraph,
             post_time: Time.now
           )
         end

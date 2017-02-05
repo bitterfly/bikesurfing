@@ -11,7 +11,7 @@ module Bikesurf
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
-    #set :dump_errors, false
+    # set :dump_errors, false
 
     # The before filter deserialises the json
     # if it follows the specification
@@ -71,7 +71,12 @@ module Bikesurf
     get '/image/:filename' do
       filename = params['filename']
       if /[\w\d]*/ =~ filename
-        return send_file File.expand_path(File.join(ENV['IMAGES'], params['filename'])), type: 'image/jpeg'
+        return send_file(
+          File.expand_path(
+            File.join(ENV['IMAGES'],params['filename'])
+          ),
+          type: 'image/jpeg'
+        )
       end
       status 403
       body 'Forbidden file'

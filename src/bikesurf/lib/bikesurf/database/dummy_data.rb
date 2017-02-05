@@ -236,18 +236,15 @@ module Bikesurf
                   '124/icon_128.jpg'
         avatars << fill_random_image(address)
 
-
         # Dodo
         address = 'https://www.heroesofnewerth.com/images/heroes/'\
                   '21/icon_128.jpg'
         avatars << fill_random_image(address)
 
-
         # Zvezdi
         address = 'https://www.heroesofnewerth.com/images/heroes/'\
                   '125/icon_128.jpg'
         avatars << fill_random_image(address)
-
 
         # Georgi
         address = 'https://www.heroesofnewerth.com/images/heroes/'\
@@ -263,7 +260,7 @@ module Bikesurf
         10.times do
           begin
             images << fill_random_image
-          rescue OpenURI::HTTPError => error
+          rescue OpenURI::HTTPError
             images << nil
           end
         end
@@ -276,7 +273,7 @@ module Bikesurf
           3.times do
             Models::BikeImage.create(
               image: images.sample,
-              bike: bike  
+              bike: bike
             )
           end
         end
@@ -284,7 +281,7 @@ module Bikesurf
 
       def fill_dummy_data
         # delete all the images for bikes and avatars and download new
-        Dir.foreach(ENV['IMAGES']) do |f| 
+        Dir.foreach(ENV['IMAGES']) do |f|
           fn = File.join(ENV['IMAGES'], f)
           File.delete(fn) if f != '.' && f != '..'
         end

@@ -5,15 +5,34 @@
         var self = this;
         self.asd = ko.observable("asd");
 
-        self.openMenu = function() {
-            $('#sidenav').css({'width': '250px'})
-            $('#page').css({'margin-left': '250px'})
-        }
+
+        // ==================================================
+        // Menu button functionality
+
+        function menuShow() {
+            $('#sidenav').addClass('show');
+            $('#page').addClass('menuOpen');
+        };
+
+        function menuClose() {
+            $('#sidenav').removeClass('show');
+            $('#page').removeClass('menuOpen');
+        };
+
+        self.toggleMenu = function() {
+            if ($('#sidenav').innerWidth() === 0) {
+                menuShow();
+            } else {
+                menuClose();
+            }
+        };
 
         self.closeMenu = function() {
-            $('#sidenav').css({'width': '0'})
-            $('#page').css({'margin-left': '0'})
+            menuClose();
         };
+
+        // ==================================================
+
     }
 
 })();

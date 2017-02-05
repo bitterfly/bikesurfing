@@ -11,12 +11,14 @@ module Bikesurf
       def get_by_id(id)
         {
           bike: Models::Bike.get!(id),
-          reservations: Models::Reservation.all(bike_id: id),
+          reservations: Models::Reservation.all(bike_id: id)
         }
       end
 
       def get_images_by_id(id)
-        images = Models::Image.all(bike_image: Models::BikeImage.all(bike_id: id))
+        images = Models::Image.all(
+          bike_image: Models::BikeImage.all(bike_id: id)
+        )
         images.map do |image|
           {
             filename: image.filename
@@ -25,13 +27,15 @@ module Bikesurf
       end
 
       def get_comments_by_id(id)
-        comments = Models::Comment.all(bike_comment: Models::BikeComment.all(bike_id: id))
+        comments = Models::Comment.all(
+          bike_comment: Models::BikeComment.all(bike_id: id)
+        )
 
         comments.map do |comment|
           {
             id: comment.id,
             message: comment.message,
-            post_time: comment.post_time, # todo: convert to proper timestamp
+            post_time: comment.post_time, # TODO: convert to proper timestamp
 
             user: {
               id: comment.user.id,
@@ -43,7 +47,7 @@ module Bikesurf
         end
       end
 
-      def get_all
+      def all
         Models::Bike.all
       end
 

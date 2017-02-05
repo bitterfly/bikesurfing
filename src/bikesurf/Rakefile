@@ -50,8 +50,9 @@ namespace :server do
   end
 
   task :stop do
-
-    `kill $(cat /tmp/bikesurf_server.pid)` if File.exists?('/tmp/bikesurf_server.pid')
+    if File.exist?('/tmp/bikesurf_server.pid')
+      `kill $(cat /tmp/bikesurf_server.pid)`
+    end
     sleep 1
   end
 

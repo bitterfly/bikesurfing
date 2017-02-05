@@ -11,6 +11,7 @@ module Bikesurf
         property :filename, Text
 
         has 1, :bike_image
+        has 1, :user
       end
     end
   end

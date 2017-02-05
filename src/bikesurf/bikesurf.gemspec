@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rake', '~> 12.0'
   s.add_runtime_dependency 'sinatra', '~> 1.4'
   s.add_runtime_dependency 'json', '~> 1.6'
+  s.add_runtime_dependency 'mini_magick', '~> 4.6.0'
   s.add_development_dependency 'rspec', '~> 3'
   s.add_development_dependency 'sass', '~> 3'
   s.add_development_dependency 'rubocop', '~> 0.47'

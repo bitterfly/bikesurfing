@@ -33,11 +33,7 @@ module Bikesurf
     # This should be called before returning a value
     # to ensure conformance to the specification
     def respond(result)
-      if result[:errors]
-        { ok: false, data: result }.to_json
-      else
-        { ok: true, data: result }.to_json
-      end
+      { ok: true, data: result }.to_json
     end
 
     get '/' do

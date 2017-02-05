@@ -63,4 +63,8 @@
             }
         });
     }
+
+    App.image_url = function(image) {
+        return 'image/' + image.filename;
+    };
 })();

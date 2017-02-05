@@ -1,16 +1,17 @@
 require 'rubygems'
 require 'sinatra'
 require 'bikesurf/config'
-require 'bikesurf/requests'
+require 'bikesurf/api'
 require 'bikesurf/database/setup'
 
 module Bikesurf
   class Server < Sinatra::Base
     include Requests::Bike
+    include Requests::Search
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
-    set :dump_errors, false
+    #set :dump_errors, false
 
     # The before filter deserialises the json
     # if it follows the specification
@@ -36,7 +37,7 @@ module Bikesurf
     end
 
     get '/' do
-      send_file File.expand_path(Config::PUBLIC) + '/index.html'
+      send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
     end
 
     post '/api/bike' do
@@ -44,9 +45,32 @@ module Bikesurf
       respond result
     end
 
+    post '/api/comments/bike' do
+      result = find_bike_comments(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/images/bike' do
+      result = find_bike_images(@data['bike_id'])
+      respond result
+    end
+
     post '/api/bikes' do
       result = find_bikes
       respond result
+    end
+
+    post '/api/bike_search' do
+      respond get_free_bikes(@data['from'], @data['to'], @data['size'])
+    end
+
+    get '/image/:filename' do
+      filename = params['filename']
+      if /[\w\d]*/ =~ filename
+        return send_file File.expand_path(File.join(ENV['IMAGES'], params['filename'])), type: 'image/jpeg'
+      end
+      status 403
+      body 'Forbidden file'
     end
   end
 end

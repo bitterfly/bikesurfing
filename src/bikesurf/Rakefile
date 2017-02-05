@@ -3,6 +3,7 @@ $LOAD_PATH.unshift('./lib').uniq!
 
 require 'bikesurf/database/dummy_data'
 require 'rubocop/rake_task'
+require 'sinatra'
 
 RuboCop::RakeTask.new(:rubocop)
 
@@ -25,6 +26,20 @@ namespace :database do
   end
 end
 
+task :github_listener do
+  class GithubListener < Sinatra::Base
+    set :port, 1235
+
+    post '/push' do
+      puts `git pull`
+
+      'thanks'
+    end
+
+    run!
+  end
+end
+
 task :serve do
   `guard -i`
 end
@@ -43,11 +58,8 @@ namespace :server do
   task restart: [:stop, :start]
 end
 
-task :css => ['public/css/styles.css']
-
-rule '.css' => '.scss' do |t|
-    p t
-  `sass #{t.source} #{t.name}`
+task :css do
+  `sass 'public/css/styles.scss' 'public/css/styles.css'`
 end
 
 task default: [:rubocop]

@@ -16,6 +16,7 @@ module Bikesurf
 
         belongs_to :role
         has n, :reservations
+        has n, :comments
       end
     end
   end

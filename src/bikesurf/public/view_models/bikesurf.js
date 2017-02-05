@@ -22,10 +22,10 @@
         };
 
         self.toggleMenu = function() {
-            if ($('#sidenav').innerWidth() === 0) {
-                menuShow();
-            } else {
+            if ($('#sidenav').hasClass('show')) {
                 menuClose();
+            } else {
+                menuShow();
             }
         };
 

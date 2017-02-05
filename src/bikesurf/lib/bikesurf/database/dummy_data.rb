@@ -89,7 +89,8 @@ module Bikesurf
           password: data[:password],
           email: data[:email],
           verified: data[:verified],
-          role: data[:role]
+          role: data[:role],
+          image: data[:image]
         )
       end
 
@@ -141,7 +142,8 @@ module Bikesurf
             name: name, username: username, password: username + ' password',
             email: name.downcase.tr(' ', '.') + '@example.com',
             verified: [true, false].sample,
-            role: roles.sample, image: avatars.sample
+            role: roles.sample,
+            image: avatars.sample
           )
         end
         users

@@ -3,10 +3,12 @@ require 'singleton'
 require 'bikesurf/database/models/bike'
 require 'bikesurf/database/models/reservation'
 require 'bikesurf/database/models/bike_image'
+require 'bikesurf/helpers/date_helper'
 
 module Bikesurf
   module Database
     class BikeController
+      include ::Bikesurf::Helpers::DateHelper
       include Singleton
       def get_by_id(id)
         {
@@ -35,7 +37,7 @@ module Bikesurf
           {
             id: comment.id,
             message: comment.message,
-            post_time: comment.post_time, # TODO: convert to proper timestamp
+            post_time: date_to_timestamp(comment.post_time),
 
             user: {
               id: comment.user.id,

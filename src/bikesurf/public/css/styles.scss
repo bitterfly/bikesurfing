@@ -6,6 +6,7 @@ body {
     font: 100% $font-stack;
     color: $primary-color;
     background-color: #dbe0e0;
+    margin-top: 0;
     a {
         text-decoration: none;
         color: $primary-color;
@@ -30,6 +31,7 @@ body {
         background-color: #edeadc;
         overflow-x: hidden;
         transition: 0.5s;
+        border-right: 1px solid darkgrey;
         padding-top: 75px;
         ul a {
             white-space: nowrap;
@@ -63,7 +65,21 @@ body {
     }
     #page {
         transition: margin-left .5s;
-        #login {
+        #top-bar {
+            background-color: white;
+            border: 1px solid darkgrey;
+            border-top: 0px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding: 4px 20px;
+            &.flex {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            div a {
+                margin-left: 20px;
+            }
 
         }
         #component {

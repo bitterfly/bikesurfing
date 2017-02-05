@@ -56,8 +56,12 @@
         </nav>
 
         <div id="page">
-            <div id="login">
+            <div id="top-bar" class="flex">
                 <i class="fa fa-bars fa-2x" data-bind="click: openMenu"></i>
+                <div>
+                    <a href="#"><i class="fa fa-sign-in"></i> Login</a>
+                    <a href="#"><i class="fa fa-pencil-square-o"> Sign up</i></a>
+                </div>
             </div>
             <div data-bind="component: selectedComponent" id="component"></div>
         </div>

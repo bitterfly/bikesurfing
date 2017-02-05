@@ -60,7 +60,14 @@
             for (var i = 0; i < images.length; i++) {
                 $('.slick_images').slick('slickAdd', '<div><img src="' + App.image_url(images[i]) + '" /></div>');
             }
-            $('.slick_images').slick('next')
+            $('.slick_images').slick('slickGoTo', 0);
+        });
+
+        App.menuActive.subscribe(function(state) {
+            // fixme: refresh it in a better way
+            $('.slick_images').slick('slickGoTo', 
+                $('.slick_images').slick('slickCurrentSlide')
+            );
         });
 
         this.next_image = function() {

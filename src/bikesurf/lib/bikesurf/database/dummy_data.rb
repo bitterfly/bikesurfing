@@ -37,8 +37,7 @@ module Bikesurf
             name: Faker::Name.title,
             registration_number: SecureRandom.base64(12),
             desctiption: Faker::Lorem.sentence,
-            frame: Random.rand(15),
-            crossbar: Random.rand(15),
+            frame: Random.rand(15), crossbar: Random.rand(15),
             size: [:medium, :large, :small].sample,
             front_lights: [:yd, :yb, :n].sample,
             back_lights: [:yd, :yb, :n].sample,
@@ -56,15 +55,20 @@ module Bikesurf
         puts 'Filling comments'
         comments = []
         30.times do
+          message = if [true, false].sample
+                      Faker::Lorem.sentence
+                    else
+                      Faker::Lorem.paragraph
+                    end
+
           comments << Models::Comment.create(
             user: users.sample,
-            message: [true, false].sample ? Faker::Lorem.sentence : Faker::Lorem.paragraph,
+            message: message,
             post_time: Time.now
           )
         end
         comments
       end
-        
 
       def fill_roles
         roles = []
@@ -170,14 +174,13 @@ module Bikesurf
         reservations.each do |reservation|
           5.times do
             reservation_comments << Models::ReservationComment.create(
-              comment: comments.sample(),
-              reservation: reservation  
+              comment: comments.sample,
+              reservation: reservation
             )
           end
         end
-        reservation_comments      
+        reservation_comments
       end
-
 
       def fill_random_bike_comments(comments, bikes)
         puts 'Filling bike comments'
@@ -185,30 +188,31 @@ module Bikesurf
         bikes.each do |bike|
           8.times do
             bike_comments << Models::BikeComment.create(
-              comment: comments.sample(),
-              bike: bike  
+              comment: comments.sample,
+              bike: bike
             )
           end
         end
-        bike_comments      
+        bike_comments
       end
 
-      def fill_random_image(address='https://unsplash.it/900/600?random')
+      def fill_random_image(address = 'https://unsplash.it/900/600?random')
         a = Time.now
         image = open(address).read
         puts(Time.now - a)
-        Images::save_to_database(image)  
+        Images.save_to_database(image)
       end
-      
+
       def fill_random_avatar
-        address = "https://www.heroesofnewerth.com/images/heroes/%d/icon_128.jpg" % [rand(2...197)]
+        address = 'https://www.heroesofnewerth.com'\
+                  '/images/heroes/#{rand(2...197)}/icon_128.jpg'
         fill_random_image(address)
       end
 
       def hon_avatar
         begin
           return fill_random_avatar
-        rescue OpenURI::HTTPError => error
+        rescue OpenURI::HTTPError
           return hon_avatar
         end
       end
@@ -228,22 +232,26 @@ module Bikesurf
         puts 'Filling our avatars'
         avatars = []
         # Angel
-        address = "https://www.heroesofnewerth.com/images/heroes/124/icon_128.jpg"
+        address = 'https://www.heroesofnewerth.com/images/heroes/'\
+                  '124/icon_128.jpg'
         avatars << fill_random_image(address)
 
 
         # Dodo
-        address = "https://www.heroesofnewerth.com/images/heroes/21/icon_128.jpg"
+        address = 'https://www.heroesofnewerth.com/images/heroes/'\
+                  '21/icon_128.jpg'
         avatars << fill_random_image(address)
 
 
         # Zvezdi
-        address = "https://www.heroesofnewerth.com/images/heroes/125/icon_128.jpg"
+        address = 'https://www.heroesofnewerth.com/images/heroes/'\
+                  '125/icon_128.jpg'
         avatars << fill_random_image(address)
 
 
         # Georgi
-        address = "https://www.heroesofnewerth.com/images/heroes/6/icon_128.jpg"
+        address = 'https://www.heroesofnewerth.com/images/heroes/'\
+                  '6/icon_128.jpg'
         avatars << fill_random_image(address)
 
         avatars
@@ -267,7 +275,7 @@ module Bikesurf
         bikes.each do |bike|
           3.times do
             Models::BikeImage.create(
-              image: images.sample(),
+              image: images.sample,
               bike: bike  
             )
           end

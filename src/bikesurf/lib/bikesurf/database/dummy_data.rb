@@ -198,6 +198,7 @@ module Bikesurf
 
       def fill_random_image(address = 'https://unsplash.it/900/600?random')
         a = Time.now
+        puts address
         image = open(address).read
         puts(Time.now - a)
         Images.save_to_database(image)
@@ -205,7 +206,7 @@ module Bikesurf
 
       def fill_random_avatar
         address = 'https://www.heroesofnewerth.com'\
-                  '/images/heroes/#{rand(2...197)}/icon_128.jpg'
+                  "/images/heroes/#{rand(2...197)}/icon_128.jpg"
         fill_random_image(address)
       end
 

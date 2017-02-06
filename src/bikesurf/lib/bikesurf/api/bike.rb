@@ -19,6 +19,15 @@ module Bikesurf
       def find_bike_comments(data)
         Database::BikeController.instance.get_comments_by_id data
       end
+
+      def update_bike(bike_id, bike_info)
+        Database::BikeController.instance.update(bike_id, bike_info)
+      end
+
+      def insert_bike bike_info
+        Database::BikeController.instance.add bike_info
+      end
+
     end
   end
 end

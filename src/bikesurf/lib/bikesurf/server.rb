@@ -42,6 +42,7 @@ module Bikesurf
 
     post '/api/bike/new' do
       result = insert_bike(@data['bike_info'])
+      respond result
     end
 
     post '/api/bike/update' do
@@ -51,6 +52,7 @@ module Bikesurf
 
     post '/api/bike/image/new' do
       result = insert_image(@data['bike_id'], @data['image'])
+      respond result
     end
 
     post '/api/bike' do

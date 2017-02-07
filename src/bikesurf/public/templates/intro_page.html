@@ -2,4 +2,24 @@
     <div>
         <iframe src="https://player.vimeo.com/video/81892478" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
+    <div id="searchForm" class="flex-row" data-bind="submit: submit">
+        <div class="flex-col">
+            <label>Date from</label>
+            <input type="text" name="dateFrom" id="dateFrom" placeholder="21/01/2017">
+        </div>
+        <div class="flex-col">
+            <div><label>Date to</label></div>
+            <input type="text" name="dateTo" id="dateTo" placeholder="21/01/2017">
+        </div>
+        <div class="flex-col">
+            <div><label>Size</label></div>
+            <select id="size">
+                <option value="all">All</option>
+                <option value="small">Small (140-155cm)</option>
+                <option value="medium">Medium (155-175cm)</option>
+                <option value="large">Large (175-190cm)</option>
+            </select>
+        </div>
+        <button type="submit" form="searchForm">Search</button>
+    </div>
 </div>

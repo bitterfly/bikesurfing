@@ -18,7 +18,16 @@ body {
         text-decoration: none;
         color: $primary-color;
     }
+    .flex-row {
+        display: flex;
+        justify-content: space-around;
+    }
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+    }
 }
+
 
 // Bikesurf main page
 #bikesurf {

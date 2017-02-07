@@ -13,6 +13,9 @@ module Bikesurf
           bike_id: bike_id,
           image: image
         )
+        {
+          image: image
+        }
       end
     end
   end

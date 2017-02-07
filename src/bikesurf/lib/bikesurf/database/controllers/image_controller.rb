@@ -10,9 +10,6 @@ module Bikesurf
         Models::Image.create(
           filename: filename
         )
-        {
-          image: filename
-        }
       end
     end
   end

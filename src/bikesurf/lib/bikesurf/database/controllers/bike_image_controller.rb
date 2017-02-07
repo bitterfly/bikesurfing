@@ -9,10 +9,13 @@ module Bikesurf
       include Singleton
 
       def add(bike_id, image)
-        Models::BikeImageImage.create(
+        Models::BikeImage.create(
           bike_id: bike_id,
           image: image
         )
+        {
+          image: image
+        }
       end
     end
   end

@@ -33,6 +33,7 @@ module Bikesurf
         )
         images.map do |image|
           {
+            id: image.id
             filename: image.filename
           }
         end

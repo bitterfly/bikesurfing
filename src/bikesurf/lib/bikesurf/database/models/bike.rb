@@ -10,7 +10,7 @@ module Bikesurf
         property :id,                        Serial
         property :registration_number,       String
         property :name,                      String
-        property :desctiption,               Text
+        property :description,               Text
         property :frame,                     Integer
         property :crossbar,                  Integer
         property :size,                      String

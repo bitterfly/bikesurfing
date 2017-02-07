@@ -38,7 +38,7 @@ module Bikesurf
             stand: stands.sample,
             name: Faker::Name.title,
             registration_number: SecureRandom.base64(12),
-            desctiption: Faker::Lorem.sentence,
+            description: Faker::Lorem.sentence,
             frame: Random.rand(15), crossbar: Random.rand(15),
             size: [:medium, :large, :small].sample,
             front_lights: [:yd, :yb, :n].sample,
@@ -203,18 +203,7 @@ module Bikesurf
         image = open(address).read
 
         puts(Time.now - a)
-        database_image = Images.save_to_database(image)
-
-        Config::IMAGE_SIZES.each do |size|
-          image = MiniMagick::Image.open(
-            File.join(ENV['IMAGES'], database_image.filename)
-          )
-          image.resize size
-
-          new_filename = [database_image.filename, size.to_s].join('_')
-          image.write File.join(ENV['IMAGES'], new_filename)
-        end
-        database_image
+        Images.save_to_database(image)
       end
 
       def fill_random_avatar

@@ -40,6 +40,21 @@ module Bikesurf
       send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
     end
 
+    post '/api/bike/new' do
+      result = insert_bike(@data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/update' do
+      result = update_bike(@data['bike_id'], @data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/image/new' do
+      result = insert_image(@data['bike_id'], @data['image'])
+      respond result
+    end
+
     post '/api/bike' do
       result = find_bike(@data['bike_id'])
       respond result

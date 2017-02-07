@@ -10,7 +10,7 @@ module Bikesurf
         property :id,       Serial
         property :filename, Text
 
-        has 1, :bike_image
+        has 1, :bike_image, :constraint => :destroy
         has 1, :user
       end
     end

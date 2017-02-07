@@ -11,6 +11,13 @@ module Bikesurf
           filename: filename
         )
       end
+
+      def delete(id)
+        image = Models::Image.get(id)
+        filename = image.filename
+        image.destroy
+        filename
+      end
     end
   end
 end

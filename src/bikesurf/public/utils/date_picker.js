@@ -3,12 +3,10 @@
 
     var DATE_FORMAT = "dd/mm/yy";
 
-    App.initDatePickers = function(vm, dateFrom, dateTo) {
-        var from = $("#" + dateFrom);
-        var to = $("#" + dateTo);
+    App.initDatePickers = function(vm, dates) {
+        var $dates = $(dates);
 
-        from.datepicker();
-        to.datepicker();
+        $dates.datepicker();
     };
 
 })();

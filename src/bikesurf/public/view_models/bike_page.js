@@ -78,7 +78,7 @@
             var image_index = self.current_image();
             App.request('bike/image/delete', {
                     bike_id: self.id(),
-                    image_id: self.bike_images()[image_index]
+                    image_id: self.bike_images()[image_index].id
                 },
                 function(response) {
                     self.image_operations_busy(false);

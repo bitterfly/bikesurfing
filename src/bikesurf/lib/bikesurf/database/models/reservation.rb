@@ -11,6 +11,7 @@ module Bikesurf
         property :until,         Date
         property :from,          Date
         property :pick_up_time,  DateTime
+        property :status,        String
 
         belongs_to :bike
         belongs_to :user

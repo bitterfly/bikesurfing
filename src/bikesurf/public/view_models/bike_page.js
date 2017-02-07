@@ -1,5 +1,7 @@
 (function() {
     App.BikePageViewModel = function(params) {
+        var self = this;
+
         this.avatar_url = function(image) {
             if (image) {
                 return App.image_url(image);
@@ -22,6 +24,35 @@
                 full: moment.format()
             };
         }
+
+        this.upload_image = function(image) {
+            reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                var data = reader.result.split(',')[1];
+
+                App.request('bike/image/new', {
+                        bike_id: self.id(),
+                        image: data
+                    },
+                    function(response) {
+                        console.log(response);
+                        alert('yay!');
+                    }
+                );
+            });
+
+            reader.readAsDataURL(image);
+        };
+
+        this.trigger_upload_image = function() {
+            $('#bike_image_upload').trigger('click');
+        };
+         
+
+        this.remove_image = function() {
+
+        };
 
         this.id = ko.observable(params['id']);
         this.bike_info = ko.observable();

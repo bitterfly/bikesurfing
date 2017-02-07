@@ -8,8 +8,9 @@
                 <div class="slick_images">
                 </div>
                 <div class="operations">
-                    <a class="btn"><i class="fa fa-minus"></i></a>
-                    <a class="btn"><i class="fa fa-plus"></i></a>
+                    <a class="btn"><i class="fa fa-minus" data-bind='click: remove_image'></i></a>
+                    <a class="btn"><i class="fa fa-plus" data-bind='click: trigger_upload_image'></i></a>
+                    <input type="file" id="bike_image_upload" data-bind='event: { change: function() { upload_image($element.files[0]) } }'></input>
                 </div>
             </div>
             <div data-bind='with: bike'>

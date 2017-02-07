@@ -35,6 +35,12 @@
             a {
                 display: inline-block;
             }
+
+            input[type=file] {
+                display: block;
+                width: 0;
+                height: 0;
+            }
         }
 
         .slick-slide {

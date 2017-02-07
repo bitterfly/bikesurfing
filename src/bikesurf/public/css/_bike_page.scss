@@ -1,21 +1,6 @@
 @import 'slick';
 
 .bike_page {
-    .slick-slide {
-        transition: opacity 1s ease-in-out;
-        opacity: 0.5;
-    }
-
-    .slick-current {
-        transition: opacity 1s ease-in-out;
-        opacity: 1;
-    }
-
-    .slick_images img {
-        height: 500px;
-        max-height: 80vw;
-    }
-
     .name_container {
         text-align: center;
     }
@@ -31,18 +16,41 @@
 
     .images {
         padding: 20px;
-    }
 
-    .image {
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px;
-        max-width: 100%;
-        border: 1px solid red;
-    }
+        .image {
+            margin-left: auto;
+            margin-right: auto;
+            width: 400px;
+            max-width: 100%;
+            border: 1px solid red;
+        }
 
-    .image img {
-        width: 100%;
+        .image img {
+            width: 100%;
+        }
+
+        .operations {
+            text-align: center;
+
+            a {
+                display: inline-block;
+            }
+        }
+
+        .slick-slide {
+            transition: opacity 1s ease-in-out;
+            opacity: 0.5;
+        }
+
+        .slick-current {
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
+
+        .slick_images img {
+            height: 500px;
+            max-height: 80vw;
+        }
     }
 
     .info {

@@ -7,20 +7,13 @@ module Bikesurf
     module Search
       include ::Bikesurf::Helpers::DateHelper
 
-      def fitting_criteria_bikes(criteria)
-        from_sql_datetime = timestamp_to_date(criteria['from'])
-        to_sql_datetime = timestamp_to_date(criteria['to'])
-
-        transform criteria
-
+      def get_free_bikes(from, to)
         Database::ReservationController
           .instance
-          .free_fitting_criteria_bikes(from_sql_datetime, to_sql_datetime, criteria)
-      end
-
-      def transform(criteria)
-        criteria.delete_if { |key, value| value.to_s.strip.empty? || key == 'from' || key == 'to' }
-        criteria.map { |key, value| [key.to_sym, value] }.to_h
+          .free_bikes(
+            timestamp_to_date(from),
+            timestamp_to_date(to)
+          )
       end
     end
   end

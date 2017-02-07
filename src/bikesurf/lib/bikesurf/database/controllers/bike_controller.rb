@@ -10,10 +10,20 @@ module Bikesurf
     class BikeController
       include ::Bikesurf::Helpers::DateHelper
       include Singleton
+      
       def get_by_id(id)
+        reservations = Models::Reservation.all(bike_id: id, status: 'accepted')
+        dates = []
+        reservations.each do |reservation| 
+          dates << [
+            date_to_timestamp(reservation.from),
+            date_to_timestamp(reservation.until)
+          ]
+        end
+
         {
           bike: Models::Bike.get!(id),
-          reservations: Models::Reservation.all(bike_id: id)
+          reservations: dates
         }
       end
 

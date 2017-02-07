@@ -76,7 +76,8 @@ module Bikesurf
     end
 
     post '/api/search_bikes' do
-      respond fitting_criteria_bikes(@data)
+      result = get_free_bikes(@data['from'], @data['to'])
+      respond result
     end
 
     get '/image/:filename' do

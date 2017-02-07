@@ -1,1 +1,0 @@
-require 'bikesurf/requests/bike'

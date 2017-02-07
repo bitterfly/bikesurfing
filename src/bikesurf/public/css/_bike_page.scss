@@ -1,4 +1,21 @@
+@import 'slick';
+
 .bike_page {
+    .slick-slide {
+        transition: opacity 1s ease-in-out;
+        opacity: 0.5;
+    }
+
+    .slick-current {
+        transition: opacity 1s ease-in-out;
+        opacity: 1;
+    }
+
+    .slick_images img {
+        height: 500px;
+        max-height: 80vw;
+    }
+
     .name_container {
         text-align: center;
     }

@@ -12,6 +12,7 @@ module Bikesurf
         property :post_time,                 DateTime
 
         belongs_to :user
+        has 1, :reservation_comment
         has 1, :bike_comment
       end
     end

@@ -1,11 +1,31 @@
 (function() {
-
     App.BikePageViewModel = function(params) {
+        this.avatar_url = function(image) {
+            if (image) {
+                return App.image_url(image);
+            } else {
+                return 'resources/avatar_placeholder.png';
+            }
+        }
+
         this.id = ko.observable(params['id']);
         this.bike_info = ko.observable();
+        this.bike_images = ko.observable();
+        this.comments = ko.observable();
+
         ko.computed(function() {
             this.bike_info(undefined);
             App.request('bike', { bike_id: this.id() }, this.bike_info);
+        }, this);
+
+        ko.computed(function() {
+            this.bike_images(undefined);
+            App.request('images/bike', { bike_id: this.id() }, this.bike_images);
+        }, this);
+
+        ko.computed(function() {
+            this.comments(undefined);
+            App.request('comments/bike', { bike_id: this.id() }, this.comments);
         }, this);
 
         this.bike = ko.pureComputed(function() {
@@ -20,27 +40,39 @@
             return JSON.stringify(this.bike(), null, 2);
         }, this);
 
-        this.bike_image = 'http://pic.made-in-china.com/44f3j00ZTiQbSgKYUoP/Princess-Children-Bicycle-Children-Bike-Kids-Bicycle-Sr-CB051.jpg';
+        this.bike_image_index = ko.observable(0);
 
-        this.comments = ko.observable([
-            {
-                username: 'Devourer',
-                user_avatar: 'https://www.heroesofnewerth.com/images/heroes/6/icon_128.jpg',
-                timestamp: '2017-02-01 00:52',
-                content: "You're mine!"
-            },
-            {
-                username: 'Emerald Warden',
-                user_avatar: 'https://www.heroesofnewerth.com/images/heroes/195/icon_128.jpg',
-                timestamp: '2017-02-01 00:58',
-                content: "Quite astounding speed! Would recommend 10/10."
-            },
-            {
-                username: 'Engineer',
-                user_avatar: 'https://www.heroesofnewerth.com/images/heroes/122/icon_128.jpg',
-                timestamp: '2017-02-02 13:12',
-                content: "Gaaaaaaaaaaaaaay"
+        this.bike_image_link = ko.pureComputed(function() {
+            if (this.bike_images()) {
+                return App.image_url(this.bike_images()[this.bike_image_index()]);
+            } else {
+                return null;
             }
-        ]);
+        }, this);
+
+        this.bike_images.subscribe(function(images) {
+            $('.slick_images').slick({
+                slidesToShow: 1,
+                centerMode: true,
+                dots: true,
+                variableWidth: true
+            });
+            for (var i = 0; i < images.length; i++) {
+                $('.slick_images').slick('slickAdd', '<div><img src="' + App.image_url(images[i]) + '" /></div>');
+            }
+            $('.slick_images').slick('slickGoTo', 0);
+        });
+
+        App.menuActive.subscribe(function(state) {
+            // fixme: refresh it in a better way
+            $('.slick_images').slick('slickGoTo', 
+                $('.slick_images').slick('slickCurrentSlide')
+            );
+        });
+
+        this.next_image = function() {
+            var num_images = this.bike_images().length;
+            this.bike_image_index((this.bike_image_index() + 1) % num_images);
+        };
     }
 })();

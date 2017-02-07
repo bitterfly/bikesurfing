@@ -1,24 +1,138 @@
-
-body {
-  background-color: #eef;
-}
-
-.page_container {
-    background-color: white;
-
-    position: relative;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    width: 980px;
-    max-width: 90vw;
-    min-height: 95vh;
-    margin-left: auto;
-    margin-right: auto;
-}
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+$logo-size: 100px;
 
 form, body, textarea, li, input, ul, div, aside, nav, section {
     box-sizing: border-box;
 }
 
 @import 'bike_page';
+
+body {
+    font: 100% $font-stack;
+    color: $primary-color;
+    background-color: #e6ebed;
+    margin-top: 0;
+    a {
+        text-decoration: none;
+        color: $primary-color;
+    }
+}
+
+// Bikesurf main page
+#bikesurf {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #edeadc;
+        overflow-x: hidden;
+        transition: 0.5s;
+        border-right: 1px solid darkgrey;
+        padding-top: 75px;
+        ul a {
+            white-space: nowrap;
+            padding: 8px 0;
+            font-size: 20px;
+            text-align: center;
+            display: block;
+            transition: 0.3s;
+            &:hover {
+                background-color: #282720;
+                color: #edeadc;
+            }
+        }
+        &.show {
+            width: 250px;
+        }
+        .closeBtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+        .bikesurf-img {
+            display: block;
+            transition: 0.5s;
+            text-align: center;
+            img {
+                width: $logo-size;
+                height: $logo-size;
+            }
+        }
+    }
+    #page {
+        transition: margin-left .5s;
+        margin-right: 150px;
+        padding: 0 20px;
+        margin-left: 0;
+        &.menuOpen {
+            margin-left: 250px;
+        }
+        #top-bar {
+            background-color: white;
+            border: 1px solid darkgrey;
+            border-top: 0px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding: 4px 20px;
+            &.flex {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            i {
+                cursor: pointer;
+            }
+            div a {
+                margin-left: 20px;
+            }
+
+        }
+        #component {
+            width: 100%;
+            border: 1px solid darkgrey;
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: white;
+        }
+    }
+    #links {
+        position: fixed;
+        top: 50px;
+        background-color: #e0e0db;
+        bottom: 50px;
+        right: 20px;
+        padding: 10px;
+        border: 1px solid darkgrey;
+        div {
+            text-align: center;
+        }
+        ul a {
+            display: block;
+            text-align: center;
+        }
+        .donate {
+            margin-top: 30px;
+        }
+        .footer {
+            margin-top: 100px;
+            div {
+                font-size: 0.95em;
+                a {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}

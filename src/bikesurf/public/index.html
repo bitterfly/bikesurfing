@@ -7,14 +7,28 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="css/styles.css">
-
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <!-- ============================================== -->
 
     <!-- libs -->
     <script src="lib/knockout-3.4.1.min.js"></script>
+    <script src="lib/moment.min.js"></script>
 
     <!-- TODO: Use local lib files instead of CDN. -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sammy.js/0.7.6/sammy.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+				
+
+    <!-- ============================================== -->
+
+    <!-- stylesheets -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/lib-css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- ============================================== -->
 
     <!-- scripts -->
     <script>
@@ -22,18 +36,69 @@
     </script>
 
     <script src="utils/ajax_queries.js"></script>
+    <script src="utils/dates.js"></script>
+    <script src="utils/component_manager.js"></script>
     <script src="view_models/bikesurf.js"></script>
     <script src="view_models/bike_page.js"></script>
-    <script src="utils/component_manager.js"></script>
+    <script src="view_models/main_page.js"></script>
+    <script src="view_models/search_page.js"></script>
+    <script src="view_models/borrow_bike.js"></script>
+    <script src="view_models/request_bike.js"></script>
+    <script src="view_models/add_bike.js"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
-    <div data-bind="if: selectedComponent">
-        <p data-bind="text: asd">ekjghkt</p>
-        <div id="menu">hi
+    <div data-bind="if: selectedComponent" id="bikesurf">
+        <nav id="sidenav">
+            <i class="fa fa-times closeBtn" data-bind="click: closeMenu" aria-hidden="true"></i>
+            <a href="#/" class="bikesurf-img"><img src="resources/logo.png" alt="Bikesurf logo"/></a>
+            <ul>
+                <li><a href="#/search">Search for a bike</a></li>
+                <li><a href="#/add-bike">Add bike</a></li>
+                <li><a href="#/request">Your bike request (dev)</a></li>
+                <li><a href="#/bike/3">View bike 3 (dev)</a></li>
+                <li><a href="#/borrow">Borrow a bike (dev)</a></li>
+            </ul>
+        </nav>
+
+        <div id="page">
+            <div id="top-bar" class="flex">
+                <i class="fa fa-bars fa-2x" data-bind="click: toggleMenu"></i>
+                <div>
+                    <a href="#"><i class="fa fa-sign-in"></i> Login</a>
+                    <a href="#"><i class="fa fa-pencil-square-o"> Sign up</i></a>
+                </div>
+            </div>
+            <div data-bind="component: selectedComponent" id="component"></div>
         </div>
-        <div data-bind="component: selectedComponent"></div>
+
+        <div id="links">
+            <!-- TODO: Add donate links -->
+            <!-- TODO: Some of the links are only for bikesurf BERLIN -->
+            <div class="donate">
+                <ul>
+                    <li><a href="#">Plz d0n8 ;(</a></li>
+                    <li><a href="#"><i class="fa fa-cc-paypal fa-5x" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-credit-card fa-5x" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-btc fa-5x" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>Follow us:</div>
+                <div>
+                    <a href="https://www.facebook.com/BikeSurf/" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/bikesurfberlin" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                    <a href="http://www.bewelcome.org/members/bikesurfberlin" target="_blank">BW</a>
+                </div>
+                <div>Contact us:</div>
+                <div>
+                    <a href="mailto:bikesurfberlin@gmail.com" target="_blank"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://www.couchsurfing.com/people/bikesurfberlin/" target="_blank"><i class="fa fa-wheelchair-alt fa-2x" aria-hidden="true"></i></a>
+                    <a href="http://de.linkedin.com/in/bikesurfberlin" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

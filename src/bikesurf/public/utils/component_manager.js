@@ -2,11 +2,15 @@
     "use strict";
 
     var components = {
-        bike_page: {viewModel: 'BikePageViewModel', loaded: false}
+        bike_page: {viewModel: 'BikePageViewModel', loaded: false},
+        main_page: {viewModel: 'MainPageViewModel', loaded: false},
+        search_page: {viewModel: 'SearchPageViewModel', loaded: false},
+        borrow_bike: {viewModel: 'BorrowBikeViewModel', loaded: false},
+        request_bike: {viewModel: 'RequestBikeViewModel', loaded: false},
+        add_bike: {viewModel: 'AddBikeViewModel', loaded: false}
     }
 
-    App.ComponentManager = function(viewModel) {
-        this.viewModel = viewModel;
+    App.ComponentManager = function() {
         this.selectedComponent = ko.observable();
     }
 

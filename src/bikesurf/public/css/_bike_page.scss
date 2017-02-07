@@ -84,6 +84,8 @@
     }
 
     .comment {
+        margin-top: 10px;
+        margin-bottom: 10px;
         position: relative;
         overflow: auto;
     }
@@ -105,11 +107,15 @@
     }
 
     .comment .username {
+        width: 20em;
+        max-width: 100%;
+        display: inline-block;
         font-size: 1.1em;
         margin-right: 15px;
     }
 
     .comment .timestamp {
+        white-space: nowrap;
         font-size: 0.8em;
         color: #999;
     }

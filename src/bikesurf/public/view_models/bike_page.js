@@ -8,6 +8,21 @@
             }
         }
 
+        this.comment_timestamp = function(timestamp) {
+            var moment = App.timestamp_to_moment(timestamp);
+            return {
+                human_readable: moment.calendar(null, {
+                    sameDay: '[Today] HH:mm',
+                    nextDay: '[Tomorrow] HH:mm',
+                    nextWeek: 'dddd',
+                    lastDay: '[Yesterday] HH:mm',
+                    lastWeek: '[Last] dddd',
+                    sameElse: 'YYYY-MM-DD'
+                }),
+                full: moment.format()
+            };
+        }
+
         this.id = ko.observable(params['id']);
         this.bike_info = ko.observable();
         this.bike_images = ko.observable();

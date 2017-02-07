@@ -25,7 +25,11 @@
             };
         }
 
+        this.image_operations_busy = ko.observable(false);
+
         this.upload_image = function(image) {
+            self.image_operations_busy(true);
+
             reader = new FileReader();
 
             reader.addEventListener('load', function() {
@@ -36,6 +40,7 @@
                         image: data
                     },
                     function(response) {
+                        self.image_operations_busy(false);
                         console.log(response);
                         alert('yay!');
                     }

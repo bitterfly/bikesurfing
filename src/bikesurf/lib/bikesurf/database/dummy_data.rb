@@ -164,7 +164,8 @@ module Bikesurf
             bike:         bikes.sample,
             from:         Faker::Date.between(2.days.ago, Date.today),
             until:        Faker::Date.between(Date.today, 2.days.from_now),
-            pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all)
+            pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
+            status:       [:accepted, :waiting, :declined].sample
           )
         end
         reservations

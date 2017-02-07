@@ -37,6 +37,15 @@
             this.bike_images(images);
         };
 
+        this.delete_image = function(index) {
+            var images = this.bike_images();
+            images.splice(index, 1);
+            
+            this.slick_delete(index);
+
+            this.bike_images(images);
+        };
+
         this.upload_image = function(image) {
             self.image_operations_busy(true);
 
@@ -65,7 +74,17 @@
          
 
         this.remove_image = function() {
-
+            self.image_operations_busy(true);
+            var image_index = self.current_image();
+            App.request('bike/image/delete', {
+                    bike_id: self.id(),
+                    image_id: self.bike_images()[image_index]
+                },
+                function(response) {
+                    self.image_operations_busy(false);
+                    self.delete_image(image_index);
+                }
+            );
         };
 
         this.id = ko.observable(params['id']);
@@ -120,6 +139,10 @@
 
         this.slick_goto = function(at) {
             $('.slick_images').slick('slickGoTo', at);
+        };
+
+        this.slick_delete = function(at) {
+            $('.slick_images').slick('slickRemove', at);
         };
 
         this.bike_images.subscribe(function(images) {

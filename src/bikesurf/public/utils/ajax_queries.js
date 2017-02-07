@@ -20,7 +20,13 @@
         };
 
         var inspect_response = function(response_text) {
-            response = JSON.parse(response_text);
+            var response;
+            try {
+                response = JSON.parse(response_text);
+            } catch (e) {
+                response = null;
+            }
+
             if (!response) {
                 throw_error({
                     type: 'invalid_response',

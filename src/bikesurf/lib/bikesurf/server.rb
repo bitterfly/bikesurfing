@@ -8,6 +8,7 @@ module Bikesurf
   class Server < Sinatra::Base
     include Requests::Bike
     include Requests::Search
+    include Requests::Image
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
@@ -51,6 +52,7 @@ module Bikesurf
     end
 
     post '/api/bike/image/new' do
+      puts @data['bike_id']
       result = insert_image(@data['bike_id'], @data['image'])
       respond result
     end

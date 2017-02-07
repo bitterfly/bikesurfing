@@ -32,7 +32,7 @@ module Bikesurf
         property :id,                        Serial
         property :registration_number,       String
         property :name,                      String
-        property :desctiption,               Text
+        property :description,               Text
         property :frame,                     Integer
         property :crossbar,                  Integer
         property :size,                      String
@@ -47,7 +47,7 @@ module Bikesurf
         bike.update(
           registration_number: bike_info['registration_number'],
           name: bike_info['name'],
-          desctiption: bike_info['desctiption'],
+          description: bike_info['description'],
           frame: bike_info['frame'],
           crossbar: bike_info['crossbar'],
           size: bike_info['size'],

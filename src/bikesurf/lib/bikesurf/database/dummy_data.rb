@@ -38,7 +38,7 @@ module Bikesurf
             stand: stands.sample,
             name: Faker::Name.title,
             registration_number: SecureRandom.base64(12),
-            desctiption: Faker::Lorem.sentence,
+            description: Faker::Lorem.sentence,
             frame: Random.rand(15), crossbar: Random.rand(15),
             size: [:medium, :large, :small].sample,
             front_lights: [:yd, :yb, :n].sample,

@@ -50,7 +50,7 @@ module Bikesurf
     end
 
     post '/api/bike/image/new' do
-      result = insert_image(@data['bike'], @data['image'])
+      result = insert_image(@data['bike_id'], @data['image'])
     end
 
     post '/api/bike' do

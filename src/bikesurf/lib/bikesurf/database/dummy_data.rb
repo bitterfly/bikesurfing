@@ -203,18 +203,7 @@ module Bikesurf
         image = open(address).read
 
         puts(Time.now - a)
-        database_image = Images.save_to_database(image)
-
-        Config::IMAGE_SIZES.each do |size|
-          image = MiniMagick::Image.open(
-            File.join(ENV['IMAGES'], database_image.filename)
-          )
-          image.resize size
-
-          new_filename = [database_image.filename, size.to_s].join('_')
-          image.write File.join(ENV['IMAGES'], new_filename)
-        end
-        database_image
+        Images.save_to_database(image)
       end
 
       def fill_random_avatar

@@ -8,11 +8,11 @@
         self.dateTo = ko.observable();
         self.bikeSize = ko.observable();
 
-        function submit() {
-
+        self.submit = function(form) {
+            console.log(form);
         }
 
-        App.initDatePickers(self, "dateFrom", "dateTo");
+        App.initDatePickers(self, "#dates");
     };
 
 })();

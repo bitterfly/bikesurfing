@@ -2,6 +2,10 @@ $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 $logo-size: 100px;
 
+html {
+    font-size: 100%;
+}
+
 form, body, textarea, li, input, ul, div, aside, nav, section {
     box-sizing: border-box;
 }

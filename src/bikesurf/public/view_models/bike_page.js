@@ -27,6 +27,17 @@
 
         this.image_operations_busy = ko.observable(false);
 
+        this.add_image = function(image) {
+            var images = this.bike_images();
+            var current = this.current_image();
+            images.splice(current, 0, image);
+
+            this.add_slick_image(images[current], current);
+            this.slick_next();
+
+            this.bike_images(images);
+        };
+
         this.upload_image = function(image) {
             self.image_operations_busy(true);
 
@@ -41,8 +52,7 @@
                     },
                     function(response) {
                         self.image_operations_busy(false);
-                        console.log(response);
-                        alert('yay!');
+                        self.add_image(response.image);
                     }
                 );
             });
@@ -101,18 +111,40 @@
             }
         }, this);
 
+        this.add_slick_image = function(image, at) {
+            $('.slick_images').slick(
+                'slickAdd',
+                '<div><img src="' + App.image_url(image) + '" /></div>',
+                at
+            );
+        };
+
+        this.slick_next = function() {
+            $('.slick_images').slick('slickNext');
+        };
+
         this.bike_images.subscribe(function(images) {
+            if (this.slick) {
+                return;
+            }
             $('.slick_images').slick({
                 slidesToShow: 1,
                 centerMode: true,
                 dots: true,
                 variableWidth: true
             });
+            this.slick = $('.slick_images');
+
             for (var i = 0; i < images.length; i++) {
-                $('.slick_images').slick('slickAdd', '<div><img src="' + App.image_url(images[i]) + '" /></div>');
+                self.add_slick_image(images[i]);
             }
             $('.slick_images').slick('slickGoTo', 0);
+            $('.slick_images').on('afterChange', function(event, slick, currentSlide) {
+                self.current_image(currentSlide);
+            });
         });
+
+        this.current_image = ko.observable(0);
 
         App.menuActive.subscribe(function(state) {
             // fixme: refresh it in a better way

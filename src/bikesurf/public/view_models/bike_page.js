@@ -29,11 +29,10 @@
 
         this.add_image = function(image) {
             var images = this.bike_images();
-            var current = this.current_image();
-            images.splice(current, 0, image);
+            images.push(image);
 
-            this.add_slick_image(images[current], current);
-            this.slick_next();
+            this.add_slick_image(image);
+            this.slick_goto(images.length - 1);
 
             this.bike_images(images);
         };
@@ -119,8 +118,8 @@
             );
         };
 
-        this.slick_next = function() {
-            $('.slick_images').slick('slickNext');
+        this.slick_goto = function(at) {
+            $('.slick_images').slick('slickGoTo', at);
         };
 
         this.bike_images.subscribe(function(images) {

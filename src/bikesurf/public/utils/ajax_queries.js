@@ -48,6 +48,9 @@
                 session_id: 'dummy',
             }),
             method: 'POST',
+            beforeSend: function(request) {
+                request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            },
             success: inspect_response,
             error:  function(xhr, error, errorText) {
                 if (!xhr.responseText) {

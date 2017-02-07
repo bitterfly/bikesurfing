@@ -10,11 +10,11 @@ module Bikesurf
     class BikeController
       include ::Bikesurf::Helpers::DateHelper
       include Singleton
-      
+
       def get_by_id(id)
         reservations = Models::Reservation.all(bike_id: id, status: 'accepted')
         dates = []
-        reservations.each do |reservation| 
+        reservations.each do |reservation|
           dates << [
             date_to_timestamp(reservation.from),
             date_to_timestamp(reservation.until)
@@ -33,7 +33,7 @@ module Bikesurf
         )
         images.map do |image|
           {
-            id: image.id
+            id: image.id,
             filename: image.filename
           }
         end

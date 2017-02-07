@@ -7,6 +7,8 @@ require 'bikesurf/database/setup'
 module Bikesurf
   class Server < Sinatra::Base
     include Requests::Bike
+    include Requests::Search
+    include Requests::Image
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
@@ -37,6 +39,22 @@ module Bikesurf
 
     get '/' do
       send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
+    end
+
+    post '/api/bike/new' do
+      result = insert_bike(@data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/update' do
+      result = update_bike(@data['bike_id'], @data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/image/new' do
+      puts @data['bike_id']
+      result = insert_image(@data['bike_id'], @data['image'])
+      respond result
     end
 
     post '/api/bike' do

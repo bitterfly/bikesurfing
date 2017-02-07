@@ -190,6 +190,14 @@ module Bikesurf
         images = []
         10.times do
           images << fill_random_image
+          begin
+            width = rand(600) + 900
+            height = rand(300) + 600
+            address = "http://lorempixel.com/#{width}/#{height}"
+            images << fill_random_image(address)
+          rescue OpenURI::HTTPError
+            images << nil
+          end
         end
         images
       end

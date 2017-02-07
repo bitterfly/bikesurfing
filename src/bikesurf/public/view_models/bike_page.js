@@ -161,12 +161,11 @@
                 self.add_slick_image(images[i]);
             }
             $('.slick_images').slick('slickGoTo', 0);
-            $('.slick_images').on('afterChange', function(event, slick, currentSlide) {
-                self.current_image(currentSlide);
-            });
         });
 
-        this.current_image = ko.observable(0);
+        this.current_image = function() {
+            return $('.slick_images').slick('slickCurrentSlide')
+        };
 
         App.menuActive.subscribe(function(state) {
             // fixme: refresh it in a better way

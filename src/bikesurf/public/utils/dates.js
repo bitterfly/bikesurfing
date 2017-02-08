@@ -1,4 +1,8 @@
 (function() {
+
+    App.DATE_FORMAT = "dd/mm/yy";
+
+
     App.timestamp_to_moment = function(timestamp) {
         return moment.unix(timestamp);
     };

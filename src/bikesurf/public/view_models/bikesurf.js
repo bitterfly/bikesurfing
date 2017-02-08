@@ -9,6 +9,7 @@
         // ==================================================
         // Login functionality
 
+        self.avatar_url = App.avatar_url;
         self.me = ko.observable();
         App.me = self.me;
 

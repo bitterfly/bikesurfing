@@ -75,7 +75,12 @@
                     <span data-bind='if: me'>
                         <span data-bind='with: me'>
                             <span data-bind='text: name'></span>
-                            <a href="#" data-bind='click: $parent.logout'><i class="fa fa-sign-out"></i> Logout</a>
+                            <a href="#" data-bind='click: $parent.logout'>Logout <i class="fa fa-sign-out"></i></a>
+                            <span class="avatar-spacer"></span>
+                            <span class="avatar">
+                                <img data-bind='attr: { src: $parent.avatar_url(avatar) }' />
+                            </span>
+                            <span class="avatar-spacer"></span>
                         </span>
                     </span>
                 </div>

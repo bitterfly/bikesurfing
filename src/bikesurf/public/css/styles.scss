@@ -98,6 +98,21 @@ body {
                 margin-left: 20px;
             }
 
+            .avatar {   // fixme: this is utterly stupid.
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    top: -8px;
+                    border-radius: 50%;
+                    height: 30px;
+                    position: absolute;
+                }
+            }
+
+            .avatar-spacer {
+                margin-right: 20px;
+            }
         }
         #component {
             width: 100%;

@@ -2,13 +2,7 @@
     App.BikePageViewModel = function(params) {
         var self = this;
 
-        this.avatar_url = function(image) {
-            if (image) {
-                return App.image_url(image);
-            } else {
-                return 'resources/avatar_placeholder.png';
-            }
-        };
+        this.avatar_url = App.avatar_url;
 
         this.bool_stat = function(value) {
             if (value) {

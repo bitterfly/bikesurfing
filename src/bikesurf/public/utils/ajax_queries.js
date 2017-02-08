@@ -76,4 +76,12 @@
     App.image_url = function(image) {
         return 'image/' + image.filename;
     };
+
+    App.avatar_url = function(image) {
+        if (image) {
+            return App.image_url(image);
+        } else {
+            return 'resources/avatar_placeholder.png';
+        }
+    };
 })();

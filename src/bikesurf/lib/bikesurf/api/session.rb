@@ -7,6 +7,9 @@ module Bikesurf
       def login(username, password)
         user = Database::UserController.instance.check_user(username, password)
         {
+          username: user.username,
+          name: user.name,
+          avatar: user.image.filename,
           session_id: Database::SessionController.instance.make_session(user.id)
         }
       end

@@ -22,9 +22,9 @@
             if (value[0] == 'n') {
                 return this.bool_stat(false);
             } else if (value[1] == 'b') {
-                return '<i class="fa fa-battery-three-quarters light_stat_battery" title="yes - battery-powered"></i>';
+                return this.bool_stat(true) + ' (battery)';
             } else if (value[1] == 'd') {
-                return '<i class="fa fa-cogs light_stat_dynamo" title="yes - dynamo-powered"></i>';
+                return this.bool_stat(true) + ' (dynamo)';
             } else {
                 return this.bool_stat(true);
             }

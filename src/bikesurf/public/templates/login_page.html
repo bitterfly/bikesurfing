@@ -1,11 +1,19 @@
 <div id="login_page" class="login_page">
-    <div class="container">
-        <label>Username</b></label>
-        <input type="text" placeholder="Username" name="uname" data-bind="value: username" required />
+    <div class="busy" data-bind="if: busy">
+        please wait
+    </div>
+    <div data-bind="ifnot: busy">
+        <div class="login_form" data-bind="ifnot: me">
+            <label>Username</b></label>
+            <input type="text" placeholder="Username" name="uname" data-bind="value: username" required />
 
-        <label>Password</label>
-        <input type="password" placeholder="Password" data-bind="value: password" required />
+            <label>Password</label>
+            <input type="password" placeholder="Password" data-bind="value: password" required />
 
-        <button data-bind="click: login">Login</button>
+            <button data-bind="click: login">Login</button>
+        </div>
+        <div data-bind="if: me">
+            already logged in
+        </div>
     </div>
 </div>

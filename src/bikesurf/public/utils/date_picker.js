@@ -7,7 +7,26 @@
         var $from = $(from);
         var $to = $(to);
 
-        $dates.datepicker();
+        var options = {
+            clearBtn: true,
+            format: App.DATE_FORMAT,
+            startDate: Date(),
+            todayHighlight: true,
+            templates: {
+                leftArrow: '<i class="fa fa-arrow-left"></i>',
+                rightArrow: '<i class="fa fa-arrow-right"></i>'
+            },
+            toggleActive: true,
+            weekStart: 1
+        };
+
+        $dates.datepicker(options).on('changeDate', function(e) {
+            console.log("changin");
+            var from = $from.datepicker('getDate');
+            var to = $to.datepicker('getDate');
+            console.log(from);
+            console.log(to);
+        });
     };
 
 })();

@@ -37,6 +37,26 @@
                                 <span class="stat_title">Size</span>
                                 <span class="stat" data-bind='text: size'></span>
                             </li>
+                            <li>
+                                <span class="stat_title">Front lights</span>
+                                <span class="stat" data-bind='html: $parent.light_stat(front_lights)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Back lights</span>
+                                <span class="stat" data-bind='html: $parent.light_stat(back_lights)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Backpedal breaking system</span>
+                                <span class="stat" data-bind='html: $parent.bool_stat(backpedal_breaking_system)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Quick release saddle</span>
+                                <span class="stat" data-bind='html: $parent.bool_stat(quick_release_saddle)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Gears</span>
+                                <span class="stat" data-bind='text: gears_number'></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="description" data-bind='text: description'></div>

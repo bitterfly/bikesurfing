@@ -31,11 +31,11 @@ module Bikesurf
             id: user.id,
             username: user.username,
             name: user.name,
-            avatar: user.image.filename
+            avatar: user.image
           },
           bike: {
             name: bike.name,
-            image: bike_image.image.filename
+            image: bike_image.image
           }
         }
       end

@@ -59,7 +59,7 @@ module Bikesurf
       respond ({
         name: @user.name,
         username: @user.username,
-        avatar: @user.image.filename
+        avatar: @user.image
       })
     end
 

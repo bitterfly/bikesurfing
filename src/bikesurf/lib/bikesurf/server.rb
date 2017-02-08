@@ -23,6 +23,7 @@ module Bikesurf
       input = MultiJson.load request.body.read
       @data = input['data']
       @session_id = input['session_id']
+      @user = get_user_by_session @session_id
       @timestamp = input['timestamp']
     end
 
@@ -45,6 +46,14 @@ module Bikesurf
     post '/api/login' do
       result = login(@data['username'], @data['password'])
       respond result
+    end
+
+    post '/api/whoami' do
+      respond ({
+        name: @user.name,
+        username: @user.username,
+        avatar: @user.image.filename
+      })
     end
 
     post '/api/bike/new' do

@@ -17,6 +17,11 @@ module Bikesurf
         )
         session_id
       end
+
+      def get_user(session_id)
+        session = Models::Session.first(session_id: session_id)
+        session.user
+      end
     end
   end
 end

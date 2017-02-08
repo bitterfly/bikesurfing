@@ -10,6 +10,7 @@ module Bikesurf
     include Requests::Search
     include Requests::Image
     include Requests::Session
+    include Requests::Reservation
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
@@ -105,6 +106,16 @@ module Bikesurf
 
     post '/api/search_bikes' do
       result = get_free_bikes(@data['from'], @data['to'])
+      respond result
+    end
+
+    post '/api/user/reservations' do
+      result = get_reservations_for_user(@data['user_id'])
+      respond result
+    end
+
+    post '/api/reservation' do
+      result = get_reservation(@data['reservation_id'])
       respond result
     end
 

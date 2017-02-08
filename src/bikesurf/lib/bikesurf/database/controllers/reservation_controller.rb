@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'singleton'
 require 'bikesurf/database/models/bike'
+require 'bikesurf/database/models/user'
+require 'bikesurf/database/models/bike_image'
 require 'bikesurf/database/models/reservation'
 
 module Bikesurf
@@ -16,6 +18,26 @@ module Bikesurf
             status: 'accepted'
           )
         )
+      end
+
+      def get_by_id(reservation_id)
+        reservation = Models::Reservation.get!(reservation_id)
+        user = Models::User.get!(reservation.user_id)
+        bike = reservation.bike
+        bike_image = Models::BikeImage.first(bike_id: bike.id)
+        {
+          reservation: reservation,
+          reservor: {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            avatar: user.image.filename
+          },
+          bike: {
+            name: bike.name,
+            image: bike_image.image.filename
+          }
+        }
       end
 
       def free_bikes(from, to)

@@ -51,7 +51,7 @@
             url: '/api/' + url,     // fixme: remove leading slash when router works
             data: JSON.stringify({
                 data: data,
-                session_id: 'dummy',
+                session_id: docCookies.getItem('session_id'),
             }),
             method: 'POST',
             beforeSend: function(request) {

@@ -9,6 +9,7 @@ module Bikesurf
     include Requests::Bike
     include Requests::Search
     include Requests::Image
+    include Requests::Session
 
     set :public_folder, Config::PUBLIC
     set :show_exceptions, false
@@ -39,6 +40,11 @@ module Bikesurf
 
     get '/' do
       send_file File.expand_path(File.join(Config::PUBLIC, 'index.html'))
+    end
+
+    post '/api/login' do
+      result = login(@data['username'], @data['password'])
+      respond result
     end
 
     post '/api/bike/new' do

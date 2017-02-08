@@ -8,7 +8,27 @@
             } else {
                 return 'resources/avatar_placeholder.png';
             }
-        }
+        };
+
+        this.bool_stat = function(value) {
+            if (value) {
+                return '<i class="fa fa-check bool_stat_true" title="yes"></i>';
+            } else {
+                return '<i class="fa fa-times bool_stat_false" title="no"></i>';
+            }
+        };
+
+        this.light_stat = function(value) {
+            if (value[0] == 'n') {
+                return this.bool_stat(false);
+            } else if (value[1] == 'b') {
+                return '<i class="fa fa-battery-three-quarters light_stat_battery" title="yes - battery-powered"></i>';
+            } else if (value[1] == 'd') {
+                return '<i class="fa fa-cogs light_stat_dynamo" title="yes - dynamo-powered"></i>';
+            } else {
+                return this.bool_stat(true);
+            }
+        };
 
         this.comment_timestamp = function(timestamp) {
             var moment = App.timestamp_to_moment(timestamp);
@@ -23,7 +43,7 @@
                 }),
                 full: moment.format()
             };
-        }
+        };
 
         this.image_operations_busy = ko.observable(false);
 

@@ -19,6 +19,12 @@
 
         App.reloadUser = self.reloadUser;
 
+        self.logout = function() {
+            App.request('logout', {}, function(_) {
+                self.me(null);
+            });
+        };
+
         // ==================================================
         // Menu button functionality
 

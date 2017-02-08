@@ -40,6 +40,13 @@ module Bikesurf
         }
       end
 
+      def get_by_user(user)
+        reservations = Models::Reservation.all(user_id: user.id)
+        {
+          reservations: reservations
+        }
+      end
+
       def free_bikes(from, to)
         Models::Bike.all - reserved_bikes(from, to)
       end

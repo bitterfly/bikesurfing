@@ -5,6 +5,19 @@
         var self = this;
 
         App.menuActive = ko.observable(false);
+        App.lastLogin = ko.observable(new Date());
+
+        // ==================================================
+        // Login functionality
+
+        self.me = ko.observable();
+        self.userGet = function() {
+            App.request('whoami', {}, this.me);
+        };
+
+        App.lastLogin.subscribe(self.userGet);
+
+        ko.computed(self.userGet, self);
 
         // ==================================================
         // Menu button functionality

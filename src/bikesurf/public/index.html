@@ -68,8 +68,15 @@
             <div id="top-bar" class="flex">
                 <i class="fa fa-bars fa-2x" data-bind="click: toggleMenu"></i>
                 <div>
-                    <a href="#/login"><i class="fa fa-sign-in"></i> Login</a>
-                    <a href="#"><i class="fa fa-pencil-square-o"> Sign up</i></a>
+                    <span data-bind='ifnot: me'>
+                        <a href="#/login"><i class="fa fa-sign-in"></i> Login</a>
+                        <a href="#"><i class="fa fa-pencil-square-o"> Sign up</i></a>
+                    </span>
+                    <span data-bind='if: me'>
+                        <span data-bind='with: me'>
+                            <span data-bind='text: name'></span>
+                        </span>
+                    </span>
                 </div>
             </div>
             <div data-bind="component: selectedComponent" id="component"></div>

@@ -3,16 +3,22 @@
 .bike_page {
     .name_container {
         text-align: center;
+        .name {
+            font-size: 2em;
+            font-weight: bold;
+            border-top: 3px dotted #a7a5a0;
+            border-bottom: 3px dotted #a7a5a0;
+            box-shadow: inset 0 -1px 0 0 #a7a5a0, inset 0 1px 0 0 #a7a5a0, 0 1px 0 0 #a7a5a0, 0 -1px 0 0 #a7a5a0;
+            margin-bottom: 1px;
+            // border-style: double;
+            // border-radius: 5px;
+            // border-color: darkgray;
+            display: inline-block;
+            padding: 5px;
+            margin: 20px;
+        }
     }
 
-    .name {
-        font-size: 2em;
-        font-weight: bold;
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 5px;
-        margin: 20px;
-    }
 
     .images {
         padding: 20px;
@@ -60,15 +66,18 @@
     }
 
     .info {
-        border: 1px solid #ccc;
+        border: 1px solid lightgray;
+        border-radius: 5px;
         padding: 20px;
         margin: 10px;
     }
 
     .stats {
         display: inline-block;
-        border: 1px solid #ccc;
-        background-color: #eee;
+        padding: 5px;
+        border: 1px solid #lightgray;
+        border-radius: 5px;
+        background-color: #f1f3f2;
     }
 
     .stats ul {
@@ -92,16 +101,21 @@
     }
 
     .comments {
-        border: 1px solid blue;
+        border: 1px solid lightgray;
+        border-radius: 5px;
         padding: 20px;
         margin: 10px;
+        background-color: #f1f3f2;
     }
 
     .comment {
         margin-top: 10px;
         margin-bottom: 10px;
+        border: 1px solid #a7a5a0;
+        border-radius: 5px;
         position: relative;
         overflow: auto;
+        background-color: #efeee9;
     }
 
     .comment_profile_image {

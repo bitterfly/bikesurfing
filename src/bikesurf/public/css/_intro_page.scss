@@ -1,8 +1,19 @@
 #intro_page {
     padding: 30px;
-    div {
-        text-align: center;
+    .video-container {
+        // TODO: Fix ratios for small devices in @media query
+        width: 100%;
+        height: 360px;
+        display: flex;
+        justify-content: center;
+        iframe {
+            width: 100%;
+            height: 100%;
+            max-width: 640px;
+            max-height: 360px;
+        }
     }
+
     #searchForm {
         margin-top: 50px;
         margin-bottom: 200px;

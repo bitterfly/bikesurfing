@@ -18,6 +18,11 @@ module Bikesurf
         session_id
       end
 
+      def delete(session_id)
+        session = Models::Session.first(session_id: session_id)
+        session.destroy
+      end
+
       def get_user(session_id)
         session = Models::Session.first(session_id: session_id)
         return nil unless session

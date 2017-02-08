@@ -48,6 +48,11 @@ module Bikesurf
       respond result
     end
 
+    post '/api/logout' do
+      result = logout(@session_id)
+      respond result
+    end
+
     post '/api/whoami' do
       return respond nil unless @user
       respond ({

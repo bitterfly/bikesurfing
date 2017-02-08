@@ -18,6 +18,7 @@
                     docCookies.setItem('session_id', response.session_id);
                     self.me(response.user);
                     self.busy(false);
+                    App.componentManager.selectComponent('main_page');
                 }
             )
         };

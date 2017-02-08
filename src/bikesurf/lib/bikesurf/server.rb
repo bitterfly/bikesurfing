@@ -115,6 +115,7 @@ module Bikesurf
     end
 
     post '/api/user/reservations' do
+      return respond nil unless @user
       result = get_user_reservations(@user)
       respond result
     end

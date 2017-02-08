@@ -49,6 +49,7 @@ module Bikesurf
     end
 
     post '/api/whoami' do
+      return respond nil unless @user
       respond ({
         name: @user.name,
         username: @user.username,

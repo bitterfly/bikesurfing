@@ -5,7 +5,6 @@ $(document).ready(function() {
         var bikesurfViewModel = new App.BikesurfViewModel();
         var componentManager = new App.ComponentManager();
         bikesurfViewModel.selectedComponent = componentManager.selectedComponent;
-        App.componentManager = componentManager;
 
         ko.applyBindings(bikesurfViewModel);
 
@@ -42,5 +41,9 @@ $(document).ready(function() {
             this.redirect('#/');
         });
 
+        // Make Sammy leave the forms alone!
+        this._checkFormSubmission = function(form) {
+            return false;
+        };
     }).run('#/');
 });

@@ -6,12 +6,12 @@
         <div class="login_form" data-bind="ifnot: me">
             <form data-bind="submit: login">
                 <label>Username</b></label>
-                <input type="text" placeholder="Username" name="uname" data-bind="value: username" required />
+                <input type="text" placeholder="Username" name="uname" data-bind="value: username, hasFocus: true" required />
 
                 <label>Password</label>
                 <input type="password" placeholder="Password" data-bind="value: password" required />
 
-                <button data-bind="submit: login">Login</button>
+                <button type="submit">Login</button>
             </form>
         </div>
         <div data-bind="if: me">

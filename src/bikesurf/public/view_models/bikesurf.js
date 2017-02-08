@@ -23,7 +23,7 @@
             App.request('logout', {}, function(_) {
                 self.me(null);
                 docCookies.removeItem('session_id');
-                App.componentManager.selectComponent('main_page');
+                window.location.hash = '/';
             });
         };
 

@@ -22,6 +22,7 @@
         self.logout = function() {
             App.request('logout', {}, function(_) {
                 self.me(null);
+                docCookies.removeItem('session_id');
             });
         };
 

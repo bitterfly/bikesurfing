@@ -12,7 +12,7 @@
             console.log(form);
         }
 
-        App.initDatePickers(self, "#dates");
+        App.initDatePickers(self, "#dates", "#dateFrom", "#dateTo");
     };
 
 })();

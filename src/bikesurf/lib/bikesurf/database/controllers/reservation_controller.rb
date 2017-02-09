@@ -45,21 +45,9 @@ module Bikesurf
 
       def get_by_user(user)
         reservations = Models::Reservation.all(user_id: user.id)
-        reservations.map do |reservation|
-          {
-            reservation: {
-              id: reservation.id,
-              from: reservation.from,
-              to: reservation.until,
-              status: reservation.status
-            },
-            bike: {
-              name: reservation.bike.name,
-              image: Models::BikeImage.first(bike_id: reservation.bike.id).image,
-              owner: reservation.bike.stand.user.username
-            }
-          }
-        end
+        {
+          reservations: reservations
+        }
       end
 
       def free_bikes(from, to)

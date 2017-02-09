@@ -129,6 +129,8 @@ body {
                 box-shadow: 3px 3px 5px #888888;
 
                 .reservation {
+                    margin: 10px;
+
                     .image {
                         float: left;
                         position: relative;
@@ -137,13 +139,29 @@ body {
                         overflow: hidden;
                         
                         img {
-                            padding: 10px;
                             height: 100%;
                         }
                     }
 
                     overflow: auto;
                     clear: both;
+
+                    .info {
+                        display: block;
+
+                        .bike_name {
+                            color: red;
+                        }
+
+                        .period {
+                            color: gray;
+                        }
+
+                        .status {
+                            color: green;
+                        }
+                        padding: 10px;
+                    }
                 }
             }
         }

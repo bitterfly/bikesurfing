@@ -49,8 +49,8 @@ module Bikesurf
           {
             reservation: {
               id: reservation.id,
-              from: reservation.from,
-              to: reservation.until,
+              from: date_to_timestamp(reservation.from),
+              to: date_to_timestamp(reservation.until),
               status: reservation.status
             },
             bike: {

@@ -1,6 +1,6 @@
 (function() {
 
-    App.DATE_FORMAT = "dd/mm/yy";
+    App.DATE_FORMAT = "dd/mm/yyyy";
 
 
     App.timestamp_to_moment = function(timestamp) {

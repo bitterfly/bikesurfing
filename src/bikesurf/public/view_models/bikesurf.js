@@ -43,6 +43,18 @@
             }
             App.request('user/reservations', {}, self.reservations);
         });
+
+        self.format_date = function(timestamp) {
+            var moment = App.timestamp_to_moment(timestamp);
+            return moment.calendar(null, {
+                sameDay: '[Today]',
+                nextDay: '[Tomorrow]',
+                nextWeek: 'dddd',
+                lastDay: '[Yesterday]',
+                lastWeek: '[Last] dddd',
+                sameElse: 'YYYY-MM-DD'
+            });
+        }
         
 
         // ==================================================

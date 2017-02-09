@@ -85,8 +85,8 @@ App = {};
                                         <div class="info">
                                             <div class="bike_name" data-bind='text: bike.name'></div>
                                             <div class="period">
-                                                <span class="from" data-bind='text: reservation.from'></span>
-                                                <span class="to" data-bind='text: reservation.to'></span>
+                                                <span class="from" data-bind='text: $parent.format_date(reservation.from)'></span>
+                                                <span class="to" data-bind='text: $parent.format_date(reservation.to)'></span>
                                             </div>
                                             <div class="status" data-bind='text: reservation.status'></div>
                                         </div>

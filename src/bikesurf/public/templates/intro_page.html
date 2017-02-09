@@ -5,15 +5,15 @@
     <form id="searchForm" class="flex-row" data-bind="submit: submit">
         <div class="input-group input-daterange" id="dates">
             <div class="input-group-addon">From</div>
-            <input type="text" id="dateFrom" class="form-control">
+            <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
             <div class="input-group-addon">to</div>
-            <input type="text" id="dateTo" class="form-control">
+            <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
         </div>
         <!-- <div class="flex-col"> -->
         <div class="input-group">
             <div class="input-group-addon">Size</div>
             <!-- <div><label>Size</label></div> -->
-            <select class="form-control" id="size">
+            <select class="form-control" id="size" data-bind="value: bikeSize">
                 <option value="all">All</option>
                 <option value="small">Small (140-155cm)</option>
                 <option value="medium">Medium (155-175cm)</option>

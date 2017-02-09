@@ -1,9 +1,9 @@
 (function() {
 
-    App.DATE_FORMAT = "dd/mm/yyyy";
+    App.DATE_FORMAT = "dd.mm.yyyy";
 
     App.isDate = function(dateString) {
-        return /^\d{2}\/\d{2}\/\d{4}$/.test(dateString);
+        return /^\d{2}\.\d{2}\.\d{4}$/.test(dateString);
     };
 
     App.timestamp_to_moment = function(timestamp) {

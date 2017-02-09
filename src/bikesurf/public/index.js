@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     Sammy(function() {
+        App.selfSammy = this;
 
         var bikesurfViewModel = new App.BikesurfViewModel();
         var componentManager = new App.ComponentManager();
@@ -13,8 +14,9 @@ $(document).ready(function() {
             componentManager.selectComponent('bike_page', {id: this.params['id']});
         });
 
-        this.get('#/search', function() {
-            componentManager.selectComponent('search_page');
+        this.get('#/search', function(context) {
+            console.log(context.params);
+            componentManager.selectComponent('search_page', context.params);
         });
 
         this.get('#/borrow', function() {

@@ -30,6 +30,7 @@
             width: 50%;
         }
         button {
+            opacity: 0.5;
             font-weight: bold;
             font-style: italic;
             color: #00adef;
@@ -38,6 +39,9 @@
             font-size: 1.4em;
             border-radius: 50%;
             border: 1px solid darkgrey;
+        }
+        .submittable {
+            opacity: 1;
         }
     }
 }

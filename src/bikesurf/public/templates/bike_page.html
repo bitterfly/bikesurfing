@@ -67,15 +67,17 @@
                     <div class="comment_profile_image profile_image">
                         <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
                     </div>
-                    <div class="comment_user_info">
-                        <span data-bind='with: user' class="username">
-                            <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
-                        </span>
-                        <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
-                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
-                        </span>
+                    <div>
+                        <div class="comment_user_info">
+                            <span data-bind='with: user' class="username">
+                                <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                            </span>
+                            <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
+                                <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                            </span>
+                        </div>
+                        <div class="comment_content" data-bind='text: message'></div>
                     </div>
-                    <div class="comment_content" data-bind='text: message'></div>
                 </div>
             </div>
         </div>

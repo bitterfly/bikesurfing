@@ -1,7 +1,6 @@
 (function() {
     "use strict";
 
-
     App.initDatePickers = function(vm, dates, from, to) {
         var $dates = $(dates);
         var $from = $(from);
@@ -21,11 +20,10 @@
         };
 
         $dates.datepicker(options).on('changeDate', function(e) {
-            console.log("changin");
             var from = $from.datepicker('getDate');
             var to = $to.datepicker('getDate');
-            console.log(from);
-            console.log(to);
+            vm.dateFrom(from);
+            vm.dateTo(to);
         });
     };
 

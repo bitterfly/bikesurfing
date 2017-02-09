@@ -19,11 +19,14 @@
             weekStart: 1
         };
 
-        $dates.datepicker(options).on('changeDate', function(e) {
-            var from = $from.datepicker('getDate');
-            var to = $to.datepicker('getDate');
-            vm.dateFrom(from);
-            vm.dateTo(to);
+        $dates.datepicker(options);
+
+        $dates.datepicker().on('show', function(e) {
+            vm.datepickerActive(true);
+        });
+
+        $dates.datepicker().on('hide', function(e) {
+            vm.datepickerActive(false);
         });
     };
 

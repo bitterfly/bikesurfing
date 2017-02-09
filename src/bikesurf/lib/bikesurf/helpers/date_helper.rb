@@ -25,6 +25,7 @@ module Bikesurf
 
       def day_difference(from, to)
         # smarter implementation needed
+        return 1 if from == to
         (to - from).to_i
       end
     end

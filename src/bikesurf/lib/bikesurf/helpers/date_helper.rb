@@ -25,8 +25,7 @@ module Bikesurf
 
       def day_difference(from, to)
         # smarter implementation needed
-        seconds_in_a_day = 60 * 60 * 24
-        (to - from) / seconds_in_a_day
+        (to - from).to_i
       end
     end
   end

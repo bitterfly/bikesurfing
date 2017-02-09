@@ -158,15 +158,17 @@ module Bikesurf
       def fill_random_reservations(users, bikes)
         puts 'Filling reservations'
         reservations = []
-        10.times do
-          reservations << Models::Reservation.create(
-            user:         users.sample,
-            bike:         bikes.sample,
-            from:         Faker::Date.between(2.days.ago, Date.today),
-            until:        Faker::Date.between(Date.today, 2.days.from_now),
-            pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
-            status:       [:accepted, :waiting, :declined].sample
-          )
+        users.each do |user|
+          3.times do
+            reservations << Models::Reservation.create(
+              user:         user,
+              bike:         bikes.sample,
+              from:         Faker::Date.between(2.days.ago, Date.today),
+              until:        Faker::Date.between(Date.today, 2.days.from_now),
+              pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
+              status:       [:accepted, :waiting, :declined].sample
+            )
+          end
         end
         reservations
       end

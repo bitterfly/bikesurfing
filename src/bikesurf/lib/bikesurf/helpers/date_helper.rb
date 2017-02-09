@@ -22,6 +22,12 @@ module Bikesurf
       def valid_period?(from, to)
         from <= to
       end
+
+      def day_difference(from, to)
+        # smarter implementation needed
+        seconds_in_a_day = 60 * 60 * 24
+        (to - from) / seconds_in_a_day
+      end
     end
   end
 end

@@ -29,6 +29,21 @@
         };
 
         // ==================================================
+        // Reservation menu functionality
+        self.image_url = App.image_url;
+        self.reservation_menu_active = ko.observable(false);
+        self.reservation_menu_toggle = function() {
+            self.reservation_menu_active(!self.reservation_menu_active());
+        };
+
+        self.reservations = ko.observable([]);
+        ko.computed(function() {
+            if (!self.me()) 
+            App.request('user/reservations', {}, self.reservations);
+        });
+        
+
+        // ==================================================
         // Menu button functionality
 
         function menuShow() {

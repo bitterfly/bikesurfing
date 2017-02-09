@@ -95,7 +95,8 @@ body {
                 cursor: pointer;
             }
             div a {
-                margin-left: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .avatar {   // fixme: this is utterly stupid.
@@ -105,6 +106,44 @@ body {
                     border-radius: 50%;
                     height: 30px;
                     vertical-align: middle;
+                }
+            }
+
+            .reservation_menu_button {
+                display: inline-block;
+
+                &.active {
+                    z-index: 5;
+                    background-color: #eee;
+                }
+
+                position: relative;
+            }
+
+            .reservation_menu {
+                width: 340px;
+                height: 500px;
+                position: absolute;
+                z-index: 4;
+                background-color: #eee;
+                box-shadow: 3px 3px 5px #888888;
+
+                .reservation {
+                    .image {
+                        float: left;
+                        position: relative;
+                        height: 100px;
+                        width: 100px;
+                        overflow: hidden;
+                        
+                        img {
+                            padding: 10px;
+                            height: 100%;
+                        }
+                    }
+
+                    overflow: auto;
+                    clear: both;
                 }
             }
         }

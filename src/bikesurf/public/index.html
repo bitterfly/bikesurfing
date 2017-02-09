@@ -68,14 +68,31 @@ App = {};
                 <div id="top-bar" class="flex">
                     <i class="fa fa-bars fa-2x" data-bind="click: toggleMenu"></i>
                     <div>
-                        <span class="reservation_menu">
-                            <a href="#"><i class="fa fa-id-card-o"></i></a>
-                        </span>
                         <span data-bind='ifnot: me'>
                             <a href="#/login"><i class="fa fa-sign-in"></i> Login</a>
                             <a href="#"><i class="fa fa-pencil-square-o"> Sign up</i></a>
                         </span>
                         <span data-bind='if: me'>
+                            <span class="reservation_menu_button" data-bind='click: reservation_menu_toggle, css: { active: reservation_menu_active }'>
+                                <a href="#"><i class="fa fa-id-card-o"></i></a>
+                            </span>
+                            <div class="reservation_menu" data-bind='visible: reservation_menu_active'>
+                                <div data-bind='foreach: reservations'>
+                                    <div class="reservation">
+                                        <div class="image">
+                                            <img data-bind='attr: { src: $parent.image_url(bike.image) }' />
+                                        </div>
+                                        <div class="info">
+                                            <div class="bike_name" data-bind='text: bike.name'></div>
+                                            <div class="period">
+                                                <span class="from" data-bind='text: reservation.from'></span>
+                                                <span class="to" data-bind='text: reservation.to'></span>
+                                            </div>
+                                            <div class="status" data-bind='text: reservation.status'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <span data-bind='with: me'>
                                 <span data-bind='text: name'></span>
                                 <a href="#" data-bind='click: $parent.logout'>Logout <i class="fa fa-sign-out"></i></a>

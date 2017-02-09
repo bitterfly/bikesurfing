@@ -31,7 +31,7 @@ module Bikesurf
         allowed_filters = %w(size front_lights back_lights gears_number
                              backpedal_breaking_system quick_release_saddle)
         filters = requirements.select do |key, value|
-          allowed_filters.include?(key) || !value.to_s.empty?
+          allowed_filters.include?(key) && !value.to_s.empty?
         end
         # should add min and max borrow days creteria as well
         filters

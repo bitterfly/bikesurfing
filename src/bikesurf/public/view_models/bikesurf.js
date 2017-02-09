@@ -38,7 +38,9 @@
 
         self.reservations = ko.observable([]);
         ko.computed(function() {
-            if (!self.me()) 
+            if (!self.me()) {
+                return;
+            }
             App.request('user/reservations', {}, self.reservations);
         });
         

@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     Sammy(function() {
-        App.selfSammy = this;
 
         var bikesurfViewModel = new App.BikesurfViewModel();
         var componentManager = new App.ComponentManager();

@@ -14,15 +14,12 @@
             return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
         }, this);
 
-        self.submit = function(form) {
-            console.log(form);
+        self.submit = function() {
             console.log(self.dateFrom());
             console.log(self.dateTo());
             console.log(self.bikeSize());
-            // window.location = '/#/search?from=1&to=2&size=all';
-            console.log(App.selfSammy);
-            App.selfSammy.redirect('#/search?from=1&to=2&size=all');
-        }
+            window.location.hash = '/search?from=' + self.dateFrom() +'&to=' + self.dateTo() + '&size=' + self.bikeSize();
+        };
 
         App.initDatePickers(self, "#dates", "#dateFrom", "#dateTo");
     };

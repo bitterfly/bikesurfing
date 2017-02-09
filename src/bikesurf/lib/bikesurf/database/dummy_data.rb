@@ -46,8 +46,8 @@ module Bikesurf
             backpedal_breaking_system: [true, false].sample,
             quick_release_saddle: [true, false].sample,
             gears_number: Random.rand(10),
-            min_borrow_days: Random.rand(6) + 1,
-            max_borrow_days: Random.rand(6) + 1
+            min_borrow_days: Random.rand(1..3),
+            max_borrow_days: Random.rand(3..6)
           )
         end
         bikes

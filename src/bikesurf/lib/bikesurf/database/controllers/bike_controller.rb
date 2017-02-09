@@ -86,6 +86,10 @@ module Bikesurf
       def not_matching(ids)
         Models::Bike.all(:id.not => reserved_ids)
       end
+
+      def filter(bikes, filters)
+        bikes.all(filters)
+      end
     end
   end
 end

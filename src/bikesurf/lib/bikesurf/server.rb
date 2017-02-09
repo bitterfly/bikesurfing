@@ -105,7 +105,11 @@ module Bikesurf
     end
 
     post '/api/search_bikes' do
-      result = get_free_bikes(@data['from'], @data['to'])
+      # data should have 'from', 'to' dates
+      # data could have 'size', 'front_lights', 'back_lights',
+      #                 'backpedal_breaking_system', 'quick_release_saddle',
+      #                 'gears_number'
+      result = bikes_meeting_the_requirements(@data)
       respond result
     end
 

@@ -16,7 +16,7 @@ module Bikesurf
           )
       end
 
-      def bikes_meeting_the_requirements(requirements)
+      def free_bikes_meeting_the_requirements(requirements)
         raise 'Please, select from date.' unless requirements['from']
         raise 'Please, select to date.' unless requirements['to']
 

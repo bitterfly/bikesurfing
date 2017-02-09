@@ -109,7 +109,7 @@ module Bikesurf
       # data could have 'size', 'front_lights', 'back_lights',
       #                 'backpedal_breaking_system', 'quick_release_saddle',
       #                 'gears_number'
-      result = bikes_meeting_the_requirements(@data)
+      result = free_bikes_meeting_the_requirements(@data)
       respond result
     end
 

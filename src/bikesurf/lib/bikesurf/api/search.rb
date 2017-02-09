@@ -17,11 +17,24 @@ module Bikesurf
       end
 
       def bikes_meeting_the_requirements(requirements)
+        raise 'Please, select from date.' unless requirements['from']
+        raise 'Please, select to date.' unless requirements['to']
+
         bikes = free_bikes(requirements['from'], requirements['to'])
-        filters = { size: requirements['size'] }
+        filters = extract_filters(requirements)
         Database::BikeController
           .instance
           .filter(bikes, filters)
+      end
+
+      def extract_filters(requirements)
+        allowed_filters = %w(size front_lights back_lights gears_number
+                             backpedal_breaking_system quick_release_saddle)
+        filters = requirements.select do |key, value|
+          allowed_filters.include?(key) || !value.to_s.empty?
+        end
+        # should add min and max borrow days creteria as well
+        filters
       end
     end
   end

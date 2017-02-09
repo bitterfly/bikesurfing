@@ -9,8 +9,11 @@ module Bikesurf
   module Database
     class ReservationController
       include Singleton
+      include ::Bikesurf::Helpers::DateHelper
 
       def reserved_bikes(from, to)
+        raise 'Please, select a valid period.' unless valid_period?(from, to)
+
         Models::Bike.all(
           reservations: Models::Reservation.all(
             :from.lte => to,

@@ -116,6 +116,15 @@ body {
                 margin-left: 20px;
             }
 
+            .avatar {   // fixme: this is utterly stupid.
+                overflow: hidden;
+
+                img {
+                    border-radius: 50%;
+                    height: 30px;
+                    vertical-align: middle;
+                }
+            }
         }
         #component {
             width: 100%;

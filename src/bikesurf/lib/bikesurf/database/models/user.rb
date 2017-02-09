@@ -18,6 +18,7 @@ module Bikesurf
         belongs_to :image, required: false
         has n, :reservations
         has n, :comments
+        has n, :sessions
       end
     end
   end

@@ -7,6 +7,28 @@
         App.menuActive = ko.observable(false);
 
         // ==================================================
+        // Login functionality
+
+        self.avatar_url = App.avatar_url;
+        self.me = ko.observable();
+        App.me = self.me;
+
+        self.reloadUser = function() {
+            App.request('whoami', {}, self.me);
+        };
+        ko.computed(self.reloadUser, self);
+
+        App.reloadUser = self.reloadUser;
+
+        self.logout = function() {
+            App.request('logout', {}, function(_) {
+                self.me(null);
+                docCookies.removeItem('session_id');
+                window.location.hash = '/';
+            });
+        };
+
+        // ==================================================
         // Menu button functionality
 
         function menuShow() {

@@ -18,6 +18,10 @@ $(document).ready(function() {
             componentManager.selectComponent('search_page', context.params);
         });
 
+        this.get('#/login', function() {
+            componentManager.selectComponent('login_page');
+        });
+
         this.get('#/borrow', function() {
             componentManager.selectComponent('borrow_bike');
         });
@@ -38,5 +42,9 @@ $(document).ready(function() {
             this.redirect('#/');
         });
 
+        // Make Sammy leave the forms alone!
+        this._checkFormSubmission = function(form) {
+            return false;
+        };
     }).run('#/');
 });

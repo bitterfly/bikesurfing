@@ -7,15 +7,16 @@
             <div class="images">
                 <div class="slick_images">
                 </div>
-                <!--
-                <div class="image" data-bind="click: next_image">
-                    <div data-bind='if: bike_image_link'>
-                        <a data-bind="attr: { 'href': bike_image_link }">
-                            <img data-bind="attr: { 'src': bike_image_link }"/>
-                        </a>
+                <div class="operations">
+                    <div data-bind='ifnot: image_operations_busy'>
+                        <a class="btn"><i class="fa fa-minus" data-bind='click: remove_image'></i></a>
+                        <a class="btn"><i class="fa fa-plus" data-bind='click: trigger_upload_image'></i></a>
+                        <input type="file" id="bike_image_upload" data-bind='event: { change: function() { upload_image($element.files[0]) } }'></input>
+                    </div>
+                    <div data-bind='if: image_operations_busy'>
+                        please wait asdaddsfkgladf
                     </div>
                 </div>
-                -->
             </div>
             <div data-bind='with: bike'>
                 <div class="name_container">
@@ -36,6 +37,26 @@
                                 <span class="stat_title">Size</span>
                                 <span class="stat" data-bind='text: size'></span>
                             </li>
+                            <li>
+                                <span class="stat_title">Front lights</span>
+                                <span class="stat" data-bind='html: $parent.light_stat(front_lights)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Back lights</span>
+                                <span class="stat" data-bind='html: $parent.light_stat(back_lights)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Backpedal breaking system</span>
+                                <span class="stat" data-bind='html: $parent.bool_stat(backpedal_breaking_system)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Quick release saddle</span>
+                                <span class="stat" data-bind='html: $parent.bool_stat(quick_release_saddle)'></span>
+                            </li>
+                            <li>
+                                <span class="stat_title">Gears</span>
+                                <span class="stat" data-bind='text: gears_number'></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="description" data-bind='text: description'></div>
@@ -47,8 +68,12 @@
                         <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
                     </div>
                     <div class="comment_user_info">
-                        <span class="username" data-bind='text: user.name'></span>
-                        <span class="timestamp" data-bind='text: post_time'></span>
+                        <span data-bind='with: user' class="username">
+                            <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                        </span>
+                        <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
                     </div>
                     <div class="comment_content" data-bind='text: message'></div>
                 </div>

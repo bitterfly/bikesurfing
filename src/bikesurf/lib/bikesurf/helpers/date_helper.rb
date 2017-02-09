@@ -22,6 +22,12 @@ module Bikesurf
       def valid_period?(from, to)
         from <= to
       end
+
+      def day_difference(from, to)
+        # smarter implementation needed
+        return 1 if from == to
+        (to - from).to_i
+      end
     end
   end
 end

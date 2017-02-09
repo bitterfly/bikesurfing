@@ -20,7 +20,13 @@
         };
 
         var inspect_response = function(response_text) {
-            response = JSON.parse(response_text);
+            var response;
+            try {
+                response = JSON.parse(response_text);
+            } catch (e) {
+                response = null;
+            }
+
             if (!response) {
                 throw_error({
                     type: 'invalid_response',
@@ -45,9 +51,12 @@
             url: '/api/' + url,     // fixme: remove leading slash when router works
             data: JSON.stringify({
                 data: data,
-                session_id: 'dummy',
+                session_id: docCookies.getItem('session_id'),
             }),
             method: 'POST',
+            beforeSend: function(request) {
+                request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            },
             success: inspect_response,
             error:  function(xhr, error, errorText) {
                 if (!xhr.responseText) {
@@ -66,5 +75,13 @@
 
     App.image_url = function(image) {
         return 'image/' + image.filename;
+    };
+
+    App.avatar_url = function(image) {
+        if (image) {
+            return App.image_url(image);
+        } else {
+            return 'resources/avatar_placeholder.png';
+        }
     };
 })();

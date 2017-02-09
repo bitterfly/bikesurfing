@@ -44,6 +44,10 @@ task :serve do
   `guard -i`
 end
 
+task :fg_serve do
+  `rackup -p 1234 -s thin`
+end
+
 namespace :server do
   task start: [:css] do
     exec('rackup -p 1234 -P /tmp/bikesurf_server.pid -s thin') if fork.nil?

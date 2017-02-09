@@ -1,0 +1,21 @@
+<div id="login_page" class="login_page">
+    <div class="busy" data-bind="if: busy">
+        please wait
+    </div>
+    <div data-bind="ifnot: busy">
+        <div class="login_form" data-bind="ifnot: me">
+            <form data-bind="submit: login">
+                <label>Username</b></label>
+                <input type="text" placeholder="Username" name="uname" data-bind="value: username, hasFocus: true" required />
+
+                <label>Password</label>
+                <input type="password" placeholder="Password" data-bind="value: password" required />
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div data-bind="if: me">
+            already logged in
+        </div>
+    </div>
+</div>

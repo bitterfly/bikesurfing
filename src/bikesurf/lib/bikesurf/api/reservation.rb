@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bikesurf/database/controllers'
+require 'bikesurf/helpers/date_helper'
 require 'bikesurf/images/image'
 require 'dotenv/load'
 require 'bikesurf/config'
@@ -8,6 +9,8 @@ require 'base64'
 module Bikesurf
   module Requests
     module Reservation
+      include ::Bikesurf::Helpers::DateHelper
+
       def get_reservation(reservation_id)
         Database::ReservationController.instance.get_by_id reservation_id
       end
@@ -18,8 +21,8 @@ module Bikesurf
 
       def create_reservation(user, from, to, bike_id, comment)
         reservation_id = Database::ReservationController.instance.create(
-          from,
-          to,
+          timestamp_to_date(from),
+          timestamp_to_date(to),
           user.id,
           bike_id
         ).id

@@ -18,6 +18,14 @@ module Bikesurf
         }
       end
 
+      def bike_image(bike_id)
+        Models::Image.first(
+          bike_image: Models::BikeImage.first(
+            bike_id: bike_id
+          )
+        )
+      end
+
       def bike_images(bike_id)
         Models::Image.all(
           bike_image: Models::BikeImage.all(

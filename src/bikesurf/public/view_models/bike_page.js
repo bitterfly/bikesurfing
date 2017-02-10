@@ -98,7 +98,7 @@
         self.post_comment = function() {
             App.request('bike/comment/create', {
                     bike_id: self.id(),
-                    message: self.my_comment()
+                    comment: self.my_comment()
                 },
                 function(comment) {
                     self.get_comments();

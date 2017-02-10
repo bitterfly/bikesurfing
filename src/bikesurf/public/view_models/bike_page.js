@@ -250,9 +250,13 @@
 
         self.datepickerActive = ko.observable(false);
 
-        self.submitReady = ko.computed(function() {
+        self.borrow_allowed = ko.computed(function() {
             return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
         }, this);
+
+        self.borrow = function() {
+            window.location.hash = "#/borrow?bike=" + self.bike().id + "&from=" + self.dateFrom() + "&to=" + self.dateTo();
+        };
 
         App.initDatePickers(self, "#dates", "#dateFrom", "#dateTo");
     }

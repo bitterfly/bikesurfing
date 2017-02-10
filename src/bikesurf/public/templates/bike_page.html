@@ -48,20 +48,49 @@
                     <div class="description" data-bind='text: bike().description'></div>
                 </div>
             </div>
-            <div class="comments" data-bind='foreach: comments'>
+            <div class="comments">
+                <div data-bind='foreach: comments'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
+                        </div>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: user' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                                <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
+                                    <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                                </span>
+                            </div>
+                            <div class="content" data-bind='text: message'></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="comment">
                     <div class="avatar">
-                        <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
+                        <img data-bind="attr: { 'src': avatar_url(me().avatar) }"/>
                     </div>
-                    <div class="user_info">
-                        <span data-bind='with: user' class="username">
-                            <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
-                        </span>
-                        <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
-                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
-                        </span>
+                    <div class="right">
+                        <div class="user_info">
+                            <span data-bind='with: me' class="username">
+                                <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <form data-bind='submit: post_comment'>
+                                <div class="text_input">
+                                    <textarea data-bind="value: my_comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
+                                </div>
+                                <div class="pushright flex-row">
+                                    <div class="spacer"></div>
+                                    <div class="button_wrapper">
+                                        <button class="btn btn-green btn-fill-vert" type="submit">Post</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="content" data-bind='text: message'></div>
                 </div>
             </div>
         </div>

@@ -13,9 +13,10 @@
         position: relative;
         overflow: auto;
         background-color: #efeee9;
+        
+        @extend .flex-row;
 
         .avatar {
-            margin-right: 20px;
             width: 80px;
             float: left;
             display: inline-block;
@@ -44,8 +45,28 @@
             color: #999;
         }
 
+        .pushright {
+            justify-content: space-between;
+        }
+
+        .right {
+            flex-grow: 2;
+            padding: 12px;
+        }
+
         .content {
             margin-top: 10px;
+
+            .text_input {
+                height: 100px;
+                margin-bottom: 10px;
+
+                textarea {
+                    resize: none;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
         }
     }
 }

@@ -6,13 +6,13 @@
         self.id = ko.observable(parseInt(params.id));
         self.reservation_info = ko.observable();
 
+        self.me = App.me;
+
         ko.computed(function() {
             App.request('reservation', { reservation_id: self.id() }, self.reservation_info);
         }, self);
 
-        self.reservation_info.subscribe(function(r) {
-            console.log(r);
-        });
+        console.log(self.me());
 
         self.user = ko.pureComputed(function() {
             var info = self.reservation_info();
@@ -31,9 +31,27 @@
 
         self.comments = ko.observable();
 
+        self.get_comments = function() {
+            App.request('reservation/comments', { reservation_id: self.id() }, self.comments);
+        };
+
         ko.computed(function() {
-            App.request('comments/reservation', { reservation_id: self.id() }, self.comments);
+            self.get_comments();
         }, self);
+
+        self.my_comment = ko.observable();
+
+        self.post_comment = function() {
+            App.request('reservation/comment/create', {
+                    reservation_id: self.id(),
+                    message: self.my_comment()
+                },
+                function(comment) {
+                    self.get_comments();
+                }
+            );
+            self.my_comment('');
+        };
     };
 
 })();

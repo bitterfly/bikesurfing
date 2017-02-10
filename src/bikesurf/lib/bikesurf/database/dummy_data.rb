@@ -266,7 +266,7 @@ module Bikesurf
             width = rand(600) + 900
             height = rand(300) + 600
             address = ENV['RANDOM_IMAGE_URL']
-            images << fill_random_image(address.format([width, height]))
+            images << fill_random_image(format(address, width, height))
           rescue OpenURI::HTTPError
             images << nil
           end

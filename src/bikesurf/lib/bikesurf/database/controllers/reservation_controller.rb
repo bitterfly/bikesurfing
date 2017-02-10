@@ -62,7 +62,7 @@ module Bikesurf
         end
       end
 
-      def create(from, to, user.id, bike_id)
+      def create(from, to, user_id, bike_id)
         Models::Reservation.create(
           from: from,
           until: to,

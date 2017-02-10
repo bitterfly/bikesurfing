@@ -99,6 +99,17 @@ module Bikesurf
       respond result
     end
 
+    post '/api/reservation/create' do
+      result = create_reservation(
+        @user.id,
+        @data['from'],
+        @data['to'],
+        @data['bike_id'],
+        @data['comment']
+      )
+      respond result
+    end
+
     post '/api/bikes' do
       result = find_bikes
       respond result

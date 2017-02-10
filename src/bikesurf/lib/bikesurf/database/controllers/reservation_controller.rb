@@ -62,6 +62,16 @@ module Bikesurf
         end
       end
 
+      def create(from, to, user_id, bike_id)
+        Models::Reservation.create(
+          from: from,
+          until: to,
+          user_id: user_id,
+          bike_id: bike_id,
+          status: "waiting"  
+        )
+      end
+
       def free_bikes(from, to)
         borrow_duration = day_difference(from, to)
         bikes_for_duration = Models::Bike.all(:min_borrow_days.lte => borrow_duration,

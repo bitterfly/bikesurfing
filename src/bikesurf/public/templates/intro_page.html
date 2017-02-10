@@ -9,6 +9,7 @@
             <div class="input-group-addon">to</div>
             <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
         </div>
+        <div>
         <div class="input-group">
             <div class="input-group-addon">Size</div>
             <select class="form-control" id="size" data-bind="value: bikeSize">
@@ -18,8 +19,10 @@
                 <option value="large">Large (175-190cm)</option>
             </select>
         </div>
-        <div>
-            <button type="submit" data-bind="enable: submitReady(), css: {submittable: submitReady()}">Search</button>
+
+
+        <div class="button_wrapper">
+            <button class="btn btn-green btn-fill-vert"  data-bind="enable: submitReady(), css: {submittable: submitReady()}"type="submit">Search</button>
         </div>
     </form>
 </div>

@@ -18,12 +18,18 @@ module Bikesurf
 
       def free_bikes_meeting_the_requirements(requirements)
         bikes = free_bikes(requirements['from'], requirements['to'])
-        # filters = extract_filters(requirements)
+        filters = process_filters(requirements)
         Database::BikeController
           .instance
-          .filter(bikes, requirements)
+          .filter(bikes, filters)
       end
 
-    end
+      def process_filters(requirements)
+        ['front_lights', 'back_lights'].each do |property|
+          unless requirements[property].nil?
+            requirements[property] = requirements[property] ? 'y' : 'n'
+          end
+        end
+      end
   end
 end

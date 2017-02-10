@@ -63,6 +63,16 @@ module Bikesurf
       })
     end
 
+    post '/api/bikes' do
+      result = find_bikes
+      respond result
+    end
+
+    post '/api/bike' do
+      result = find_bike(@data['bike_id'])
+      respond result
+    end
+
     post '/api/bike/create' do
       result = create_bike(@data['bike_info'])
       respond result
@@ -89,11 +99,6 @@ module Bikesurf
       respond result
     end
 
-    post '/api/bike' do
-      result = find_bike(@data['bike_id'])
-      respond result
-    end
-
     post '/api/comments/bike' do
       result = find_bike_comments(@data['bike_id'])
       respond result
@@ -101,11 +106,6 @@ module Bikesurf
 
     post '/api/images/bike' do
       result = find_bike_images(@data['bike_id'])
-      respond result
-    end
-
-    post '/api/bikes' do
-      result = find_bikes
       respond result
     end
 

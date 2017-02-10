@@ -52,8 +52,10 @@ module Bikesurf
 
       def free_bikes(from, to)
         borrow_duration = day_difference(from, to)
-        bikes_for_duration = Models::Bike.all(:min_borrow_days.lte => borrow_duration,
-                                              :max_borrow_days.gte => borrow_duration)
+        bikes_for_duration = Models::Bike.all(
+          :min_borrow_days.lte => borrow_duration,
+          :max_borrow_days.gte => borrow_duration
+        )
 
         bikes_for_duration - reserved_bikes(from, to)
       end

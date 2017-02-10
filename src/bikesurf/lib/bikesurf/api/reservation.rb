@@ -15,6 +15,20 @@ module Bikesurf
       def get_user_reservations(user)
         Database::ReservationController.instance.get_by_user user
       end
+
+      def create_reservation(user, from, to, bike_id, comment)
+        reservation_id = Database::ReservationController.instance.create(
+          from,
+          to,
+          user.id,
+          bike_id
+        ).id
+        Database::CommentController.instance.create_reservation_comment(
+          reservation_id,
+          message
+        )
+        reservation_id
+      end
     end
   end
 end

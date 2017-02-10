@@ -21,12 +21,15 @@
             {val: "false", text: "no"}
         ];
 
-        function toBool(val) {
-            return (val === 'true');
-        };
-
-        function isTrue(val) {
-            return (val === true) ? true : null;
+        function convert(val) {
+            switch(val) {
+                case 'true':
+                    return true;
+                case 'false':
+                    return false;
+                default:
+                    return null;
+            };
         };
 
         self.submitReady = ko.computed(function() {
@@ -41,11 +44,11 @@
                 from: App.date_to_timestamp(self.dateFrom()),
                 to: App.date_to_timestamp(self.dateTo()),
                 size: (self.bikeSize() === 'all') ? null : self.bikeSize(),
-                min_gears: (self.gears() === undefined) ? null : self.gears(),
-                front_lights: isTrue(self.frontLights()),
-                back_lights: isTrue(self.backLights()),
-                backpedal_brake: isTrue(self.backpedalBrake()),
-                quick_release_saddle: isTrue(self.quickReleaseSaddle()),
+                min_gears: (self.gears() === 'undefined') ? null : self.gears(),
+                front_lights: convert(self.frontLights()),
+                back_lights: convert(self.backLights()),
+                backpedal_breaking_system: convert(self.backpedalBrake()),
+                quick_release_saddle: convert(self.quickReleaseSaddle()),
             };
             console.log(bike_request);
 

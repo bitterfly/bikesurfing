@@ -266,7 +266,7 @@ module Bikesurf
             width = rand(600) + 900
             height = rand(300) + 600
             address = ENV['RANDOM_IMAGE_URL']
-            images << fill_random_image(address % [width, height])
+            images << fill_random_image(address.format([width, height]))
           rescue OpenURI::HTTPError
             images << nil
           end
@@ -279,7 +279,7 @@ module Bikesurf
         bikes.each_with_index do |bike, index|
           (0..2).each do |i|
             Models::BikeImage.create(
-              image: images[3*index + i],
+              image: images[3 * index + i],
               bike: bike
             )
           end

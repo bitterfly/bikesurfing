@@ -55,7 +55,9 @@ module Bikesurf
             },
             bike: {
               name: reservation.bike.name,
-              image: Models::BikeImage.first(bike_id: reservation.bike.id).image,
+              image: Models::BikeImage.first(
+                bike_id: reservation.bike.id
+              ).image,
               owner: reservation.bike.stand.user.username
             }
           }
@@ -68,7 +70,7 @@ module Bikesurf
           until: to,
           user_id: user_id,
           bike_id: bike_id,
-          status: "waiting"  
+          status: 'waiting'
         )
       end
 

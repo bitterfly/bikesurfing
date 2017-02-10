@@ -63,8 +63,8 @@ module Bikesurf
       })
     end
 
-    post '/api/bike/new' do
-      result = insert_bike(@data['bike_info'])
+    post '/api/bike/create' do
+      result = create_bike(@data['bike_info'])
       respond result
     end
 

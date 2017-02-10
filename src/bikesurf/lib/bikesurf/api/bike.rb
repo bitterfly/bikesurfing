@@ -24,8 +24,8 @@ module Bikesurf
         Database::BikeController.instance.update(bike_id, bike_info)
       end
 
-      def insert_bike bike_info
-        Database::BikeController.instance.add bike_info
+      def create_bike(bike_info)
+        Database::BikeController.instance.create bike_info
       end
 
     end

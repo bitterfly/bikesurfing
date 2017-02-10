@@ -47,7 +47,7 @@ module Bikesurf
             name: bike.name,
             image: bike_image.image
           },
-          reservor: {
+          lender: {
             id: bike.stand.user.id,
             username: bike.stand.user.username,
             name: bike.stand.user.name,

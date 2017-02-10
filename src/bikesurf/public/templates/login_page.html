@@ -7,15 +7,16 @@
             <div class="login_form" data-bind="ifnot: me">
                 <form data-bind="submit: login">
                     <div class="field">
-                        <label>Username</b></label>
-                        <input type="text" placeholder="Username" name="uname" data-bind="value: username, hasFocus: true" required />
+                        <label class="lbl">Username</b></label>
+                        <input class="input"  type="text" placeholder="username" name="uname" data-bind="value: username, hasFocus: true" required />
                     </div>
+
                     <div class="field">
-                        <label>Password</label>
-                        <input type="password" placeholder="Password" data-bind="value: password" required />
+                        <label class="lbl">Password</label>
+                        <input class="input" type="password" placeholder="***********" data-bind="value: password" required />
                     </div>
-                    <div class="section">
-                        <button class="btn btn-red btn-fill-vert" type="submit">Login</button>
+                    <div class="button_wrapper">
+                        <button class="btn btn-green btn-fill-vert" type="submit">Login</button>
                     </div>
                 </form>
             </div>

@@ -66,6 +66,9 @@
     }
 
     .stats_bar {
+        @extend .flex-row;
+        justify-content: space-between;
+
         .stats {
             display: inline-block;
             padding: 5px;
@@ -88,6 +91,21 @@
                         display: table-cell;
                     }
                 }
+            }
+        }
+
+        .borrow {
+            .input-group-addon {
+                width: 5em;
+            }
+            .input-group {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .borrow_button {
+                display: flex;
+                justify-content: space-between;
             }
         }
     }

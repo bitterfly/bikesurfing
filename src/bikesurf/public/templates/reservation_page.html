@@ -20,11 +20,13 @@
                     </div>
                 </div>
 
-                <div class="user" data-bind='with: $parent.user'>
-                    <div class="avatar profile_image">
-                        <img data-bind="attr: { 'src': $root.avatar_url(avatar) }"/>
-                    </div>
-                    <div class="name" data-bind='text: name'></div>
+                <div class="user userbox" data-bind='with: $parent.user'>
+                    <a data-bind='attr: { href: "#/user/" + username }'>
+                        <div class="avatar profile_image">
+                            <img data-bind="attr: { 'src': $root.avatar_url(avatar) }"/>
+                        </div>
+                        <div class="name" data-bind='text: name'></div>
+                    </a>
                 </div>
 
                 <div data-bind='if: reservation.pick_up_time'>

@@ -7,13 +7,16 @@
         self.comment = ko.observable("");
 
         self.send_allowed = ko.pureComputed(function() {
-            return (self.agreed() && self.valid_dates());
+            return (self.agreed() && self.valid_dates() && !self.sending());
         }, self);
+
+        self.sending = ko.observable(false);
 
         self.send = function() {
             if (!self.send_allowed()) {
                 return;
             }
+            self.sending(true);
         };
 
         self.dateFrom = ko.observable();

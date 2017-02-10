@@ -13,7 +13,14 @@
     <div class="confirm_and_submit flex-row">
         <form data-bind='submit: send'>
             <span><input type="checkbox" data-bind='checked: agreed' />I agree for my liver to be sold</span>
-            <button type="submit" data-bind='enable: send_allowed'><i class="fa fa-handshake-o"></i> Borrow</button>
+            <div>
+            sending: <span data-bind='text: sending'></span>
+            </div>
+            <button type="submit" data-bind='enable: send_allowed'>
+                <i class="fa fa-handshake-o" data-bind='ifnot: sending'></i>
+                <i class="fa fa-refresh fa-spin" data-bind='if: sending'></i>
+                Borrow
+            </button>
         </form>
     </div>
 </div>

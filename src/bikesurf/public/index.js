@@ -26,6 +26,10 @@ $(document).ready(function() {
             componentManager.selectComponent('borrow_bike', context.params);
         });
 
+        this.get('#/reservation/:id', function() {
+            componentManager.selectComponent('reservation_page', {id: this.params['id']});
+        });
+
         this.get('#/request', function() {
             componentManager.selectComponent('request_bike');
         });

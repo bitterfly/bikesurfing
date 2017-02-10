@@ -32,9 +32,9 @@
                 to: App.date_to_timestamp(self.dateTo()),
                 bike_id: self.bike_info().bike.id,
                 comment: self.comment()
-            }, function(_) {
+            }, function(reservation) {
                 App.last_reservation_update(new Date());
-                alert("yay!");
+                window.location.hash = '/reservation/' + reservation.id;
             });
         };
 

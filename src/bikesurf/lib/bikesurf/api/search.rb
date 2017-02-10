@@ -24,14 +24,6 @@ module Bikesurf
           .filter(bikes, requirements)
       end
 
-      # def extract_filters(requirements)
-      #   allowed_filters = %w(size front_lights back_lights gears_number
-      #                        backpedal_breaking_system quick_release_saddle)
-
-      #   requirements.select do |key, value|
-      #     allowed_filters.include?(key) && !value.to_s.empty?
-      #   end
-      # end
     end
   end
 end

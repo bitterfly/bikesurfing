@@ -65,93 +65,35 @@
         }
     }
 
-    .info {
-        border: 1px solid lightgray;
-        border-radius: 5px;
-        padding: 20px;
-        margin: 10px;
-    }
+    .stats_bar {
+        .stats {
+            display: inline-block;
+            padding: 5px;
+            border: 1px solid #lightgray;
+            border-radius: 5px;
+            background-color: #f1f3f2;
 
-    .stats {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #lightgray;
-        border-radius: 5px;
-        background-color: #f1f3f2;
-    }
 
-    .stats ul {
-        display: table;
-        padding: 10px;
-        margin: 0px;
-    }
+            ul {
+                display: table;
+                padding: 10px;
+                margin: 0px;
 
-    .stats ul li {
-        list-style: none;
-        display: table-row;
-    }
+                li {
+                    list-style: none;
+                    display: table-row;
 
-    .stats ul li span {
-        list-style: none;
-        display: table-cell;
-    }
-
-    .stat {
-        padding-left: 120px;
-    }
-
-    .comments {
-        border: 1px solid lightgray;
-        border-radius: 5px;
-        padding: 20px;
-        margin: 10px;
-        background-color: #f1f3f2;
-    }
-
-    .comment {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #a7a5a0;
-        border-radius: 5px;
-        position: relative;
-        overflow: auto;
-        background-color: #efeee9;
-    }
-
-    .comment_profile_image {
-        display: flex;
-        justify-content: center;
-        height: 100%;
-        margin-right: 20px;
-        width: 80px;
-        float: left;
-
-        img {
-            align-self: center;
-            width: 100%;
+                    span {
+                        list-style: none;
+                        display: table-cell;
+                    }
+                }
+            }
         }
     }
 
-    .comment_user_info {
-        border-bottom: 1px solid #ddd;
-        display: inline-block;
-    }
 
-    .comment .username {
-        width: 20em;
-        max-width: 100%;
-        display: inline-block;
-        font-size: 1.1em;
-        margin-right: 15px;
-    }
-
-    .comment .timestamp {
-        white-space: nowrap;
-        font-size: 0.8em;
-        color: #999;
-    }
-
-    .comment_content {
-        margin-top: 10px;
+    .stat {
+        padding-left: 120px;
     }
 }

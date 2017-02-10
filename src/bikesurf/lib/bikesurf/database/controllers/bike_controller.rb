@@ -4,6 +4,7 @@ require 'bikesurf/database/models/bike'
 require 'bikesurf/database/models/reservation'
 require 'bikesurf/database/models/bike_image'
 require 'bikesurf/helpers/date_helper'
+require 'bikesurf/database/controllers/comment_controller'
 
 module Bikesurf
   module Database
@@ -39,6 +40,28 @@ module Bikesurf
         end
       end
 
+      def create(bike_info)
+        bike = Models::Bike.create(
+          registration_number: bike_info['registration_number'],
+          name: bike_info['name'],
+          stand_id: bike_info['stand_id'],
+          description: bike_info['description'],
+          frame: bike_info['frame'],
+          crossbar: bike_info['crossbar'],
+          size: bike_info['size'],
+          front_lights: bike_info['front_lights'],
+          back_lights: bike_info['back_lights'],
+          backpedal_breaking_system: bike_info['backpedal_breaking_system'],
+          quick_release_saddle: bike_info['quick_release_saddle'],
+          gears_number: bike_info['gears_number'],
+          min_borrow_days: bike_info['min_borrow_days'],
+          max_borrow_days: bike_info['max_borrow_days']
+        )
+        raise 'Faild to save. Bike must belong to a stand!' unless bike.saved?
+
+        bike
+      end
+
       def update(bike_id, bike_info)
         bike = Models::Bike.get!(bike_id)
         bike.update(
@@ -58,33 +81,50 @@ module Bikesurf
         )
       end
 
+      def delete(bike_id)
+        bike_to_delete = Models::Bike.get!(bike_id)
+        bike_to_delete.destroy
+      end
+
       def get_comments_by_id(id)
         comments = Models::Comment.all(
           bike_comment: Models::BikeComment.all(bike_id: id)
         )
 
-        comments.map do |comment|
-          {
-            id: comment.id,
-            message: comment.message,
-            post_time: date_to_timestamp(comment.post_time),
-
-            user: {
-              id: comment.user.id,
-              name: comment.user.name,
-              username: comment.user.username,
-              avatar: comment.user.image
-            }
-          }
-        end
+        CommentController.instance.info_from_comments comments
       end
 
       def all
         Models::Bike.all
       end
 
-      def not_matching(ids)
-        Models::Bike.all(:id.not => reserved_ids)
+      def remove_nils(requirements)
+        requirements.select do |_key, value|
+          !value.to_s.empty?
+        end
+      end
+
+      def filter(bikes, filters)
+        borrow_duration = day_difference(
+          timestamp_to_date(filters['from']),
+          timestamp_to_date(filters['to'])
+        )
+        filtered_bikes = bikes.all(
+          remove_nils(
+            :min_borrow_days.lte => borrow_duration,
+            :max_borrow_days.gte => borrow_duration,
+            size: filters['size'],
+            :front_lights.like => "#{filters['front_lights']}%",
+            :back_lights.like => "#{filters['back_lights']}%",
+            backpedal_breaking_system: filters['backpedal_breaking_system'],
+            quick_release_saddle: filters['quick_release_saddle'],
+            :gears_number.gte => filters['min_gears']
+          )
+        )
+
+        filtered_bikes.each do |bike|
+
+        end
       end
     end
   end

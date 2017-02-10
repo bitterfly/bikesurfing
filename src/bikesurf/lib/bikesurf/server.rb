@@ -56,20 +56,37 @@ module Bikesurf
 
     post '/api/whoami' do
       return respond nil unless @user
-      respond ({
+      data = {
+        id: @user.id,
         name: @user.name,
         username: @user.username,
         avatar: @user.image
-      })
+      }
+      respond data
     end
 
-    post '/api/bike/new' do
-      result = insert_bike(@data['bike_info'])
+    post '/api/bikes' do
+      result = all_bikes
+      respond result
+    end
+
+    post '/api/bike' do
+      result = bike(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/bike/create' do
+      result = create_bike(@data['bike_info'])
       respond result
     end
 
     post '/api/bike/update' do
       result = update_bike(@data['bike_id'], @data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/delete' do
+      result = delete_bike(@data['bike_id'])
       respond result
     end
 
@@ -84,39 +101,64 @@ module Bikesurf
       respond result
     end
 
-    post '/api/bike' do
-      result = find_bike(@data['bike_id'])
+    post '/api/bike/comments' do
+      result = bike_comments(@data['bike_id'])
       respond result
     end
 
-    post '/api/comments/bike' do
-      result = find_bike_comments(@data['bike_id'])
+    post '/api/bike/comment/create' do
+      result = create_bike_comment(@user.id, @data['bike_id'], @data['comment'])
+      respond result
+    end
+
+    post '/api/reservation/comments' do
+      result = reservation_comments(@data['reservation_id'])
+      respond result
+    end
+
+    post '/api/reservation/comment/create' do
+      result = create_reservation_comment(@user.id, @data['reservation_id'], @data['comment'])
       respond result
     end
 
     post '/api/images/bike' do
-      result = find_bike_images(@data['bike_id'])
+      result = bike_images(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/reservation/create' do
+      result = create_reservation(
+        @user.id,
+        @data['from'],
+        @data['to'],
+        @data['bike_id'],
+        @data['comment']
+      )
       respond result
     end
 
     post '/api/bikes' do
-      result = find_bikes
+      result = all_bikes
       respond result
     end
 
-    post '/api/search_bikes' do
-      result = get_free_bikes(@data['from'], @data['to'])
+    post '/api/bikes/search' do
+      # data should have 'from', 'to' dates
+      # data could have 'size', 'front_lights true/null', 'back_lights true/null',
+      #                 'backpedal_breaking_system true/false/null', 'quick_release_saddle true/false/null',
+      #                 'min_gears' 
+      result = free_bikes_meeting_the_requirements_with_image(@data)
       respond result
     end
 
     post '/api/reservation' do
-      result = get_reservation(@data['reservation_id'])
+      result = reservation(@data['reservation_id'])
       respond result
     end
 
     post '/api/user/reservations' do
       return respond nil unless @user
-      result = get_user_reservations(@user)
+      result = user_reservations(@user)
       respond result
     end
 

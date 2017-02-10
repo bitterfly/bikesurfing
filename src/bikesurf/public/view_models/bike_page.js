@@ -2,42 +2,11 @@
     App.BikePageViewModel = function(params) {
         var self = this;
 
+        self.me = App.me;
+
         this.avatar_url = App.avatar_url;
 
-        this.bool_stat = function(value) {
-            if (value) {
-                return '<i class="fa fa-check bool_stat_true" title="yes"></i>';
-            } else {
-                return '<i class="fa fa-times bool_stat_false" title="no"></i>';
-            }
-        };
-
-        this.light_stat = function(value) {
-            if (value[0] == 'n') {
-                return this.bool_stat(false);
-            } else if (value[1] == 'b') {
-                return this.bool_stat(true) + ' (battery)';
-            } else if (value[1] == 'd') {
-                return this.bool_stat(true) + ' (dynamo)';
-            } else {
-                return this.bool_stat(true);
-            }
-        };
-
-        this.comment_timestamp = function(timestamp) {
-            var moment = App.timestamp_to_moment(timestamp);
-            return {
-                human_readable: moment.calendar(null, {
-                    sameDay: '[Today] HH:mm',
-                    nextDay: '[Tomorrow] HH:mm',
-                    nextWeek: 'dddd',
-                    lastDay: '[Yesterday] HH:mm',
-                    lastWeek: '[Last] dddd',
-                    sameElse: 'YYYY-MM-DD'
-                }),
-                full: moment.format()
-            };
-        };
+        this.comment_timestamp = App.pretty_date;
 
         this.image_operations_busy = ko.observable(false);
 
@@ -116,10 +85,27 @@
             App.request('images/bike', { bike_id: this.id() }, this.bike_images);
         }, this);
 
+        self.get_comments = function() {
+            App.request('bike/comments', { bike_id: this.id() }, this.comments);
+        };
+
         ko.computed(function() {
-            this.comments(undefined);
-            App.request('comments/bike', { bike_id: this.id() }, this.comments);
-        }, this);
+            self.get_comments();
+        }, self);
+
+        self.my_comment = ko.observable();
+
+        self.post_comment = function() {
+            App.request('bike/comment/create', {
+                    bike_id: self.id(),
+                    comment: self.my_comment()
+                },
+                function(comment) {
+                    self.get_comments();
+                }
+            );
+            self.my_comment('');
+        };
 
         this.bike = ko.pureComputed(function() {
             if (this.bike_info()) {
@@ -192,5 +178,74 @@
             var num_images = this.bike_images().length;
             this.bike_image_index((this.bike_image_index() + 1) % num_images);
         };
+
+        var bool_stat = function(value) {
+            if (value) {
+                return '<i class="fa fa-check bool_stat_true" title="yes"></i>';
+            } else {
+                return '<i class="fa fa-times bool_stat_false" title="no"></i>';
+            }
+        };
+
+        var light_stat = function(value) {
+            if (value[0] == 'n') {
+                return bool_stat(false);
+            } else if (value[1] == 'b') {
+                return bool_stat(true) + ' (battery)';
+            } else if (value[1] == 'd') {
+                return bool_stat(true) + ' (dynamo)';
+            } else {
+                return bool_stat(true);
+            }
+        };
+
+        self.bike_stats = ko.pureComputed(function() {
+            // todo: escaping
+            return [
+                {
+                    title: 'Frame',
+                    text: self.bike().frame
+                },
+                {
+                    title: 'Crossbar',
+                    text: self.bike().crossbar
+                },
+                {
+                    title: 'Size',
+                    text: self.bike().size
+                },
+                {
+                    title: 'Front lights',
+                    text: light_stat(self.bike().front_lights)
+                },
+                {
+                    title: 'Back lights',
+                    text: light_stat(self.bike().back_lights)
+                },
+                {
+                    title: 'Backpedal breaking system',
+                    text: bool_stat(self.bike().backpedal_breaking_system)
+                },
+                {
+                    title: 'Quick release saddle',
+                    text: bool_stat(self.bike().quick_release_saddle)
+                },
+                {
+                    title: 'Gears',
+                    text: self.bike().gears_number
+                }
+            ];
+        }, this);
+
+        self.dateFrom = ko.observable();
+        self.dateTo = ko.observable();
+
+        self.datepickerActive = ko.observable(false);
+
+        self.submitReady = ko.computed(function() {
+            return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
+        }, this);
+
+        App.initDatePickers(self, "#dates", "#dateFrom", "#dateTo");
     }
 })();

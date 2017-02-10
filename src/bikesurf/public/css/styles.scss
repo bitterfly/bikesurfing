@@ -2,21 +2,44 @@ $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 $logo-size: 100px;
 
+html {
+    font-size: 100%;
+}
+
 form, body, textarea, li, input, ul, div, aside, nav, section {
     box-sizing: border-box;
 }
 
 @import 'bike_page';
+@import 'intro_page';
+@import 'search_page';
+@import 'login_page';
+@import 'borrow_page';
+@import 'reservation_page';
+@import 'button';
+@import 'comments';
 
 body {
-    font: 100% $font-stack;
-    color: $primary-color;
     background-color: #e6ebed;
     margin-top: 0;
-    a {
+    a, a:hover, a:focus, a:active {
         text-decoration: none;
         color: $primary-color;
     }
+    .flex-row {
+        display: flex;
+    }
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.info_box {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
 }
 
 // Bikesurf main page
@@ -38,16 +61,20 @@ body {
         transition: 0.5s;
         border-right: 1px solid darkgrey;
         padding-top: 75px;
-        ul a {
-            white-space: nowrap;
-            padding: 8px 0;
-            font-size: 20px;
-            text-align: center;
-            display: block;
-            transition: 0.3s;
-            &:hover {
-                background-color: #282720;
-                color: #edeadc;
+        ul {
+            margin-top: 20px;
+            a {
+                white-space: nowrap;
+                text-decoration: none;
+                padding: 8px 0;
+                font-size: 20px;
+                text-align: center;
+                display: block;
+                transition: 0.3s;
+                &:hover, &:active, &:focus {
+                    background-color: #282720;
+                    color: #edeadc;
+                }
             }
         }
         &.show {
@@ -95,7 +122,8 @@ body {
                 cursor: pointer;
             }
             div a {
-                margin-left: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .avatar {   // fixme: this is utterly stupid.
@@ -105,6 +133,64 @@ body {
                     border-radius: 50%;
                     height: 30px;
                     vertical-align: middle;
+                }
+            }
+
+            .reservation_menu_button {
+                display: inline-block;
+
+                &.active {
+                    z-index: 5;
+                    background-color: #eee;
+                }
+
+                position: relative;
+            }
+
+            .reservation_menu {
+                width: 340px;
+                position: absolute;
+                z-index: 4;
+                background-color: #eee;
+                box-shadow: 3px 3px 5px #888888;
+
+                .reservation {
+                    display: flex;
+
+                    margin: 10px;
+
+                    .image {
+                        flex: 0 0 100px;
+                        height: 100px;
+                        width: 100px;
+                        overflow: hidden;
+
+                        img {
+                            height: 100%;
+                        }
+                    }
+
+                    overflow: auto;
+                    clear: both;
+
+                    .info {
+                        .bike_name {
+                            color: red;
+                        }
+
+                        .period {
+                            color: gray;
+                        }
+
+                        .status {
+                            color: green;
+                        }
+                        padding: 10px;
+                    }
+                }
+
+                .reservation:hover {
+                    background-color: #ddd;
                 }
             }
         }

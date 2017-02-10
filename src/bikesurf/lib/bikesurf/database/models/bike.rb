@@ -23,8 +23,9 @@ module Bikesurf
         property :max_borrow_days,           Integer
 
         belongs_to :stand
-        has n, :reservations
-        has n, :bike_images
+        has n, :reservations, constraint: :destroy
+        has n, :bike_images, constraint: :destroy
+        has n, :bike_comments, constraint: :destroy
       end
     end
   end

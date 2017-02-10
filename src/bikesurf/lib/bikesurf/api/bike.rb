@@ -1,33 +1,53 @@
 require 'rubygems'
 require 'bikesurf/database/controllers'
+require 'bikesurf/api/image'
 
 module Bikesurf
   module Requests
     module Bike
-      def find_bike(data)
-        Database::BikeController.instance.get_by_id data
+      include ::Bikesurf::Requests::Image
+
+      def bike(id)
+        Database::BikeController.instance.get_by_id id
       end
 
-      def find_bikes
+      def all_bikes
         Database::BikeController.instance.get_all
       end
 
-      def find_bike_images(data)
-        Database::BikeController.instance.get_images_by_id data
+      def bike_images(bike_id)
+        Database::BikeController.instance.get_images_by_id bike_id
       end
 
-      def find_bike_comments(data)
-        Database::BikeController.instance.get_comments_by_id data
+      def bike_comments(bike_id)
+        Database::BikeController.instance.get_comments_by_id bike_id
       end
 
       def update_bike(bike_id, bike_info)
         Database::BikeController.instance.update(bike_id, bike_info)
       end
 
-      def insert_bike bike_info
-        Database::BikeController.instance.add bike_info
+      def create_bike(bike_info, image)
+        bike_id = Database::BikeController.instance.create(bike_info).id
+        Database::ImageController.instance.create(bike_id, image)
+
+        {
+          id: bike_id
+        }
       end
 
+      def delete_bike(bike_id)
+        delete_bike_images(bike_id)
+        Database::BikeController.instance.delete bike_id
+      end
+
+      def create_bike_comment(user_id, bike_id, comment)
+        Database::CommentController.instance.create_bike_comment(
+          user_id,
+          bike_id,
+          comment
+        )
+      end
     end
   end
 end

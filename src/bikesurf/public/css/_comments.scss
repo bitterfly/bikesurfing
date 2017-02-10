@@ -1,0 +1,73 @@
+.comments {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f1f3f2;
+
+    .comment {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #a7a5a0;
+        border-radius: 5px;
+        position: relative;
+        overflow: auto;
+        background-color: #efeee9;
+        
+        @extend .flex-row;
+
+        .avatar {
+            width: 80px;
+            flex: 0 0 80px;
+            float: left;
+            display: inline-block;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .user_info {
+            border-bottom: 1px solid #ddd;
+            display: inline-block;
+
+            .username {
+                width: 20em;
+                max-width: 100%;
+                display: inline-block;
+                font-size: 1.1em;
+                margin-right: 15px;
+            }
+        }
+
+        .timestamp {
+            white-space: nowrap;
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .pushright {
+            justify-content: space-between;
+        }
+
+        .right {
+            flex-grow: 2;
+            padding: 12px;
+        }
+
+        .content {
+            margin-top: 10px;
+
+            .text_input {
+                height: 100px;
+                margin-bottom: 10px;
+
+                textarea {
+                    resize: none;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

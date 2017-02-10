@@ -3,11 +3,11 @@ $LOAD_PATH.unshift('./lib').uniq!
 
 require 'faker'
 require 'securerandom'
+require 'dotenv/load'
 require 'bikesurf/database/setup'
 require 'bikesurf/database/models'
 require 'bikesurf/images/image'
 require 'open-uri'
-require 'dotenv/load'
 require 'bikesurf/config'
 require 'mini_magick'
 
@@ -46,8 +46,8 @@ module Bikesurf
             backpedal_breaking_system: [true, false].sample,
             quick_release_saddle: [true, false].sample,
             gears_number: Random.rand(10),
-            min_borrow_days: Random.rand(6) + 1,
-            max_borrow_days: Random.rand(6) + 1
+            min_borrow_days: Random.rand(1..3),
+            max_borrow_days: Random.rand(3..6)
           )
         end
         bikes
@@ -158,15 +158,17 @@ module Bikesurf
       def fill_random_reservations(users, bikes)
         puts 'Filling reservations'
         reservations = []
-        10.times do
-          reservations << Models::Reservation.create(
-            user:         users.sample,
-            bike:         bikes.sample,
-            from:         Faker::Date.between(2.days.ago, Date.today),
-            until:        Faker::Date.between(Date.today, 2.days.from_now),
-            pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
-            status:       [:accepted, :waiting, :declined].sample
-          )
+        users.each do |user|
+          3.times do
+            reservations << Models::Reservation.create(
+              user:         user,
+              bike:         bikes.sample,
+              from:         Faker::Date.between(2.days.ago, Date.today),
+              until:        Faker::Date.between(Date.today, 2.days.from_now),
+              pick_up_time: Faker::Time.between(2.days.ago, Time.now, :all),
+              status:       [:accepted, :waiting, :declined].sample
+            )
+          end
         end
         reservations
       end
@@ -257,13 +259,14 @@ module Bikesurf
 
       def fill_random_images
         puts 'Filling bike images'
+        puts 'from: ' + ENV['RANDOM_IMAGE_URL']
         images = []
-        10.times do
+        30.times do
           begin
             width = rand(600) + 900
             height = rand(300) + 600
-            address = "http://lorempixel.com/#{width}/#{height}"
-            images << fill_random_image(address)
+            address = ENV['RANDOM_IMAGE_URL']
+            images << fill_random_image(format(address, width, height))
           rescue OpenURI::HTTPError
             images << nil
           end
@@ -273,10 +276,10 @@ module Bikesurf
 
       def fill_random_bike_images(bikes, images)
         puts 'Filling bike images'
-        bikes.each do |bike|
-          3.times do
+        bikes.each_with_index do |bike, index|
+          (0..2).each do |i|
             Models::BikeImage.create(
-              image: images.sample,
+              image: images[3 * index + i],
               bike: bike
             )
           end

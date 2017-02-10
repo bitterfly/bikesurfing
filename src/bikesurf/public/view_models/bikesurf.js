@@ -29,6 +29,37 @@
         };
 
         // ==================================================
+        // Reservation menu functionality
+        self.image_url = App.image_url;
+        self.reservation_menu_active = ko.observable(false);
+        self.reservation_menu_toggle = function() {
+            self.reservation_menu_active(!self.reservation_menu_active());
+        };
+
+        App.last_reservation_update = ko.observable(new Date());
+        self.reservations = ko.observable([]);
+        ko.computed(function() {
+            App.last_reservation_update();
+            if (!self.me()) {
+                return;
+            }
+            App.request('user/reservations', {}, self.reservations);
+        });
+
+        self.format_date = function(timestamp) {
+            var moment = App.timestamp_to_moment(timestamp);
+            return moment.calendar(null, {
+                sameDay: '[Today]',
+                nextDay: '[Tomorrow]',
+                nextWeek: 'dddd',
+                lastDay: '[Yesterday]',
+                lastWeek: '[Last] dddd',
+                sameElse: 'YYYY-MM-DD'
+            });
+        }
+        
+
+        // ==================================================
         // Menu button functionality
 
         function menuShow() {

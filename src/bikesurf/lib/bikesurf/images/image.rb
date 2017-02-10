@@ -27,7 +27,7 @@ module Bikesurf
         image.write File.join(ENV['IMAGES'], new_filename)
       end
 
-      Database::ImageController.instance.add(filename)
+      Database::ImageController.instance.create(filename)
     end
   end
 end

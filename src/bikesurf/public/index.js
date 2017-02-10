@@ -13,16 +13,21 @@ $(document).ready(function() {
             componentManager.selectComponent('bike_page', {id: this.params['id']});
         });
 
-        this.get('#/search', function() {
-            componentManager.selectComponent('search_page');
+        this.get('#/search', function(context) {
+            console.log(context.params);
+            componentManager.selectComponent('search_page', context.params);
         });
 
         this.get('#/login', function() {
             componentManager.selectComponent('login_page');
         });
 
-        this.get('#/borrow', function() {
-            componentManager.selectComponent('borrow_bike');
+        this.get('#/borrow', function(context) {
+            componentManager.selectComponent('borrow_bike', context.params);
+        });
+
+        this.get('#/reservation/:id', function() {
+            componentManager.selectComponent('reservation_page', {id: this.params['id']});
         });
 
         this.get('#/request', function() {
@@ -34,7 +39,7 @@ $(document).ready(function() {
         });
 
         this.get('#/', function() {
-            componentManager.selectComponent('main_page');
+            componentManager.selectComponent('intro_page');
         });
 
         this.get('', function() {

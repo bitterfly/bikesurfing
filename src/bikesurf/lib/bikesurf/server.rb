@@ -56,11 +56,12 @@ module Bikesurf
 
     post '/api/whoami' do
       return respond nil unless @user
-      respond ({
+      data = {
         name: @user.name,
         username: @user.username,
         avatar: @user.image
-      })
+      }
+      respond data
     end
 
     post '/api/bikes' do

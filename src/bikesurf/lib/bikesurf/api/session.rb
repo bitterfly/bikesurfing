@@ -10,7 +10,7 @@ module Bikesurf
           user: {
             username: user.username,
             name: user.name,
-            avatar: user.image,
+            avatar: user.image
           },
           session_id: Database::SessionController.instance.make_session(user.id)
         }

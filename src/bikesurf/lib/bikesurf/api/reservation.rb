@@ -36,6 +36,10 @@ module Bikesurf
           id: reservation_id
         }
       end
+
+      def reservation_comments(reservation_id)
+        Database::ReservationController.instance.get_comments_by_id reservation_id
+      end
     end
   end
 end

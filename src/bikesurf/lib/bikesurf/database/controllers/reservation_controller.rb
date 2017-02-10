@@ -3,6 +3,7 @@ require 'singleton'
 require 'bikesurf/database/models/bike'
 require 'bikesurf/database/models/user'
 require 'bikesurf/database/models/bike_image'
+require 'bikesurf/database/models/comment'
 require 'bikesurf/database/models/reservation'
 
 module Bikesurf
@@ -85,6 +86,27 @@ module Bikesurf
           bike_id: bike_id,
           status: 'waiting'
         )
+      end
+
+      def get_comments_by_id(id)
+        comments = Models::Comment.all(
+          reservation_comment: Models::ReservationComment.all(reservation_id: id)
+        )
+
+        comments.map do |comment|
+          {
+            id: comment.id,
+            message: comment.message,
+            post_time: date_to_timestamp(comment.post_time),
+
+            user: {
+              id: comment.user.id,
+              name: comment.user.name,
+              username: comment.user.username,
+              avatar: comment.user.image
+            }
+          }
+        end
       end
 
       def free_bikes(from, to)

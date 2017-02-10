@@ -30,7 +30,13 @@ module Bikesurf
         bike = reservation.bike
         bike_image = Models::BikeImage.first(bike_id: bike.id)
         {
-          reservation: reservation,
+          reservation: {
+            id: reservation.id,
+            from: date_to_timestamp(reservation.from),
+            to: date_to_timestamp(reservation.until),
+            pick_up_time: time_to_timestamp(reservation.pick_up_time),
+            status: reservation.status,
+          },
           reservor: {
             id: user.id,
             username: user.username,

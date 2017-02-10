@@ -4,6 +4,7 @@ require 'bikesurf/database/models/bike'
 require 'bikesurf/database/models/reservation'
 require 'bikesurf/database/models/bike_image'
 require 'bikesurf/helpers/date_helper'
+require 'bikesurf/database/controllers/comment_controller'
 
 module Bikesurf
   module Database
@@ -58,9 +59,7 @@ module Bikesurf
         )
         raise 'Faild to save. Bike must belong to a stand!' unless bike.saved?
 
-        {
-          bike: bike
-        }
+        bike
       end
 
       def update(bike_id, bike_info)
@@ -92,20 +91,7 @@ module Bikesurf
           bike_comment: Models::BikeComment.all(bike_id: id)
         )
 
-        comments.map do |comment|
-          {
-            id: comment.id,
-            message: comment.message,
-            post_time: date_to_timestamp(comment.post_time),
-
-            user: {
-              id: comment.user.id,
-              name: comment.user.name,
-              username: comment.user.username,
-              avatar: comment.user.image
-            }
-          }
-        end
+        CommentController.instance.info_from_comments comments
       end
 
       def all
@@ -113,7 +99,7 @@ module Bikesurf
       end
 
       def remove_nils(requirements)
-        requirements.select do |key, value|
+        requirements.select do |_key, value|
           !value.to_s.empty?
         end
       end
@@ -123,18 +109,22 @@ module Bikesurf
           timestamp_to_date(filters['from']),
           timestamp_to_date(filters['to'])
         )
-        bikes.all(
+        filtered_bikes = bikes.all(
           remove_nils(
             :min_borrow_days.lte => borrow_duration,
             :max_borrow_days.gte => borrow_duration,
             size: filters['size'],
-            front_lights: filters['front_lights'],
-            back_lights: filters['back_lights'],
+            :front_lights.like => "#{filters['front_lights']}%",
+            :back_lights.like => "#{filters['back_lights']}%",
             backpedal_breaking_system: filters['backpedal_breaking_system'],
             quick_release_saddle: filters['quick_release_saddle'],
             :gears_number.gte => filters['min_gears']
           )
         )
+
+        filtered_bikes.each do |bike|
+
+        end
       end
     end
   end

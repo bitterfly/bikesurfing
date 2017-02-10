@@ -12,10 +12,12 @@ form, body, textarea, li, input, ul, div, aside, nav, section {
 
 @import 'bike_page';
 @import 'intro_page';
+@import 'search_page';
 @import 'login_page';
 @import 'borrow_page';
 @import 'reservation_page';
 @import 'button';
+@import 'comments';
 
 body {
     background-color: #e6ebed;
@@ -33,6 +35,12 @@ body {
     }
 }
 
+.info_box {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+}
 
 // Bikesurf main page
 #bikesurf {

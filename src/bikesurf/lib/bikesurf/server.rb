@@ -57,6 +57,7 @@ module Bikesurf
     post '/api/whoami' do
       return respond nil unless @user
       data = {
+        id: @user.id,
         name: @user.name,
         username: @user.username,
         avatar: @user.image
@@ -100,8 +101,23 @@ module Bikesurf
       respond result
     end
 
-    post '/api/comments/bike' do
+    post '/api/bike/comments' do
       result = bike_comments(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/bike/comment/create' do
+      result = create_bike_comment(@user.id, @data['bike_id'], @data['comment'])
+      respond result
+    end
+
+    post '/api/reservation/comments' do
+      result = reservation_comments(@data['reservation_id'])
+      respond result
+    end
+
+    post '/api/reservation/comment/create' do
+      result = create_reservation_comment(@user.id, @data['reservation_id'], @data['comment'])
       respond result
     end
 
@@ -128,10 +144,10 @@ module Bikesurf
 
     post '/api/bikes/search' do
       # data should have 'from', 'to' dates
-      # data could have 'size', 'front_lights', 'back_lights',
-      #                 'backpedal_breaking_system', 'quick_release_saddle',
-      #                 'min_gears'
-      result = free_bikes_meeting_the_requirements(@data)
+      # data could have 'size', 'front_lights true/null', 'back_lights true/null',
+      #                 'backpedal_breaking_system true/false/null', 'quick_release_saddle true/false/null',
+      #                 'min_gears' 
+      result = free_bikes_meeting_the_requirements_with_image(@data)
       respond result
     end
 

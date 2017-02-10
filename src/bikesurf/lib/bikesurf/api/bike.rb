@@ -27,13 +27,26 @@ module Bikesurf
         Database::BikeController.instance.update(bike_id, bike_info)
       end
 
-      def create_bike(bike_info)
-        Database::BikeController.instance.create bike_info
+      def create_bike(bike_info, image)
+        bike_id = Database::BikeController.instance.create(bike_info).id
+        Database::ImageController.instance.create(bike_id, image)
+
+        {
+          id: bike_id
+        }
       end
 
       def delete_bike(bike_id)
         delete_bike_images(bike_id)
         Database::BikeController.instance.delete bike_id
+      end
+
+      def create_bike_comment(user_id, bike_id, comment)
+        Database::CommentController.instance.create_bike_comment(
+          user_id,
+          bike_id,
+          comment
+        )
       end
     end
   end

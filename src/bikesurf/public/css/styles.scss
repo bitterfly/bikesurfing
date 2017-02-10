@@ -18,14 +18,12 @@ body {
     color: $primary-color;
     background-color: #e6ebed;
     margin-top: 0;
-    a {
+    a, a:hover, a:focus, a:active {
         text-decoration: none;
         color: $primary-color;
     }
     .flex-row {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
     .flex-col {
         display: flex;
@@ -63,7 +61,7 @@ body {
                 text-align: center;
                 display: block;
                 transition: 0.3s;
-                &:hover {
+                &:hover, &:active, &:focus {
                     background-color: #282720;
                     color: #edeadc;
                 }
@@ -114,7 +112,8 @@ body {
                 cursor: pointer;
             }
             div a {
-                margin-left: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .avatar {   // fixme: this is utterly stupid.
@@ -124,6 +123,64 @@ body {
                     border-radius: 50%;
                     height: 30px;
                     vertical-align: middle;
+                }
+            }
+
+            .reservation_menu_button {
+                display: inline-block;
+
+                &.active {
+                    z-index: 5;
+                    background-color: #eee;
+                }
+
+                position: relative;
+            }
+
+            .reservation_menu {
+                width: 340px;
+                position: absolute;
+                z-index: 4;
+                background-color: #eee;
+                box-shadow: 3px 3px 5px #888888;
+
+                .reservation {
+                    display: flex;
+
+                    margin: 10px;
+
+                    .image {
+                        flex: 0 0 100px;
+                        height: 100px;
+                        width: 100px;
+                        overflow: hidden;
+
+                        img {
+                            height: 100%;
+                        }
+                    }
+
+                    overflow: auto;
+                    clear: both;
+
+                    .info {
+                        .bike_name {
+                            color: red;
+                        }
+
+                        .period {
+                            color: gray;
+                        }
+
+                        .status {
+                            color: green;
+                        }
+                        padding: 10px;
+                    }
+                }
+
+                .reservation:hover {
+                    background-color: #ddd;
                 }
             }
         }

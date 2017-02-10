@@ -13,6 +13,10 @@
         self.reservation_info.subscribe(function(r) {
             console.log(r);
         });
+
+        self.image_url = App.image_url;
+
+        self.pretty_date = App.pretty_date;
     };
 
 })();

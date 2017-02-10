@@ -1,7 +1,38 @@
 <div id="reservation_page" class="reservation_page">
-    <div class="top">
-    <div class="request">
+    <div data-bind='ifnot: reservation_info'>
+        loading dsjfkdashfksdhfjkadhfjdnjfnsjg
     </div>
-    <div class = "bike">
+    <div data-bind='if: reservation_info'>
+        <div class="top" data-bind='with: reservation_info'>
+            <div class="request">
+                <div class="dates">
+                    <div class="from">
+                        <label>From:</label>
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.from)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                    <div class="to">
+                        <label>To:</label>
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.to)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class = "bike">
+                <div class="status">
+                    Status: <span data-bind='text: reservation.status'></span>
+                </div>
+                <div class="image">
+                    <div class="header">
+                        <div class="name">
+                            <span data-bind='text: bike.name'></span>
+                        </div>
+                    </div>
+                    <img data-bind='attr: { src: $parent.image_url(bike.image) }'/>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

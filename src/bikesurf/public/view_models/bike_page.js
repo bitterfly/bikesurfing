@@ -4,20 +4,7 @@
 
         this.avatar_url = App.avatar_url;
 
-        this.comment_timestamp = function(timestamp) {
-            var moment = App.timestamp_to_moment(timestamp);
-            return {
-                human_readable: moment.calendar(null, {
-                    sameDay: '[Today] HH:mm',
-                    nextDay: '[Tomorrow] HH:mm',
-                    nextWeek: 'dddd',
-                    lastDay: '[Yesterday] HH:mm',
-                    lastWeek: '[Last] dddd',
-                    sameElse: 'YYYY-MM-DD'
-                }),
-                full: moment.format()
-            };
-        };
+        this.comment_timestamp = App.pretty_date;
 
         this.image_operations_busy = ko.observable(false);
 

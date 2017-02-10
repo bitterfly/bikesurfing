@@ -112,12 +112,29 @@ module Bikesurf
         Models::Bike.all
       end
 
-      def not_matching(ids)
-        Models::Bike.all(:id.not => reserved_ids)
+      def remove_nils(requirements)
+        requirements.select do |key, value|
+          !value.to_s.empty?
+        end
       end
 
       def filter(bikes, filters)
-        bikes.all(filters)
+        borrow_duration = day_difference(
+          timestamp_to_date(filters['from']),
+          timestamp_to_date(filters['to'])
+        )
+        bikes.all(
+          remove_nils(
+            :min_borrow_days.lte => borrow_duration,
+            :max_borrow_days.gte => borrow_duration,
+            size: filters['size'],
+            front_lights: filters['front_lights'],
+            back_lights: filters['back_lights'],
+            backpedal_breaking_system: filters['backpedal_breaking_system'],
+            quick_release_saddle: filters['quick_release_saddle'],
+            :gears_number.gte => filters['min_gears']
+          )
+        )
       end
     end
   end

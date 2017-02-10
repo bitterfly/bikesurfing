@@ -22,8 +22,12 @@ $(document).ready(function() {
             componentManager.selectComponent('login_page');
         });
 
-        this.get('#/borrow', function() {
-            componentManager.selectComponent('borrow_bike');
+        this.get('#/borrow', function(context) {
+            componentManager.selectComponent('borrow_bike', context.params);
+        });
+
+        this.get('#/reservation/:id', function() {
+            componentManager.selectComponent('reservation_page', {id: this.params['id']});
         });
 
         this.get('#/request', function() {

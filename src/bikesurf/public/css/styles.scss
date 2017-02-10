@@ -13,10 +13,11 @@ form, body, textarea, li, input, ul, div, aside, nav, section {
 @import 'bike_page';
 @import 'intro_page';
 @import 'search_page';
+@import 'login_page';
+@import 'borrow_page';
+@import 'reservation_page';
 
 body {
-    font: 100% $font-stack;
-    color: $primary-color;
     background-color: #e6ebed;
     margin-top: 0;
     a, a:hover, a:focus, a:active {

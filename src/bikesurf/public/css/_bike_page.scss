@@ -72,29 +72,33 @@
         margin: 10px;
     }
 
-    .stats {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #lightgray;
-        border-radius: 5px;
-        background-color: #f1f3f2;
+    .stats_bar {
+        .stats {
+            display: inline-block;
+            padding: 5px;
+            border: 1px solid #lightgray;
+            border-radius: 5px;
+            background-color: #f1f3f2;
+
+
+            ul {
+                display: table;
+                padding: 10px;
+                margin: 0px;
+
+                li {
+                    list-style: none;
+                    display: table-row;
+
+                    span {
+                        list-style: none;
+                        display: table-cell;
+                    }
+                }
+            }
+        }
     }
 
-    .stats ul {
-        display: table;
-        padding: 10px;
-        margin: 0px;
-    }
-
-    .stats ul li {
-        list-style: none;
-        display: table-row;
-    }
-
-    .stats ul li span {
-        list-style: none;
-        display: table-cell;
-    }
 
     .stat {
         padding-left: 120px;

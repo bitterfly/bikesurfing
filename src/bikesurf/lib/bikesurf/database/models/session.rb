@@ -9,7 +9,7 @@ module Bikesurf
 
         property :id,         Serial
         property :session_id, String, length: 256
-        property :create_time,DateTime
+        property :create_time, DateTime
         belongs_to :user
       end
     end

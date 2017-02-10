@@ -8,7 +8,8 @@
         search_page: {viewModel: 'SearchPageViewModel', loaded: false},
         borrow_bike: {viewModel: 'BorrowBikeViewModel', loaded: false},
         request_bike: {viewModel: 'RequestBikeViewModel', loaded: false},
-        add_bike: {viewModel: 'AddBikeViewModel', loaded: false}
+        add_bike: {viewModel: 'AddBikeViewModel', loaded: false},
+        reservation_page: {viewModel: 'ReservationPageViewModel', loaded: false}
     }
 
     App.ComponentManager = function() {

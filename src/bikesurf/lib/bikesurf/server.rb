@@ -56,11 +56,12 @@ module Bikesurf
 
     post '/api/whoami' do
       return respond nil unless @user
-      respond ({
+      data = {
         name: @user.name,
         username: @user.username,
         avatar: @user.image
-      })
+      }
+      respond data
     end
 
     post '/api/bikes' do
@@ -109,11 +110,27 @@ module Bikesurf
       respond result
     end
 
-    post '/api/search_bikes' do
+    post '/api/reservation/create' do
+      result = create_reservation(
+        @user.id,
+        @data['from'],
+        @data['to'],
+        @data['bike_id'],
+        @data['comment']
+      )
+      respond result
+    end
+
+    post '/api/bikes' do
+      result = all_bikes
+      respond result
+    end
+
+    post '/api/bikes/search' do
       # data should have 'from', 'to' dates
       # data could have 'size', 'front_lights', 'back_lights',
       #                 'backpedal_breaking_system', 'quick_release_saddle',
-      #                 'gears_number'
+      #                 'min_gears'
       result = free_bikes_meeting_the_requirements(@data)
       respond result
     end

@@ -18,48 +18,34 @@
                     </div>
                 </div>
             </div>
-            <div data-bind='with: bike'>
+            <div>
                 <div class="name_container">
-                    <div class="name" data-bind='text: name'></div>
+                    <div class="name" data-bind='text: bike().name'></div>
                 </div>
                 <div class="info">
-                    <div class="stats">
-                        <ul>
-                            <li>
-                                <span class="stat_title">Frame</span>
-                                <span class="stat" data-bind='text: frame'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Crossbar</span>
-                                <span class="stat" data-bind='text: crossbar'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Size</span>
-                                <span class="stat" data-bind='text: size'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Front lights</span>
-                                <span class="stat" data-bind='html: $parent.light_stat(front_lights)'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Back lights</span>
-                                <span class="stat" data-bind='html: $parent.light_stat(back_lights)'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Backpedal breaking system</span>
-                                <span class="stat" data-bind='html: $parent.bool_stat(backpedal_breaking_system)'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Quick release saddle</span>
-                                <span class="stat" data-bind='html: $parent.bool_stat(quick_release_saddle)'></span>
-                            </li>
-                            <li>
-                                <span class="stat_title">Gears</span>
-                                <span class="stat" data-bind='text: gears_number'></span>
-                            </li>
-                        </ul>
+                    <div class="stats_bar flex-row">
+                        <div class="stats">
+                            <ul data-bind='foreach: bike_stats'>
+                                <li>
+                                    <span class="stat_title" data-bind='text: title'></span>
+                                    <span class="stat" data-bind='html: text'></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="borrow">
+                            these dates don't work. don't even try.
+                            <div class="input-group input-daterange" id="dates">
+                                <div class="input-group-addon">From</div>
+                                <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                                <div class="input-group-addon">to</div>
+                                <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                            </div>
+                            <div class="borrow_button">
+                                <a class="button" data-bind='attr: { href: "#/borrow?bike=" + bike().id }'><i class="fa fa-handshake-o"></i> Borrow</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="description" data-bind='text: description'></div>
+                    <div class="description" data-bind='text: bike().description'></div>
                 </div>
             </div>
             <div class="comments" data-bind='foreach: comments'>

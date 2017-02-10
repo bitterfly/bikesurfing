@@ -12,7 +12,8 @@ module Bikesurf
       include ::Bikesurf::Helpers::DateHelper
 
       def reserved_bikes(from, to)
-        raise 'Please, select a valid period.' unless valid_period?(from, to)
+        from = from ? from : timestamp_to_date(0)
+        to = to ? to : Date.new(4096, 1, 1)
 
         Models::Bike.all(
           reservations: Models::Reservation.all(
@@ -55,19 +56,27 @@ module Bikesurf
             },
             bike: {
               name: reservation.bike.name,
-              image: Models::BikeImage.first(bike_id: reservation.bike.id).image,
+              image: Models::BikeImage.first(
+                bike_id: reservation.bike.id
+              ).image,
               owner: reservation.bike.stand.user.username
             }
           }
         end
       end
 
-      def free_bikes(from, to)
-        borrow_duration = day_difference(from, to)
-        bikes_for_duration = Models::Bike.all(:min_borrow_days.lte => borrow_duration,
-                                              :max_borrow_days.gte => borrow_duration)
+      def create(from, to, user_id, bike_id)
+        Models::Reservation.create(
+          from: from,
+          until: to,
+          user_id: user_id,
+          bike_id: bike_id,
+          status: 'waiting'
+        )
+      end
 
-        bikes_for_duration - reserved_bikes(from, to)
+      def free_bikes(from, to)
+        Models::Bike.all - reserved_bikes(from, to)
       end
     end
   end

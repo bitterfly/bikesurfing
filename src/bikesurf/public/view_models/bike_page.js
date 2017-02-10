@@ -4,26 +4,6 @@
 
         this.avatar_url = App.avatar_url;
 
-        this.bool_stat = function(value) {
-            if (value) {
-                return '<i class="fa fa-check bool_stat_true" title="yes"></i>';
-            } else {
-                return '<i class="fa fa-times bool_stat_false" title="no"></i>';
-            }
-        };
-
-        this.light_stat = function(value) {
-            if (value[0] == 'n') {
-                return this.bool_stat(false);
-            } else if (value[1] == 'b') {
-                return this.bool_stat(true) + ' (battery)';
-            } else if (value[1] == 'd') {
-                return this.bool_stat(true) + ' (dynamo)';
-            } else {
-                return this.bool_stat(true);
-            }
-        };
-
         this.comment_timestamp = function(timestamp) {
             var moment = App.timestamp_to_moment(timestamp);
             return {
@@ -192,5 +172,74 @@
             var num_images = this.bike_images().length;
             this.bike_image_index((this.bike_image_index() + 1) % num_images);
         };
+
+        var bool_stat = function(value) {
+            if (value) {
+                return '<i class="fa fa-check bool_stat_true" title="yes"></i>';
+            } else {
+                return '<i class="fa fa-times bool_stat_false" title="no"></i>';
+            }
+        };
+
+        var light_stat = function(value) {
+            if (value[0] == 'n') {
+                return bool_stat(false);
+            } else if (value[1] == 'b') {
+                return bool_stat(true) + ' (battery)';
+            } else if (value[1] == 'd') {
+                return bool_stat(true) + ' (dynamo)';
+            } else {
+                return bool_stat(true);
+            }
+        };
+
+        self.bike_stats = ko.pureComputed(function() {
+            // todo: escaping
+            return [
+                {
+                    title: 'Frame',
+                    text: self.bike().frame
+                },
+                {
+                    title: 'Crossbar',
+                    text: self.bike().crossbar
+                },
+                {
+                    title: 'Size',
+                    text: self.bike().size
+                },
+                {
+                    title: 'Front lights',
+                    text: light_stat(self.bike().front_lights)
+                },
+                {
+                    title: 'Back lights',
+                    text: light_stat(self.bike().back_lights)
+                },
+                {
+                    title: 'Backpedal breaking system',
+                    text: bool_stat(self.bike().backpedal_breaking_system)
+                },
+                {
+                    title: 'Quick release saddle',
+                    text: bool_stat(self.bike().quick_release_saddle)
+                },
+                {
+                    title: 'Gears',
+                    text: self.bike().gears_number
+                }
+            ];
+        }, this);
+
+        self.dateFrom = ko.observable();
+        self.dateTo = ko.observable();
+
+        self.datepickerActive = ko.observable(false);
+
+        self.submitReady = ko.computed(function() {
+            return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
+        }, this);
+
+        App.initDatePickers(self, "#dates", "#dateFrom", "#dateTo");
     }
 })();

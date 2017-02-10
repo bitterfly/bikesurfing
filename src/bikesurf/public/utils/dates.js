@@ -14,4 +14,11 @@
         return date.unix();
     };
 
+    App.date_to_moment = function(date_string) {
+        return moment(date_string, 'DD.MM.YYYY');
+    };
+
+    App.date_to_timestamp = function(date_string) {
+        return App.moment_to_timestamp(App.date_to_moment(date_string));
+    };
 })();

@@ -18,7 +18,7 @@ body {
     color: $primary-color;
     background-color: #e6ebed;
     margin-top: 0;
-    a {
+    a, a:hover, a:focus, a:active {
         text-decoration: none;
         color: $primary-color;
     }

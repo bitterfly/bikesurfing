@@ -18,14 +18,12 @@ body {
     color: $primary-color;
     background-color: #e6ebed;
     margin-top: 0;
-    a {
+    a, a:hover, a:focus, a:active {
         text-decoration: none;
         color: $primary-color;
     }
     .flex-row {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
     .flex-col {
         display: flex;
@@ -63,7 +61,7 @@ body {
                 text-align: center;
                 display: block;
                 transition: 0.3s;
-                &:hover {
+                &:hover, &:active, &:focus {
                     background-color: #282720;
                     color: #edeadc;
                 }
@@ -156,7 +154,7 @@ body {
                         height: 100px;
                         width: 100px;
                         overflow: hidden;
-                        
+
                         img {
                             height: 100%;
                         }

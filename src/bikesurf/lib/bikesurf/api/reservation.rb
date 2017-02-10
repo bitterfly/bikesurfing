@@ -11,11 +11,11 @@ module Bikesurf
     module Reservation
       include ::Bikesurf::Helpers::DateHelper
 
-      def get_reservation(reservation_id)
+      def reservation(reservation_id)
         Database::ReservationController.instance.get_by_id reservation_id
       end
 
-      def get_user_reservations(user)
+      def user_reservations(user)
         Database::ReservationController.instance.get_by_user user
       end
 

@@ -6,7 +6,8 @@ module Bikesurf
   module Database
     class ImageController
       include Singleton
-      def add(filename)
+
+      def create(filename)
         Models::Image.create(
           filename: filename
         )

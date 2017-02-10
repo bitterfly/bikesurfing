@@ -3,11 +3,11 @@ $LOAD_PATH.unshift('./lib').uniq!
 
 require 'faker'
 require 'securerandom'
+require 'dotenv/load'
 require 'bikesurf/database/setup'
 require 'bikesurf/database/models'
 require 'bikesurf/images/image'
 require 'open-uri'
-require 'dotenv/load'
 require 'bikesurf/config'
 require 'mini_magick'
 
@@ -259,13 +259,14 @@ module Bikesurf
 
       def fill_random_images
         puts 'Filling bike images'
+        puts 'from: ' + ENV['RANDOM_IMAGE_URL']
         images = []
-        10.times do
+        30.times do
           begin
             width = rand(600) + 900
             height = rand(300) + 600
-            address = "http://lorempixel.com/#{width}/#{height}"
-            images << fill_random_image(address)
+            address = ENV['RANDOM_IMAGE_URL']
+            images << fill_random_image(address % [width, height])
           rescue OpenURI::HTTPError
             images << nil
           end
@@ -275,10 +276,10 @@ module Bikesurf
 
       def fill_random_bike_images(bikes, images)
         puts 'Filling bike images'
-        bikes.each do |bike|
-          3.times do
+        bikes.each_with_index do |bike, index|
+          (0..2).each do |i|
             Models::BikeImage.create(
-              image: images.sample,
+              image: images[3*index + i],
               bike: bike
             )
           end

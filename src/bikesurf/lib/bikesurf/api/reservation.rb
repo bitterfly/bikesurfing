@@ -26,13 +26,15 @@ module Bikesurf
           user_id,
           bike_id
         ).id
-        
+
         Database::CommentController.instance.create_reservation_comment(
           user_id,
           reservation_id,
           comment
         )
-        reservation_id
+        {
+          id: reservation_id
+        }
       end
     end
   end

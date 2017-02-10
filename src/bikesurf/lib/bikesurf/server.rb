@@ -128,10 +128,10 @@ module Bikesurf
 
     post '/api/bikes/search' do
       # data should have 'from', 'to' dates
-      # data could have 'size', 'front_lights', 'back_lights',
-      #                 'backpedal_breaking_system', 'quick_release_saddle',
-      #                 'min_gears'
-      result = free_bikes_meeting_the_requirements(@data)
+      # data could have 'size', 'front_lights true/null', 'back_lights true/null',
+      #                 'backpedal_breaking_system true/false/null', 'quick_release_saddle true/false/null',
+      #                 'min_gears' 
+      result = free_bikes_meeting_the_requirements_with_image(@data)
       respond result
     end
 

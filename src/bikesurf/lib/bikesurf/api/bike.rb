@@ -35,7 +35,6 @@ module Bikesurf
         delete_bike_images(bike_id)
         Database::BikeController.instance.delete bike_id
       end
-
     end
   end
 end

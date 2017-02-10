@@ -10,7 +10,7 @@ module Bikesurf
     module Image
       def insert_image(bike_id, base64_image)
         database_image = Images.save_to_database(Base64.decode64(base64_image))
-        Database::BikeImageController.instance.add(bike_id, database_image)
+        Database::BikeImageController.instance.create(bike_id, database_image)
       end
 
       def delete_image_files(filename)

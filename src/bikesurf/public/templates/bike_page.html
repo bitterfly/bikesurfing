@@ -32,14 +32,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="user userbox" data-bind='with: owner'>
-                            <a data-bind='attr: { href: "#/user/" + username }'>
-                                <div class="avatar profile_image">
-                                    <img data-bind="attr: { 'src': $parent.avatar_url(avatar) }"/>
-                                </div>
-                                <div class="name" data-bind='text: name'></div>
-                            </a>
-                        </div>
                         <div class="borrow">
                             <div class="input-daterange" id="dates">
                                 <div class="input-group">
@@ -54,12 +46,20 @@
                             <div class="borrow_button" data-bind='if: bike'>
                                 <div class="spacer"></div>
                                 <div class="button_wrapper">
-                                    <a class="btn btn-green btn-fill-vert" data-bind='attr: { href: "#/borrow?bike=" + bike().id + "&from=" + dateFrom() + "&to=" + dateTo() }'><i class="fa fa-handshake-o"></i> Borrow</a>
+                                    <a class="btn btn-green btn-fill-vert" data-bind='attr: { href: "#/borrow?bike=" + bike().id + "&from=" + dateFrom() + "&to=" + dateTo() }'><i></i> Borrow</a>
                                 </div>
                             </div>
                         </div>
+                        <div class="user userbox" data-bind='with: owner'>
+                            <a data-bind='attr: { href: "#/user/" + username }'>
+                                <div class="avatar profile_image">
+                                    <img data-bind="attr: { 'src': $parent.avatar_url(avatar) }"/>
+                                </div>
+                                <div class="name" data-bind='text: name'></div>
+                            </a>
+                        </div>
                     </div>
-                    <div data-bind='if: bike'> 
+                    <div data-bind='if: bike'>
                         <div class="description" data-bind='text: bike().description'></div>
                     </div>
                 </div>

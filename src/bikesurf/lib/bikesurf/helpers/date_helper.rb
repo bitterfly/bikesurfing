@@ -20,7 +20,7 @@ module Bikesurf
 
       def time_to_timestamp(time)
         nil unless time
-        time.to_i
+        time.to_time.to_i
       end
 
       def valid_period?(from, to)

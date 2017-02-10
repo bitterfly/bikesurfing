@@ -3,6 +3,7 @@ require 'singleton'
 require 'bikesurf/database/models/user'
 require 'bikesurf/database/models/comment'
 require 'bikesurf/database/models/reservation_comment'
+require 'bikesurf/database/models/bike_comment'
 require 'bikesurf/helpers/date_helper'
 
 module Bikesurf
@@ -29,7 +30,7 @@ module Bikesurf
 
       def create_bike_comment(user_id, bike_id, message)
         comment_id = create_comment(user_id, message).id
-        Models::ReservationComment.create(
+        Models::BikeComment.create(
           comment_id: comment_id,
           bike_id: bike_id
         )

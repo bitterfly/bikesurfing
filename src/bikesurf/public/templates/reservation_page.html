@@ -3,7 +3,7 @@
         loading dsjfkdashfksdhfjkadhfjdnjfnsjg
     </div>
     <div data-bind='if: reservation_info'>
-        <div class="top" data-bind='with: reservation_info'>
+        <div class="top flex-row" data-bind='with: reservation_info'>
             <div class="request">
                 <div class="dates">
                     <div class="from">
@@ -19,6 +19,22 @@
                         </span>
                     </div>
                 </div>
+
+                <div class="user" data-bind='with: $parent.user'>
+                    <div class="avatar profile_image">
+                        <img data-bind="attr: { 'src': $root.avatar_url(avatar) }"/>
+                    </div>
+                    <div class="name" data-bind='text: name'></div>
+                </div>
+
+                <div data-bind='if: reservation.pick_up_time'>
+                    <div class="pick_up_time">
+                        Your pick-up time is
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.pick_up_time)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class = "bike">
                 <div class="status">
@@ -30,7 +46,7 @@
                             <span data-bind='text: bike.name'></span>
                         </div>
                     </div>
-                    <img data-bind='attr: { src: $parent.image_url(bike.image) }'/>
+                    <img data-bind='attr: { src: $root.image_url(bike.image) }'/>
                 </div>
             </div>
         </div>

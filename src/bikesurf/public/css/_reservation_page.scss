@@ -1,10 +1,23 @@
 .reservation_page {
+    padding: 20px;
+
     .top {
+        justify-content: space-between;
+
         .request {
             .dates {
                 label {
                     display: inline-block;
                     width: 50px;    // fixme: dumb
+                }
+            }
+
+            .user {
+                .avatar {
+                    width: 100px;
+                    img {
+                        width: 100%;
+                    }
                 }
             }
         }

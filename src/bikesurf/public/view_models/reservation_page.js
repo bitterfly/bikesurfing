@@ -27,6 +27,13 @@
         self.image_url = App.image_url;
 
         self.pretty_date = App.pretty_date;
+        self.comment_timestamp = App.pretty_date;
+
+        self.comments = ko.observable();
+
+        ko.computed(function() {
+            App.request('comments/reservation', { reservation_id: self.id() }, self.comments);
+        }, self);
     };
 
 })();

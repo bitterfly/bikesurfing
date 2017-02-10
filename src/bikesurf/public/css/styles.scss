@@ -61,7 +61,7 @@ body {
                 text-align: center;
                 display: block;
                 transition: 0.3s;
-                &:hover {
+                &:hover, &:active, &:focus {
                     background-color: #282720;
                     color: #edeadc;
                 }

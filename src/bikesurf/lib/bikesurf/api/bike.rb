@@ -7,20 +7,20 @@ module Bikesurf
     module Bike
       include ::Bikesurf::Requests::Image
 
-      def find_bike(data)
-        Database::BikeController.instance.get_by_id data
+      def bike(id)
+        Database::BikeController.instance.get_by_id id
       end
 
-      def find_bikes
+      def all_bikes
         Database::BikeController.instance.get_all
       end
 
-      def find_bike_images(data)
-        Database::BikeController.instance.get_images_by_id data
+      def bike_images(bike_id)
+        Database::BikeController.instance.get_images_by_id bike_id
       end
 
-      def find_bike_comments(data)
-        Database::BikeController.instance.get_comments_by_id data
+      def bike_comments(bike_id)
+        Database::BikeController.instance.get_comments_by_id bike_id
       end
 
       def update_bike(bike_id, bike_info)

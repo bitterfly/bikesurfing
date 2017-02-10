@@ -64,12 +64,12 @@ module Bikesurf
     end
 
     post '/api/bikes' do
-      result = find_bikes
+      result = all_bikes
       respond result
     end
 
     post '/api/bike' do
-      result = find_bike(@data['bike_id'])
+      result = bike(@data['bike_id'])
       respond result
     end
 
@@ -100,12 +100,12 @@ module Bikesurf
     end
 
     post '/api/comments/bike' do
-      result = find_bike_comments(@data['bike_id'])
+      result = bike_comments(@data['bike_id'])
       respond result
     end
 
     post '/api/images/bike' do
-      result = find_bike_images(@data['bike_id'])
+      result = bike_images(@data['bike_id'])
       respond result
     end
 
@@ -119,13 +119,13 @@ module Bikesurf
     end
 
     post '/api/reservation' do
-      result = get_reservation(@data['reservation_id'])
+      result = reservation(@data['reservation_id'])
       respond result
     end
 
     post '/api/user/reservations' do
       return respond nil unless @user
-      result = get_user_reservations(@user)
+      result = user_reservations(@user)
       respond result
     end
 

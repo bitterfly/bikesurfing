@@ -130,7 +130,7 @@ module Bikesurf
       # data should have 'from', 'to' dates
       # data could have 'size', 'front_lights', 'back_lights',
       #                 'backpedal_breaking_system', 'quick_release_saddle',
-      #                 'gears_number'
+      #                 'min_gears' 
       result = free_bikes_meeting_the_requirements(@data)
       respond result
     end

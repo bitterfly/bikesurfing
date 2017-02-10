@@ -113,7 +113,17 @@ module Bikesurf
       end
 
       def filter(bikes, filters)
-        bikes.all(filters)
+        borrow_duration = day_difference(filters['from'], filters['to'])
+        bikes.all(
+          :min_borrow_days.lte => borrow_duration,
+          :max_borrow_days.gte => borrow_duration,
+          size: filters['size'],
+          front_lights: filters['front_lights'],
+          back_lights: filters['back_lights'],
+          backpedal_breaking_system: filters['backpedal_breaking_system'],
+          quick_release_saddle: filters['quick_release_saddle'],
+          :gears.gte => filters['min_gears']
+        )
       end
     end
   end

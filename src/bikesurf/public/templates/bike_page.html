@@ -2,9 +2,9 @@
     <div data-bind='ifnot: bike'>
         LOADING!!!!!!1!!!!!!one!!!!!
     </div>
-    <div data-bind='if: bike'>
+    <div data-bind='visible: bike'>
         <div class="page_container">
-            <div class="images">
+            <div class="images" data-bind='if: bike'>
                 <div class="slick_images">
                 </div>
                 <div class="operations">
@@ -19,12 +19,12 @@
                 </div>
             </div>
             <div>
-                <div class="name_container">
+                <div class="name_container" data-bind='if: bike'>
                     <div class="name" data-bind='text: bike().name'></div>
                 </div>
                 <div class="info_box">
                     <div class="stats_bar flex-row">
-                        <div class="stats">
+                        <div class="stats" data-bind='if: bike'>
                             <ul data-bind='foreach: bike_stats'>
                                 <li>
                                     <span class="stat_title" data-bind='text: title'></span>
@@ -40,15 +40,17 @@
                                 <div class="input-group-addon">to</div>
                                 <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
                             </div>
-                            <div class="borrow_button">
+                            <div class="borrow_button" data-bind='if: bike'>
                                 <a class="button" data-bind='attr: { href: "#/borrow?bike=" + bike().id }'><i class="fa fa-handshake-o"></i> Borrow</a>
                             </div>
                         </div>
                     </div>
-                    <div class="description" data-bind='text: bike().description'></div>
+                    <div data-bind='if: bike'> 
+                        <div class="description" data-bind='text: bike().description'></div>
+                    </div>
                 </div>
             </div>
-            <div class="comments">
+            <div class="comments" data-bind='if: bike'>
                 <div data-bind='foreach: comments'>
                     <div class="comment">
                         <div class="avatar">

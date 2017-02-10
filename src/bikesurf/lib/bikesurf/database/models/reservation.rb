@@ -15,6 +15,7 @@ module Bikesurf
 
         belongs_to :bike
         belongs_to :user
+        has n, :reservation_comments, :constraint => :destroy
       end
     end
   end

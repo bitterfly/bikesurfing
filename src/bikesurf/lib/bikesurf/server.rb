@@ -63,13 +63,28 @@ module Bikesurf
       })
     end
 
-    post '/api/bike/new' do
-      result = insert_bike(@data['bike_info'])
+    post '/api/bikes' do
+      result = all_bikes
+      respond result
+    end
+
+    post '/api/bike' do
+      result = bike(@data['bike_id'])
+      respond result
+    end
+
+    post '/api/bike/create' do
+      result = create_bike(@data['bike_info'])
       respond result
     end
 
     post '/api/bike/update' do
       result = update_bike(@data['bike_id'], @data['bike_info'])
+      respond result
+    end
+
+    post '/api/bike/delete' do
+      result = delete_bike(@data['bike_id'])
       respond result
     end
 
@@ -84,23 +99,13 @@ module Bikesurf
       respond result
     end
 
-    post '/api/bike' do
-      result = find_bike(@data['bike_id'])
-      respond result
-    end
-
     post '/api/comments/bike' do
-      result = find_bike_comments(@data['bike_id'])
+      result = bike_comments(@data['bike_id'])
       respond result
     end
 
     post '/api/images/bike' do
-      result = find_bike_images(@data['bike_id'])
-      respond result
-    end
-
-    post '/api/bikes' do
-      result = find_bikes
+      result = bike_images(@data['bike_id'])
       respond result
     end
 
@@ -114,13 +119,13 @@ module Bikesurf
     end
 
     post '/api/reservation' do
-      result = get_reservation(@data['reservation_id'])
+      result = reservation(@data['reservation_id'])
       respond result
     end
 
     post '/api/user/reservations' do
       return respond nil unless @user
-      result = get_user_reservations(@user)
+      result = user_reservations(@user)
       respond result
     end
 

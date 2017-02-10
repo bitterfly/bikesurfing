@@ -1,8 +1,17 @@
 (function() {
     "use strict";
 
-    App.BorrowBikeViewModel = function() {
+    App.BorrowBikeViewModel = function(params) {
         var self = this;
+
+        var bike_id = parseInt(params['bike']);
+
+        self.bike_info = ko.observable({ bike: { id: bike_id } });
+
+        ko.computed(function() {
+            App.request('bike', { bike_id: bike_id }, self.bike_info);
+        }, self);
+
         self.agreed = ko.observable(false);
         self.comment = ko.observable("");
 
@@ -17,6 +26,15 @@
                 return;
             }
             self.sending(true);
+
+            App.request('reservation/create', {
+                from: App.date_to_timestamp(self.dateFrom()),
+                to: App.date_to_timestamp(self.dateTo()),
+                bike_id: self.bike_info().bike.id,
+                comment: self.comment()
+            }, function(_) {
+                alert("yay!");
+            });
         };
 
         self.dateFrom = ko.observable();

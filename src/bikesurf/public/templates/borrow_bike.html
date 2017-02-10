@@ -1,4 +1,10 @@
 <div id="borrow_bike">
+    <div class="bike_info" data-bind='if: bike_info().bike.name'>
+        <div class="name">
+            Bike: <a data-bind='text: bike_info().bike.name, attr: { href: "#/bike/" + bike_info().bike.id }'></a>
+        </div>
+    </div>
+
     <div class="input-group input-daterange" id="dates">
         <div class="input-group-addon">From</div>
         <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">

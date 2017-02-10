@@ -32,11 +32,13 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="user userbox" data-bind='with: user'>
-                            <div class="avatar profile_image">
-                                <img data-bind="attr: { 'src': avatar_url(avatar) }"/>
-                            </div>
-                            <div class="name" data-bind='text: name'></div>
+                        <div class="user userbox" data-bind='with: owner'>
+                            <a data-bind='attr: { href: "#/user/" + username }'>
+                                <div class="avatar profile_image">
+                                    <img data-bind="attr: { 'src': $parent.avatar_url(avatar) }"/>
+                                </div>
+                                <div class="name" data-bind='text: name'></div>
+                            </a>
                         </div>
                         <div class="borrow">
                             <div class="input-daterange" id="dates">

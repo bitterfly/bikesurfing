@@ -115,6 +115,14 @@
             }
         }, this);
 
+        this.owner = ko.pureComputed(function() {
+            if (this.bike_info()) {
+                return this.bike_info().owner
+            } else {
+                return null;
+            }
+        }, this);
+
         this.bike_pretty_json = ko.pureComputed(function() {
             return JSON.stringify(this.bike(), null, 2);
         }, this);

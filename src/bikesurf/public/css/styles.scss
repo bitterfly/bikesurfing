@@ -42,6 +42,15 @@ body {
     margin: 10px;
 }
 
+.userbox {
+    .avatar {
+        width: 100px;
+        img {
+            width: 100%;
+        }
+    }
+}
+
 // Bikesurf main page
 #bikesurf {
     ul {

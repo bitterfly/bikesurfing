@@ -1,2 +1,12 @@
 #search_page {
+    padding: 30px;
+    .flex-row {
+        justify-content: space-between;
+    }
+    #searchForm {
+        width: 50%;
+        >div {
+            margin-top: 20px;
+        }
+    }
 }

@@ -106,6 +106,11 @@ module Bikesurf
       respond result
     end
 
+    post '/api/comments/reservation' do
+      result = reservation_comments(@data['reservation_id'])
+      respond result
+    end
+
     post '/api/images/bike' do
       result = bike_images(@data['bike_id'])
       respond result

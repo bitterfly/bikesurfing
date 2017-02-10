@@ -7,40 +7,40 @@
                 <div class="input-group-addon">to</div>
                 <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Size</div>
-                <select class="form-control" data-bind="value: bikeSize">
+            <div>
+                <label>Size:</label>
+                <select data-bind="value: bikeSize">
                     <option value="all">All</option>
                     <option value="small">Small (140-155cm)</option>
                     <option value="medium">Medium (155-175cm)</option>
                     <option value="large">Large (175-190cm)</option>
                 </select>
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Min gears</div>
-                <input type="number" class="form-control" min="0" max="24" data-bind="value: gears">
+            <div>
+                <label>Min gears:</label>
+                <input type="number" min="0" max="24" data-bind="value: gears">
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Front lights</div>
-                <select class="form-control" data-bind="foreach: option, value: frontLights">
+            <div>
+                <label>Front lights:</label>
+                <select data-bind="foreach: option, value: frontLights">
                     <option data-bind="value: val, text: text"></option>
                 </select>
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Back lights</div>
-                <select class="form-control" data-bind="foreach: option, value: backLights">
+            <div>
+                <label>Back lights:</label>
+                <select data-bind="foreach: option, value: backLights">
                     <option data-bind="value: val, text: text"></option>
                 </select>
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Backpedal breaking system</div>
-                <select class="form-control" data-bind="foreach: option, value: backpedalBrake">
+            <div>
+                <label>Backpedal breaking system:</label>
+                <select data-bind="foreach: option, value: backpedalBrake">
                     <option data-bind="value: val, text: text"></option>
                 </select>
             </div>
-            <div class="input-group">
-                <div class="input-group-addon">Quick release saddle</div>
-                <select class="form-control" data-bind="foreach: option, value: quickReleaseSaddle">
+            <div>
+                <label>Quick release saddle:</label>
+                <select data-bind="foreach: option, value: quickReleaseSaddle">
                     <option data-bind="value: val, text: text"></option>
                 </select>
             </div>

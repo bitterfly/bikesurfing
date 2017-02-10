@@ -107,7 +107,7 @@ module Bikesurf
     end
 
     post '/api/bike/comment/create' do
-      result = bike_comment_create(@user.id, @data['bike_id'], @data['comment'])
+      result = create_bike_comment(@user.id, @data['bike_id'], @data['comment'])
       respond result
     end
 
@@ -117,7 +117,7 @@ module Bikesurf
     end
 
     post '/api/reservation/comment/create' do
-      result = reservation_comment_create(@user.id, @data['reservation_id'], @data['comment'])
+      result = create_reservation_comment(@user.id, @data['reservation_id'], @data['comment'])
       respond result
     end
 

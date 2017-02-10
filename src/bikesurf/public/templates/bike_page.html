@@ -32,8 +32,13 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="user userbox" data-bind='with: user'>
+                            <div class="avatar profile_image">
+                                <img data-bind="attr: { 'src': avatar_url(avatar) }"/>
+                            </div>
+                            <div class="name" data-bind='text: name'></div>
+                        </div>
                         <div class="borrow">
-                            these dates don't work. don't even try.
                             <div class="input-daterange" id="dates">
                                 <div class="input-group">
                                     <div class="input-group-addon">From</div>
@@ -45,7 +50,10 @@
                                 </div>
                             </div>
                             <div class="borrow_button" data-bind='if: bike'>
-                                <a class="button" data-bind='attr: { href: "#/borrow?bike=" + bike().id }'><i class="fa fa-handshake-o"></i> Borrow</a>
+                                <div class="spacer"></div>
+                                <div class="button_wrapper">
+                                    <a class="btn btn-green btn-fill-vert" data-bind='attr: { href: "#/borrow?bike=" + bike().id + "&from=" + dateFrom() + "&to=" + dateTo() }'><i class="fa fa-handshake-o"></i> Borrow</a>
+                                </div>
                             </div>
                         </div>
                     </div>

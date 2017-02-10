@@ -8,10 +8,10 @@
         self.dateTo = ko.observable(params.to);
         self.bikeSize = ko.observable(params.size);
         self.gears = ko.observable(params.gears);
-        self.frontLights = ko.observable(toBool(params.front_lights));
-        self.backLights = ko.observable(toBool(params.back_lights));
-        self.backpedalBrake = ko.observable(toBool(params.backpedal_brake));
-        self.quickReleaseSaddle = ko.observable(toBool(params.quick_release_saddle));
+        self.frontLights = ko.observable(params.front_lights);
+        self.backLights = ko.observable(params.back_lights);
+        self.backpedalBrake = ko.observable(params.backpedal_brake);
+        self.quickReleaseSaddle = ko.observable(params.quick_release_saddle);
 
         self.datepickerActive = ko.observable(false);
 

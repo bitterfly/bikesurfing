@@ -58,9 +58,7 @@ module Bikesurf
         )
         raise 'Faild to save. Bike must belong to a stand!' unless bike.saved?
 
-        {
-          bike: bike
-        }
+        bike
       end
 
       def update(bike_id, bike_info)

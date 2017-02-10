@@ -1,13 +1,13 @@
 <div id="search_page">
     <div class="flex-row">
         <form id="searchForm" data-bind="submit: submit">
-            <div class="input-group input-daterange" id="dates">
-                <div class="input-group-addon">From</div>
-                <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
-                <div class="input-group-addon">to</div>
-                <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
-            </div>
-            <div>
+            <div class="left_box">
+                <div class="input-group input-daterange" id="dates">
+                    <div class="input-group-addon">From</div>
+                    <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                    <div class="input-group-addon">to</div>
+                    <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                </div>
                 <div>
                     <label>Size:</label>
                     <select data-bind="value: bikeSize">
@@ -17,28 +17,33 @@
                         <option value="large">Large (175-190cm)</option>
                     </select>
                 </div>
+                <hr>
                 <div>
                     <label>Min gears:</label>
                     <input type="number" min="0" max="24" data-bind="value: gears">
                 </div>
+                <hr>
                 <div>
                     <label>Front lights:</label>
                     <select data-bind="foreach: option, value: frontLights">
                         <option data-bind="value: val, text: text"></option>
                     </select>
                 </div>
+                <hr>
                 <div>
                     <label>Back lights:</label>
                     <select data-bind="foreach: option, value: backLights">
                         <option data-bind="value: val, text: text"></option>
                     </select>
                 </div>
+                <hr>
                 <div>
                     <label>Backpedal breaking system:</label>
                     <select data-bind="foreach: option, value: backpedalBrake">
                         <option data-bind="value: val, text: text"></option>
                     </select>
                 </div>
+                <hr>
                 <div>
                     <label>Quick release saddle:</label>
                     <select data-bind="foreach: option, value: quickReleaseSaddle">

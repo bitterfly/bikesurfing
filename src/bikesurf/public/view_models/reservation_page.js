@@ -12,11 +12,9 @@
             App.request('reservation', { reservation_id: self.id() }, self.reservation_info);
         }, self);
 
-        console.log(self.me());
-
         self.user = ko.pureComputed(function() {
             var info = self.reservation_info();
-            if (info.reservor.id == App.me().id) {
+            if (!App.me() || info.reservor.id == App.me().id) {
                 return info.lender;
             } else {
                 return info.reservor;

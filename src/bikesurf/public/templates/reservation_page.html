@@ -70,28 +70,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="comment">
-                    <div class="avatar">
-                        <img data-bind="attr: { 'src': avatar_url(me().avatar) }"/>
-                    </div>
-                    <div class="right">
-                        <div class="user_info">
-                            <span data-bind='with: me' class="username">
-                                <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
-                            </span>
+                <div data-bind='if: me'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': avatar_url(me().avatar) }"/>
                         </div>
-                        <div class="content">
-                            <form data-bind='submit: post_comment'>
-                                <div class="text_input">
-                                    <textarea data-bind="value: my_comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
-                                </div>
-                                <div class="pushright flex-row">
-                                    <div class="spacer"></div>
-                                    <div class="button_wrapper">
-                                        <button class="btn btn-green btn-fill-vert" type="submit">Post</button>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: me' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                            </div>
+                            <div class="content">
+                                <form data-bind='submit: post_comment'>
+                                    <div class="text_input">
+                                        <textarea data-bind="value: my_comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="pushright flex-row">
+                                        <div class="spacer"></div>
+                                        <div class="button_wrapper">
+                                            <button class="btn btn-green btn-fill-vert" type="submit">Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,10 +21,16 @@ module Bikesurf
             date_to_timestamp(reservation.until)
           ]
         end
-
+        bike = Models::Bike.get!(id)
         {
-          bike: Models::Bike.get!(id),
-          reservations: dates
+          bike: bike,
+          reservations: dates,
+          owner: {
+            id: bike.stand.user.id,
+            username: bike.stand.user.username,
+            name: bike.stand.user.name,
+            avatar: bike.stand.user.image
+          }
         }
       end
 

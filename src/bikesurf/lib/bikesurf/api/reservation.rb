@@ -37,6 +37,14 @@ module Bikesurf
         }
       end
 
+      def create_reservation_comment(user_id, reservation_id, comment)
+        Database::CommentController.instance.create_reservation_comment(
+          user_id,
+          reservation_id,
+          comment
+        )
+      end
+
       def reservation_comments(reservation_id)
         Database::ReservationController.instance.get_comments_by_id reservation_id
       end

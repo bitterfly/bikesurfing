@@ -27,6 +27,14 @@ module Bikesurf
         )
       end
 
+      def create_bike_comment(user_id, bike_id, message)
+        comment_id = create_comment(user_id, message).id
+        Models::ReservationComment.create(
+          comment_id: comment_id,
+          bike_id: bike_id
+        )
+      end
+
       def info_from_comments(comments)
         comments.map do |comment|
           {

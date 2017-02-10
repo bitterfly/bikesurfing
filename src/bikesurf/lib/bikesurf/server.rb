@@ -101,13 +101,23 @@ module Bikesurf
       respond result
     end
 
-    post '/api/comments/bike' do
+    post '/api/bike/comments' do
       result = bike_comments(@data['bike_id'])
       respond result
     end
 
-    post '/api/comments/reservation' do
+    post '/api/bike/comment/create' do
+      result = bike_comment_create(@user.id, @data['bike_id'], @data['comment'])
+      respond result
+    end
+
+    post '/api/reservation/comments' do
       result = reservation_comments(@data['reservation_id'])
+      respond result
+    end
+
+    post '/api/reservation/comment/create' do
+      result = reservation_comment_create(@user.id, @data['reservation_id'], @data['comment'])
       respond result
     end
 

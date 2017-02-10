@@ -4,6 +4,7 @@ require 'bikesurf/database/models/bike'
 require 'bikesurf/database/models/reservation'
 require 'bikesurf/database/models/bike_image'
 require 'bikesurf/helpers/date_helper'
+require 'bikesurf/database/controllers/comment_controller'
 
 module Bikesurf
   module Database
@@ -92,20 +93,7 @@ module Bikesurf
           bike_comment: Models::BikeComment.all(bike_id: id)
         )
 
-        comments.map do |comment|
-          {
-            id: comment.id,
-            message: comment.message,
-            post_time: date_to_timestamp(comment.post_time),
-
-            user: {
-              id: comment.user.id,
-              name: comment.user.name,
-              username: comment.user.username,
-              avatar: comment.user.image
-            }
-          }
-        end
+        CommentController.instance.info_from_comments comments
       end
 
       def all
@@ -135,6 +123,10 @@ module Bikesurf
             :gears_number.gte => filters['min_gears']
           )
         )
+
+        filtered_bikes.each do |bike|
+
+        end
       end
     end
   end

@@ -93,20 +93,7 @@ module Bikesurf
           reservation_comment: Models::ReservationComment.all(reservation_id: id)
         )
 
-        comments.map do |comment|
-          {
-            id: comment.id,
-            message: comment.message,
-            post_time: date_to_timestamp(comment.post_time),
-
-            user: {
-              id: comment.user.id,
-              name: comment.user.name,
-              username: comment.user.username,
-              avatar: comment.user.image
-            }
-          }
-        end
+        CommentController.instance.info_from_comments comments
       end
 
       def free_bikes(from, to)

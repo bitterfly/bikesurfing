@@ -15,13 +15,19 @@
 
         self.datepickerActive = ko.observable(false);
 
+        self.option = [
+            {val: "null", text: "any"},
+            {val: "true", text: "yes"},
+            {val: "false", text: "no"}
+        ];
+
         function toBool(val) {
             return (val === 'true');
-        }
+        };
 
         function isTrue(val) {
             return (val === true) ? true : null;
-        }
+        };
 
         self.submitReady = ko.computed(function() {
             return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();

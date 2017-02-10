@@ -40,6 +40,14 @@ module Bikesurf
         delete_bike_images(bike_id)
         Database::BikeController.instance.delete bike_id
       end
+
+      def create_bike_comment(user_id, bike_id, comment)
+        Database::CommentController.instance.create_bike_comment(
+          user_id,
+          bike_id,
+          comment
+        )
+      end
     end
   end
 end

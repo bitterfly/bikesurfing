@@ -1,7 +1,103 @@
 <div id="reservation_page" class="reservation_page">
-    <div class="top">
-    <div class="request">
+    <div data-bind='ifnot: reservation_info'>
+        loading dsjfkdashfksdhfjkadhfjdnjfnsjg
     </div>
-    <div class = "bike">
+    <div data-bind='if: reservation_info'>
+        <div class="top info_box flex-row" data-bind='with: reservation_info'>
+            <div class="request">
+                <div class="dates">
+                    <div class="from">
+                        <label>From:</label>
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.from)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                    <div class="to">
+                        <label>To:</label>
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.to)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="user" data-bind='with: $parent.user'>
+                    <div class="avatar profile_image">
+                        <img data-bind="attr: { 'src': $root.avatar_url(avatar) }"/>
+                    </div>
+                    <div class="name" data-bind='text: name'></div>
+                </div>
+
+                <div data-bind='if: reservation.pick_up_time'>
+                    <div class="pick_up_time">
+                        Your pick-up time is
+                        <span class="timestamp" data-bind='with: $parent.pretty_date(reservation.pick_up_time)'>
+                            <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class = "bike">
+                <div class="status">
+                    Status: <span data-bind='text: reservation.status'></span>
+                </div>
+                <div class="image">
+                    <div class="header">
+                        <div class="name">
+                            <span data-bind='text: bike.name'></span>
+                        </div>
+                    </div>
+                    <img data-bind='attr: { src: $root.image_url(bike.image) }'/>
+                </div>
+            </div>
+        </div>
+        <div data-bind='if: comments'>
+            <div class="comments">
+                <div data-bind='foreach: comments'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
+                        </div>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: user' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                                <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
+                                    <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                                </span>
+                            </div>
+                            <div class="content" data-bind='text: message'></div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind='if: me'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': avatar_url(me().avatar) }"/>
+                        </div>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: me' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                            </div>
+                            <div class="content">
+                                <form data-bind='submit: post_comment'>
+                                    <div class="text_input">
+                                        <textarea data-bind="value: my_comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
+                                    </div>
+                                    <div class="pushright flex-row">
+                                        <div class="spacer"></div>
+                                        <div class="button_wrapper">
+                                            <button class="btn btn-green btn-fill-vert" type="submit">Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

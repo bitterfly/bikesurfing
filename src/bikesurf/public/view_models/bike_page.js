@@ -2,22 +2,11 @@
     App.BikePageViewModel = function(params) {
         var self = this;
 
+        self.me = App.me;
+
         this.avatar_url = App.avatar_url;
 
-        this.comment_timestamp = function(timestamp) {
-            var moment = App.timestamp_to_moment(timestamp);
-            return {
-                human_readable: moment.calendar(null, {
-                    sameDay: '[Today] HH:mm',
-                    nextDay: '[Tomorrow] HH:mm',
-                    nextWeek: 'dddd',
-                    lastDay: '[Yesterday] HH:mm',
-                    lastWeek: '[Last] dddd',
-                    sameElse: 'YYYY-MM-DD'
-                }),
-                full: moment.format()
-            };
-        };
+        this.comment_timestamp = App.pretty_date;
 
         this.image_operations_busy = ko.observable(false);
 
@@ -96,10 +85,27 @@
             App.request('images/bike', { bike_id: this.id() }, this.bike_images);
         }, this);
 
+        self.get_comments = function() {
+            App.request('bike/comments', { bike_id: this.id() }, this.comments);
+        };
+
         ko.computed(function() {
-            this.comments(undefined);
-            App.request('comments/bike', { bike_id: this.id() }, this.comments);
-        }, this);
+            self.get_comments();
+        }, self);
+
+        self.my_comment = ko.observable();
+
+        self.post_comment = function() {
+            App.request('bike/comment/create', {
+                    bike_id: self.id(),
+                    comment: self.my_comment()
+                },
+                function(comment) {
+                    self.get_comments();
+                }
+            );
+            self.my_comment('');
+        };
 
         this.bike = ko.pureComputed(function() {
             if (this.bike_info()) {

@@ -1,0 +1,32 @@
+#login_page {
+    .fake {
+        height: 90vh;
+    }
+
+    .login_form{
+        padding-top: 10vh;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .button_wrapper{
+        float: right;
+    }
+
+    .input{
+        text-align:center;
+    }
+
+    .lbl{
+        color: #444;
+        padding-right: 5px;
+        font-size: 17px;
+        font-weight: normal;
+    }
+}

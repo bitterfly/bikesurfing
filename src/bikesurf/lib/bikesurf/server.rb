@@ -126,7 +126,7 @@ module Bikesurf
       respond result
     end
 
-    post '/api/search_bikes' do
+    post '/api/bikes/search' do
       # data should have 'from', 'to' dates
       # data could have 'size', 'front_lights true/null', 'back_lights true/null',
       #                 'backpedal_breaking_system true/false/null', 'quick_release_saddle true/false/null',

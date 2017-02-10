@@ -13,12 +13,9 @@
     <div class="confirm_and_submit flex-row">
         <form data-bind='submit: send'>
             <span><input type="checkbox" data-bind='checked: agreed' />I agree for my liver to be sold</span>
-            <div>
-            sending: <span data-bind='text: sending'></span>
-            </div>
             <button type="submit" data-bind='enable: send_allowed'>
-                <i class="fa fa-handshake-o" data-bind='ifnot: sending'></i>
-                <i class="fa fa-refresh fa-spin" data-bind='if: sending'></i>
+                <span data-bind='ifnot: sending()'><i class="fa fa-handshake-o"></i></span>
+                <span data-bind='if: sending()'><i class="fa fa-refresh fa-spin"></i></span>
                 Borrow
             </button>
         </form>

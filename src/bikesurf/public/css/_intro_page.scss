@@ -15,6 +15,10 @@
     }
 
     #searchForm {
+        &.flex-row {
+            justify-content: space-around;
+            align-items: center;
+        }
         margin-top: 50px;
         margin-bottom: 300px;
         #dates div:first-child{

@@ -5,4 +5,15 @@
         <div class="input-group-addon">to</div>
         <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
     </div>
+
+    <div class="comment">
+        <textarea data-bind="value: comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
+    </div>
+
+    <div class="confirm_and_submit flex-row">
+        <form data-bind='submit: send'>
+            <span><input type="checkbox" data-bind='checked: agreed' />I agree for my liver to be sold</span>
+            <button type="submit" data-bind='enable: send_allowed'><i class="fa fa-handshake-o"></i> Borrow</button>
+        </form>
+    </div>
 </div>

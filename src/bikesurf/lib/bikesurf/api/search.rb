@@ -18,10 +18,10 @@ module Bikesurf
 
       def free_bikes_meeting_the_requirements(requirements)
         bikes = free_bikes(requirements['from'], requirements['to'])
-        filters = process_filters(requirements)
+        process_filters(requirements)
         Database::BikeController
           .instance
-          .filter(bikes, filters)
+          .filter(bikes, requirements)
       end
 
       def process_filters(requirements)
@@ -29,6 +29,7 @@ module Bikesurf
           unless requirements[property].nil?
             requirements[property] = requirements[property] ? 'y' : 'n'
           end
+
         end
       end
     end

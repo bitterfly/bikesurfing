@@ -128,8 +128,8 @@ module Bikesurf
             :min_borrow_days.lte => borrow_duration,
             :max_borrow_days.gte => borrow_duration,
             size: filters['size'],
-            :front_lights.like => filters['front_lights'],
-            :back_lights.like => filters['back_lights'],
+            :front_lights.like => "#{filters['front_lights']}%",
+            :back_lights.like => "#{filters['back_lights']}%",
             backpedal_breaking_system: filters['backpedal_breaking_system'],
             quick_release_saddle: filters['quick_release_saddle'],
             :gears_number.gte => filters['min_gears']

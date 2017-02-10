@@ -82,6 +82,11 @@ module Bikesurf
         )
       end
 
+      def delete(bike_id)
+        bike_to_delete = Models::Bike.get!(bike_id)
+        bike_to_delete.destroy
+      end
+
       def get_comments_by_id(id)
         comments = Models::Comment.all(
           bike_comment: Models::BikeComment.all(bike_id: id)

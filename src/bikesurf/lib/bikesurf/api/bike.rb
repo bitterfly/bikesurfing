@@ -28,6 +28,10 @@ module Bikesurf
         Database::BikeController.instance.create bike_info
       end
 
+      def delete_bike(bike_id)
+        Database::BikeController.instance.delete bike_id
+      end
+
     end
   end
 end

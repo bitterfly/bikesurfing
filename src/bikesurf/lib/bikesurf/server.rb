@@ -73,6 +73,11 @@ module Bikesurf
       respond result
     end
 
+    post '/api/bike/delete' do
+      result = delete_bike(@data['bike_id'])
+      respond result
+    end
+
     post '/api/bike/image/new' do
       puts @data['bike_id']
       result = insert_image(@data['bike_id'], @data['image'])

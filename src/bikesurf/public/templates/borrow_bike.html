@@ -1,29 +1,39 @@
 <div id="borrow_bike" class="borrow_page">
-    <div class="bike_info" data-bind='if: bike_info().bike.name'>
-        <div class="name">
-            Bike: <a data-bind='text: bike_info().bike.name, attr: { href: "#/bike/" + bike_info().bike.id }'></a>
+    <div class="info_box">
+        <div class="bike_info" data-bind='if: bike_info().bike.name'>
+            <div class="name">
+                Bike: <a data-bind='text: bike_info().bike.name, attr: { href: "#/bike/" + bike_info().bike.id }'></a>
+            </div>
+        </div>
+
+        <div class="input-group input-daterange" id="dates">
+            <div class="input-group-addon">From</div>
+            <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+            <div class="input-group-addon">to</div>
+            <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+        </div>
+
+        <div class="comment">
+            <div class="text_input">
+                <textarea data-bind="value: comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
+            </div>
         </div>
     </div>
 
-    <div class="input-group input-daterange" id="dates">
-        <div class="input-group-addon">From</div>
-        <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
-        <div class="input-group-addon">to</div>
-        <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
-    </div>
-
-    <div class="comment">
-        <textarea data-bind="value: comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
-    </div>
-
     <div class="confirm_and_submit flex-row">
-        <form data-bind='submit: send'>
-            <span><input type="checkbox" data-bind='checked: agreed' />I agree for my liver to be sold</span>
-            <button type="submit" data-bind='enable: send_allowed'>
-                <span data-bind='ifnot: sending()'><i class="fa fa-handshake-o"></i></span>
-                <span data-bind='if: sending()'><i class="fa fa-refresh fa-spin"></i></span>
-                Borrow
-            </button>
-        </form>
+        <div class="spacer">
+        </div>
+        <div>
+            <form data-bind='submit: send'>
+                <span><input type="checkbox" data-bind='checked: agreed' />I agree for my liver to be sold</span>
+                <div class="button_wrapper">
+                    <button type="submit" class="btn btn-green btn-fill-vert" data-bind='enable: send_allowed'>
+                        <span data-bind='ifnot: sending()'><i class="fa fa-handshake-o"></i></span>
+                        <span data-bind='if: sending()'><i class="fa fa-refresh fa-spin"></i></span>
+                        Borrow
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -1,52 +1,60 @@
 <div id="search_page">
     <div class="flex-row">
         <form id="searchForm" data-bind="submit: submit">
-            <div class="input-group input-daterange" id="dates">
-                <div class="input-group-addon">From</div>
-                <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
-                <div class="input-group-addon">to</div>
-                <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+            <div class="left_box">
+                <div class="input-group input-daterange" id="dates">
+                    <div class="input-group-addon">From</div>
+                    <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                    <div class="input-group-addon">to</div>
+                    <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                </div>
+                <div>
+                    <label>Size:</label>
+                    <select data-bind="value: bikeSize">
+                        <option value="all">All</option>
+                        <option value="small">Small (140-155cm)</option>
+                        <option value="medium">Medium (155-175cm)</option>
+                        <option value="large">Large (175-190cm)</option>
+                    </select>
+                </div>
+                <hr>
+                <div>
+                    <label>Min gears:</label>
+                    <input type="number" min="0" max="24" data-bind="value: gears">
+                </div>
+                <hr>
+                <div>
+                    <label>Front lights:</label>
+                    <select data-bind="foreach: option, value: frontLights">
+                        <option data-bind="value: val, text: text"></option>
+                    </select>
+                </div>
+                <hr>
+                <div>
+                    <label>Back lights:</label>
+                    <select data-bind="foreach: option, value: backLights">
+                        <option data-bind="value: val, text: text"></option>
+                    </select>
+                </div>
+                <hr>
+                <div>
+                    <label>Backpedal breaking system:</label>
+                    <select data-bind="foreach: option, value: backpedalBrake">
+                        <option data-bind="value: val, text: text"></option>
+                    </select>
+                </div>
+                <hr>
+                <div>
+                    <label>Quick release saddle:</label>
+                    <select data-bind="foreach: option, value: quickReleaseSaddle">
+                        <option data-bind="value: val, text: text"></option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label>Size:</label>
-                <select data-bind="value: bikeSize">
-                    <option value="all">All</option>
-                    <option value="small">Small (140-155cm)</option>
-                    <option value="medium">Medium (155-175cm)</option>
-                    <option value="large">Large (175-190cm)</option>
-                </select>
+            <div class="button_wrapper">
+                <button class="btn btn-green btn-fill-vert"  data-bind="enable: submitReady(), css: {submittable: submitReady()}" type="submit">Search</button>
             </div>
-            <div>
-                <label>Min gears:</label>
-                <input type="number" min="0" max="24" data-bind="value: gears">
-            </div>
-            <div>
-                <label>Front lights:</label>
-                <select data-bind="foreach: option, value: frontLights">
-                    <option data-bind="value: val, text: text"></option>
-                </select>
-            </div>
-            <div>
-                <label>Back lights:</label>
-                <select data-bind="foreach: option, value: backLights">
-                    <option data-bind="value: val, text: text"></option>
-                </select>
-            </div>
-            <div>
-                <label>Backpedal breaking system:</label>
-                <select data-bind="foreach: option, value: backpedalBrake">
-                    <option data-bind="value: val, text: text"></option>
-                </select>
-            </div>
-            <div>
-                <label>Quick release saddle:</label>
-                <select data-bind="foreach: option, value: quickReleaseSaddle">
-                    <option data-bind="value: val, text: text"></option>
-                </select>
-            </div>
-            <div>
-                <button type="submit" data-bind="enable: submitReady(), css: {submittable: submitReady()}">Search</button>
-            </div>
+
         </form>
         <div id="map">
             <img src="../resources/bike_map.jpg" alt="Bike map">

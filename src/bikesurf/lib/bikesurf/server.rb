@@ -57,6 +57,7 @@ module Bikesurf
     post '/api/whoami' do
       return respond nil unless @user
       data = {
+        id: @user.id,
         name: @user.name,
         username: @user.username,
         avatar: @user.image

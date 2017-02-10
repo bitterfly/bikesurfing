@@ -123,7 +123,7 @@ module Bikesurf
           timestamp_to_date(filters['from']),
           timestamp_to_date(filters['to'])
         )
-        bikes.all(
+        filtered_bikes = bikes.all(
           remove_nils(
             :min_borrow_days.lte => borrow_duration,
             :max_borrow_days.gte => borrow_duration,

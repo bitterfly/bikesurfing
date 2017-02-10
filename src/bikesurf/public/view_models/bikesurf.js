@@ -36,8 +36,10 @@
             self.reservation_menu_active(!self.reservation_menu_active());
         };
 
+        App.last_reservation_update = ko.observable(new Date());
         self.reservations = ko.observable([]);
         ko.computed(function() {
+            App.last_reservation_update();
             if (!self.me()) {
                 return;
             }

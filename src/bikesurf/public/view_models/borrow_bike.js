@@ -33,6 +33,7 @@
                 bike_id: self.bike_info().bike.id,
                 comment: self.comment()
             }, function(_) {
+                App.last_reservation_update(new Date());
                 alert("yay!");
             });
         };

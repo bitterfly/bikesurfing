@@ -1,9 +1,12 @@
 require 'rubygems'
 require 'bikesurf/database/controllers'
+require 'bikesurf/api/image'
 
 module Bikesurf
   module Requests
     module Bike
+      include ::Bikesurf::Requests::Image
+
       def find_bike(data)
         Database::BikeController.instance.get_by_id data
       end
@@ -29,6 +32,7 @@ module Bikesurf
       end
 
       def delete_bike(bike_id)
+        delete_bike_images(bike_id)
         Database::BikeController.instance.delete bike_id
       end
 

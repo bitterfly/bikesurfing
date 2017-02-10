@@ -17,6 +17,16 @@ module Bikesurf
           image: image
         }
       end
+
+      def bike_images(bike_id)
+        # don't raise error if there are none
+        Models::BikeImage.all(bike_id: bike_id)
+      end
+
+      def delete(id)
+        image = Models::BikeImage.get!(id)
+        image.destroy
+      end
     end
   end
 end

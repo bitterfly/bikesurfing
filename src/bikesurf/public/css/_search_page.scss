@@ -25,4 +25,12 @@
             outline:0;
             }
     }
+    #map {
+        padding-left: 20px;
+        padding-top: 20px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
 }

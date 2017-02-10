@@ -1,11 +1,49 @@
 <div id="search_page">
     <div class="flex-row">
-        <div id='form'>
-            <span>d0d0</span>
-        </div>
-        <div id="map"></div>
+        <form id="searchForm" data-bind="submit: submit">
+            <div class="input-group input-daterange" id="dates">
+                <div class="input-group-addon">From</div>
+                <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                <div class="input-group-addon">to</div>
+                <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">Size</div>
+                <select class="form-control" id="size" data-bind="value: bikeSize">
+                    <option value="all">All</option>
+                    <option value="small">Small (140-155cm)</option>
+                    <option value="medium">Medium (155-175cm)</option>
+                    <option value="large">Large (175-190cm)</option>
+                </select>
+                <div class="input-group-addon">Min gears</div>
+                <input type="number" class="form-control" min="0" max="24" data-bind="value: gears">
+            </div>
+            <div class="flex-row">
+                <div class="extras">
+                    <div>
+                        <label>Front lights:</label>
+                        <input type="checkbox" data-bind="checked: frontLights" />
+                    </div>
+                    <div>
+                        <label>Back lights:</label>
+                        <input type="checkbox" data-bind="checked: backLights" />
+                    </div>
+                    <div>
+                        <label>Backpedal breaking system:</label>
+                        <input type="checkbox" data-bind="checked: backpedalBrake" />
+                    </div>
+                    <div>
+                        <label>Quick release saddle:</label>
+                        <input type="checkbox" data-bind="checked: quickReleaseSaddle" />
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" data-bind="enable: submitReady(), css: {submittable: submitReady()}">Search</button>
+                </div>
+            </div>
+        </form>
+        <div id="map">awd</div>
     </div>
-    <div id='galery'>
-        <span>d0d0</span>
+    <div id='gallery'>
     </div>
 </div>

@@ -70,7 +70,7 @@
             );
         };
 
-        this.id = ko.observable(params['id']);
+        this.id = ko.observable(parseInt(params['id']));
         this.bike_info = ko.observable();
         this.bike_images = ko.observable();
         this.comments = ko.observable();

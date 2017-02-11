@@ -65,7 +65,8 @@
         <div class="row" data-bind="foreach: bikes">
             <div class="hovereffect">
                 <a data-bind="attr: {href: '#/bike/' + bike.id}">
-                    <img class="img-responsive" width="600" height="500" data-bind='attr: {src: App.image_url(image)}'/>
+                    <div class="image img-responsive" data-bind="style: { backgroundImage: 'url(\'' + App.image_url(image) + '\')' }">
+                    </div>
                     <div class="overlay">
                         <!-- I FUCKING LOVE THIS GUY! -->
                         <!-- http://stackoverflow.com/a/5042666 -->

@@ -61,6 +61,12 @@
             };
         };
 
+        function getNumber(val) {
+            if (!val || val === 'underfined')
+                return null;
+            return val;
+        };
+
         self.submitReady = ko.computed(function() {
             return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
         }, this);
@@ -76,7 +82,7 @@
                 from: App.date_to_timestamp(self.dateFrom()),
                 to: App.date_to_timestamp(self.dateTo()),
                 size: (self.bikeSize() === 'all') ? null : self.bikeSize(),
-                min_gears: (self.gears() === 'undefined') ? null : self.gears(),
+                min_gears: getNumber(self.gears()),
                 front_lights: convert(self.frontLights()),
                 back_lights: convert(self.backLights()),
                 backpedal_breaking_system: convert(self.backpedalBrake()),

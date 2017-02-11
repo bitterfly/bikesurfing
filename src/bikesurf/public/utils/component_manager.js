@@ -18,6 +18,9 @@
     App.ComponentManager.prototype.selectComponent = function(component, params) {
         var self = this;
         var comp = components[component];
+        if (self.selectedComponent() && self.selectedComponent().name === component) {
+            return;
+        }
         if (comp['loaded']) {
             self.selectedComponent({name: component, params: params});
         }

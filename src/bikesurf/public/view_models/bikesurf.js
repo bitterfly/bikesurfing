@@ -60,7 +60,6 @@
                 return false;
             };
 
-            console.log('check', reservation, (reservation.lender.id == self.me().id), self.me().id);
             return (reservation.lender.id == self.me().id);
         };
 

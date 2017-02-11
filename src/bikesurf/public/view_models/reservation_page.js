@@ -22,6 +22,10 @@
         }, self);
 
         self.amILender = function() {
+            if (!self.me()) {
+                return false;
+            }
+
             var info = self.reservation_info();
             var res = (info.lender.id === self.me().id && info.reservation.status === 'waiting');
             return res;
@@ -32,8 +36,8 @@
                 reservation_id: self.id(),
                 status: 'accepted'
             }, function() {
-                window.reload();
-                // self.id.valueHasMutated();
+                self.id.valueHasMutated();
+                App.last_reservation_update(new Date());
             })
         };
 
@@ -42,7 +46,8 @@
                 reservation_id: self.id(),
                 status: 'declined'
             }, function() {
-                    self.id.valueHasMutated();
+                self.id.valueHasMutated();
+                App.last_reservation_update(new Date());
             })
         };
 

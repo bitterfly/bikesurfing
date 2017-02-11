@@ -15,9 +15,6 @@
         }, this);
 
         self.submit = function() {
-            console.log(self.dateFrom());
-            console.log(self.dateTo());
-            console.log(self.bikeSize());
             window.location.hash = '/search?from=' + self.dateFrom() +'&to=' + self.dateTo() + '&size=' + self.bikeSize();
         };
 

@@ -90,7 +90,6 @@
                 backpedal_breaking_system: convert(self.backpedalBrake()),
                 quick_release_saddle: convert(self.quickReleaseSaddle()),
             };
-            console.log(bike_request);
 
             App.request('bikes/search', bike_request , function(data) {
                 self.bikes(data);

@@ -97,7 +97,7 @@ module Bikesurf
     end
 
     post '/api/bike/image/delete' do
-      result = delete_image(@data['bike_id'], @data['image_id'])
+      result = delete_image(@data['image_id'])
       respond result
     end
 

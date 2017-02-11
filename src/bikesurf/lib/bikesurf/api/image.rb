@@ -21,8 +21,8 @@ module Bikesurf
         File.delete(File.join(ENV['IMAGES'], filename))
       end
 
-      def delete_image(image)
-        filename = Database::ImageController.instance.delete(image['id'])
+      def delete_image(image_id)
+        filename = Database::ImageController.instance.delete(image_id)
         delete_image_files(filename)
       end
 

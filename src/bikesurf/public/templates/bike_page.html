@@ -46,7 +46,7 @@
                             <div class="borrow_button" data-bind='if: bike'>
                                 <div class="spacer"></div>
                                 <div class="button_wrapper">
-                                    <a class="btn btn-green btn-fill-vert" data-bind='attr: { href: "#/borrow?bike=" + bike().id + "&from=" + dateFrom() + "&to=" + dateTo() }'><i></i> Borrow</a>
+                                    <button class="btn btn-green btn-fill-vert" data-bind='enable: borrow_allowed, click: borrow'>Borrow</button>
                                 </div>
                             </div>
                         </div>

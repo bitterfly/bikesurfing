@@ -16,7 +16,7 @@
         self.comment = ko.observable("");
 
         self.send_allowed = ko.pureComputed(function() {
-            return (self.agreed() && self.valid_dates() && !self.sending());
+            return (self.agreed() && self.valid_dates() && !self.sending() && App.me());
         }, self);
 
         self.sending = ko.observable(false);

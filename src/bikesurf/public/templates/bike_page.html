@@ -33,21 +33,26 @@
                             </ul>
                         </div>
                         <div class="borrow">
-                            <div class="input-daterange" id="dates">
-                                <div class="input-group">
-                                    <div class="input-group-addon">From</div>
-                                    <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                            <div data-bind='if: me'>
+                                <div class="input-daterange" id="dates">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">From</div>
+                                        <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">to</div>
+                                        <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                                    </div>
                                 </div>
-                                <div class="input-group">
-                                    <div class="input-group-addon">to</div>
-                                    <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                                <div class="borrow_button" data-bind='if: bike'>
+                                    <div class="spacer"></div>
+                                    <div class="button_wrapper">
+                                        <button class="btn btn-green btn-fill-vert" data-bind='enable: borrow_allowed, click: borrow'>Borrow</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="borrow_button" data-bind='if: bike'>
-                                <div class="spacer"></div>
-                                <div class="button_wrapper">
-                                    <button class="btn btn-green btn-fill-vert" data-bind='enable: borrow_allowed, click: borrow'>Borrow</button>
-                                </div>
+                            <div data-bind='ifnot: me'>
+                                <label class="error">Please login to request a borrow</label>
                             </div>
                         </div>
                         <div class="user userbox" data-bind='with: owner'>

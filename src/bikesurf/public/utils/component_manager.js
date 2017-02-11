@@ -18,7 +18,8 @@
     App.ComponentManager.prototype.selectComponent = function(component, params) {
         var self = this;
         var comp = components[component];
-        if (self.selectedComponent() && self.selectedComponent().name === component) {
+        if (App.stopReload()) {
+            App.stopReload(false);
             return;
         }
         if (comp['loaded']) {

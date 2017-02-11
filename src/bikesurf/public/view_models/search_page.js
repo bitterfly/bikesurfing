@@ -4,6 +4,10 @@
     App.SearchPageViewModel = function(params) {
         var self = this;
 
+        // ==========================================================
+
+        // form
+
         self.dateFrom = ko.observable(params.from);
         self.dateTo = ko.observable(params.to);
         self.bikeSize = ko.observable(params.size);
@@ -12,6 +16,31 @@
         self.backLights = ko.observable(params.back_lights);
         self.backpedalBrake = ko.observable(params.backpedal_brake);
         self.quickReleaseSaddle = ko.observable(params.quick_release_saddle);
+
+        // ==========================================================
+
+        // gallery
+
+        self.bikes = ko.observableArray([]);
+
+        self.borrowUrl = function(id) {
+           return '#/borrow?bike=' + id + '&from=' + self.dateFrom() + '&to=' + self.dateTo();
+        };
+
+        self.parseLights = function(light) {
+            switch(light) {
+                case 'yd':
+                    return 'dynamo';
+                case 'yb':
+                    return 'battery';
+                default:
+                    return 'no';
+            }
+        };
+
+        // ==========================================================
+
+        // submit
 
         self.datepickerActive = ko.observable(false);
 
@@ -36,6 +65,9 @@
             return App.isDate(self.dateFrom()) && App.isDate(self.dateTo()) && !self.datepickerActive();
         }, this);
 
+        // ==========================================================
+
+
         self.submit = function() {
             window.location.hash = '/search?from=' + self.dateFrom() +'&to=' + self.dateTo() + '&size=' + self.bikeSize() +
                 '&gears=' + self.gears() + '&front_lights=' + self.frontLights() + '&back_lights=' + self.backLights() +
@@ -53,7 +85,7 @@
             console.log(bike_request);
 
             App.request('bikes/search', bike_request , function(data) {
-                $('#gallery').html(JSON.stringify(data));
+                self.bikes(data);
             });
         };
 

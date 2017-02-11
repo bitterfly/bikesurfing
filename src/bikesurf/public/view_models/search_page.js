@@ -75,9 +75,11 @@
 
 
         self.submit = function() {
+            App.stopReload(true);
             window.location.hash = '/search?from=' + self.dateFrom() +'&to=' + self.dateTo() + '&size=' + self.bikeSize() +
                 '&gears=' + self.gears() + '&front_lights=' + self.frontLights() + '&back_lights=' + self.backLights() +
                 '&backpedal_brake=' + self.backpedalBrake() + '&quick_release_saddle=' + self.quickReleaseSaddle();
+
             var bike_request = {
                 from: App.date_to_timestamp(self.dateFrom()),
                 to: App.date_to_timestamp(self.dateTo()),

@@ -4,6 +4,10 @@
     App.BikesurfViewModel = function() {
         var self = this;
 
+        // ==================================================
+        // Global states
+
+        App.stopReload = ko.observable(false);
         App.menuActive = ko.observable(false);
 
         // ==================================================
@@ -57,7 +61,7 @@
                 sameElse: 'YYYY-MM-DD'
             });
         }
-        
+
 
         // ==================================================
         // Menu button functionality

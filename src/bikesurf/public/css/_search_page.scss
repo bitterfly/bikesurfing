@@ -61,9 +61,11 @@
     }
     #gallery {
         margin: 50px 0;
-        .extras {
-            padding: 5px 15px;
+        .section span {
+            display:inline-block;
         }
+        .element-left  {width:250px;}
+        .element-right {width:200px;}
         .hovereffect {
             margin: 10px;
             width: 500px;

@@ -62,7 +62,7 @@
         };
 
         function getNumber(val) {
-            if (!val || val === 'underfined')
+            if (!val || val === 'undefined')
                 return null;
             return val;
         };

@@ -99,6 +99,11 @@ module Bikesurf
       def free_bikes(from, to)
         Models::Bike.all - reserved_bikes(from, to)
       end
+
+      def update_status(reservation_id, status)
+        reservation = Models::Reservation.get(reservation_id)
+        reservation.update(status: status)
+      end
     end
   end
 end

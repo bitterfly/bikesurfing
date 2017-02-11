@@ -121,6 +121,11 @@ module Bikesurf
       respond result
     end
 
+    post '/api/reservation/status' do
+      result = update_reservation_status(@data['reservation_id'], @data['status'])
+      respond result
+    end
+
     post '/api/images/bike' do
       result = bike_images(@data['bike_id'])
       respond result
@@ -146,7 +151,7 @@ module Bikesurf
       # data should have 'from', 'to' dates
       # data could have 'size', 'front_lights true/null', 'back_lights true/null',
       #                 'backpedal_breaking_system true/false/null', 'quick_release_saddle true/false/null',
-      #                 'min_gears' 
+      #                 'min_gears'
       result = free_bikes_meeting_the_requirements_with_image(@data)
       respond result
     end

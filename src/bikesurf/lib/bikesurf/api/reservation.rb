@@ -19,6 +19,13 @@ module Bikesurf
         Database::ReservationController.instance.get_by_user user
       end
 
+      def update_reservation_status(reservation_id, status)
+        raise unless ['accepted', 'declined'].include? status
+        Database::ReservationController.instance.update_status(
+          reservation_id, status
+        )
+      end
+
       def create_reservation(user_id, from, to, bike_id, comment)
         reservation_id = Database::ReservationController.instance.create(
           timestamp_to_date(from),

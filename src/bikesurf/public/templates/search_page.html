@@ -65,46 +65,46 @@
         <div class="row" data-bind="foreach: bikes">
             <div class="hovereffect">
                 <a data-bind="attr: {href: '#/bike/' + bike.id}">
-                    <img class="img-responsive" width="400" height="400" data-bind='attr: {src: App.image_url(image)}'/>
+                    <img class="img-responsive" width="600" height="500" data-bind='attr: {src: App.image_url(image)}'/>
+                    <div class="overlay">
+                        <h2 data-bind="text: bike.name"></h2>
+                        <div class='extras' style="float:left;">
+                            <label>Size: </label>
+                            <span data-bind="text: bike.size"></span>
+                        </div>
+                        <div class='extras' style="float:left;">
+                            <label>Min borrow days: </label>
+                            <span data-bind="text: bike.min_borrow_days"></span>
+                        </div>
+                        <div class='extras' style="float:right;">
+                            <label>Maximum borrow days: </label>
+                            <span data-bind="text: bike.max_borrow_days"></span>
+                        </div>
+                        <div class='extras' style="float:left;">
+                            <label>Gears: </label>
+                            <span data-bind="text: bike.gears_number"></span>
+                        </div>
+                        <div class='extras' style="float:right;">
+                            <label>Front lights: </label>
+                            <span data-bind="text: $component.parseLights(bike.front_lights)"></span>
+                        </div>
+                        <div class='extras' style="float:left;">
+                            <label>Back lights: </label>
+                            <span data-bind="text: $component.parseLights(bike.back_lights)"></span>
+                        </div>
+                        <div class='extras' style="float:left;">
+                            <label>Backpedal brake: </label>
+                            <div data-bind="if: bike.backpedal_breaking_system"><i class="fa fa-check" aria-hidden="true"></i></div>
+                            <div data-bind="ifnot: bike.backpedal_breaking_system"><i class="fa fa-times" aria-hidden="true"></i></div>
+                        </div>
+                        <div class='extras' style="float:left;">
+                            <label>Quick release saddle: </label>
+                            <div data-bind="if: bike.quick_release_saddle"><i class="fa fa-check" aria-hidden="true"></i></div>
+                            <div data-bind="ifnot: bike.quick_release_saddle"><i class="fa fa-times" aria-hidden="true"></i></div>
+                        </div>
+                        <a class="info" data-bind="attr: {href: $component.borrowUrl(bike.id)}" href="#">Borrow</a>
+                    </div>
                 </a>
-                <div class="overlay">
-                    <h2 data-bind="text: bike.name"></h2>
-                    <div class='extras' style="float:left;">
-                        <label>Size: </label>
-                        <span data-bind="text: bike.size"></span>
-                    </div>
-                    <div class='extras' style="float:left;">
-                        <label>Min borrow days: </label>
-                        <span data-bind="text: bike.min_borrow_days"></span>
-                    </div>
-                    <div class='extras' style="float:right;">
-                        <label>Maximum borrow days: </label>
-                        <span data-bind="text: bike.max_borrow_days"></span>
-                    </div>
-                    <div class='extras' style="float:left;">
-                        <label>Gears: </label>
-                        <span data-bind="text: bike.gears_number"></span>
-                    </div>
-                    <div class='extras' style="float:right;">
-                        <label>Front lights: </label>
-                        <span data-bind="text: $component.parseLights(bike.front_lights)"></span>
-                    </div>
-                    <div class='extras' style="float:left;">
-                        <label>Back lights: </label>
-                        <span data-bind="text: $component.parseLights(bike.back_lights)"></span>
-                    </div>
-                    <div class='extras' style="float:left;">
-                        <label>Backpedal brake: </label>
-                        <div data-bind="if: bike.backpedal_breaking_system"><i class="fa fa-check" aria-hidden="true"></i></div>
-                        <div data-bind="ifnot: bike.backpedal_breaking_system"><i class="fa fa-times" aria-hidden="true"></i></div>
-                    </div>
-                    <div class='extras' style="float:left;">
-                        <label>Quick release saddle: </label>
-                        <div data-bind="if: bike.quick_release_saddle"><i class="fa fa-check" aria-hidden="true"></i></div>
-                        <div data-bind="ifnot: bike.quick_release_saddle"><i class="fa fa-times" aria-hidden="true"></i></div>
-                    </div>
-                    <a class="info" data-bind="attr: {href: $component.borrowUrl(bike.id)}" href="#">Borrow</a>
-                </div>
             </div>
         </div>
     </div>

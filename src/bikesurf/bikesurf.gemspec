@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Zvezdalina Dimitrova", "Georgi Pavlov", "Angel Angelov", "Diana Geneva"]
   s.summary       = "Bike sharing platform"
   s.email         = ["zvezdi.dim@gmail.com", "georgipavlov94@gmail.com", "hextwoa@gmail.com", "dageneva@gmail.com"]
-  s.files         = `git ls-files`.split("\n")
+  s.files         = Dir.glob("**/*")
   s.homepage      =
     'https://github.com/bitterfly/bikesurf'
   s.license       = 'MIT'

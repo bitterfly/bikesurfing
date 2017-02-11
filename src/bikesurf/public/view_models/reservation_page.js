@@ -21,6 +21,31 @@
             }
         }, self);
 
+        self.amILender = function() {
+            var info = self.reservation_info();
+            var res = (info.lender.id === self.me().id && info.reservation.status === 'waiting');
+            return res;
+        };
+
+        self.update_accept = function() {
+            App.request('/reservation/status', {
+                reservation_id: self.id(),
+                status: 'accepted'
+            }, function() {
+                window.reload();
+                // self.id.valueHasMutated();
+            })
+        };
+
+        self.update_decline = function() {
+            App.request('/reservation/status', {
+                reservation_id: self.id(),
+                status: 'declined'
+            }, function() {
+                    self.id.valueHasMutated();
+            })
+        };
+
         self.avatar_url = App.avatar_url;
         self.image_url = App.image_url;
 

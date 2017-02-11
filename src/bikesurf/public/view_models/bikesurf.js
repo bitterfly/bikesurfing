@@ -40,6 +40,11 @@
             self.reservation_menu_active(!self.reservation_menu_active());
         };
 
+        self.lender_menu_active = ko.observable(false);
+        self.lender_menu_toggle = function() {
+            self.lender_menu_active(!self.lender_menu_active());
+        };
+
         App.last_reservation_update = ko.observable(new Date());
         self.reservations = ko.observable([]);
         ko.computed(function() {
@@ -49,6 +54,25 @@
             }
             App.request('user/reservations', {}, self.reservations);
         });
+
+        var lender_me = function(reservation) {
+            if (!self.me()) {
+                return false;
+            };
+
+            console.log('check', reservation, (reservation.lender.id == self.me().id), self.me().id);
+            return (reservation.lender.id == self.me().id);
+        };
+
+        self.filter_lender_me = function(reservations) {
+            return reservations.filter(lender_me);
+        };
+
+        self.filter_lender_not_me = function(reservations) {
+            return reservations.filter(function(reservation) {
+                return !lender_me(reservation);
+            });
+        };
 
         self.format_date = function(timestamp) {
             var moment = App.timestamp_to_moment(timestamp);

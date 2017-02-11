@@ -78,7 +78,13 @@ module Bikesurf
                 bike_id: reservation.bike.id
               ).image
             },
-            owner: {
+            reservor: {
+              id: user.id,
+              username: user.username,
+              name: user.name,
+              avatar: user.image
+            },
+            lender: {
               id: reservation.bike.stand.user.id,
               username: reservation.bike.stand.user.username,
               name: reservation.bike.stand.user.name,

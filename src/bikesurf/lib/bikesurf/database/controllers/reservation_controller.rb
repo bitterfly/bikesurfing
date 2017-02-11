@@ -76,8 +76,13 @@ module Bikesurf
               name: reservation.bike.name,
               image: Models::BikeImage.first(
                 bike_id: reservation.bike.id
-              ).image,
-              owner: reservation.bike.stand.user.username
+              ).image
+            },
+            owner: {
+              id: reservation.bike.stand.user.id,
+              username: reservation.bike.stand.user.username,
+              name: reservation.bike.stand.user.name,
+              avatar: reservation.bike.stand.user.image
             }
           }
         end

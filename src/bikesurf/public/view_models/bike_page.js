@@ -245,8 +245,8 @@
             ];
         }, this);
 
-        self.dateFrom = ko.observable();
-        self.dateTo = ko.observable();
+        self.dateFrom = ko.observable(params['from']);
+        self.dateTo = ko.observable(params['to']);
 
         self.datepickerActive = ko.observable(false);
 

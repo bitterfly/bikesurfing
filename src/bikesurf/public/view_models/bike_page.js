@@ -60,7 +60,6 @@
             self.image_operations_busy(true);
             var image_index = self.current_image();
             App.request('bike/image/delete', {
-                    bike_id: self.id(),
                     image_id: self.bike_images()[image_index].id
                 },
                 function(response) {
@@ -70,7 +69,7 @@
             );
         };
 
-        this.id = ko.observable(params['id']);
+        this.id = ko.observable(parseInt(params['id']));
         this.bike_info = ko.observable();
         this.bike_images = ko.observable();
         this.comments = ko.observable();
@@ -245,8 +244,8 @@
             ];
         }, this);
 
-        self.dateFrom = ko.observable();
-        self.dateTo = ko.observable();
+        self.dateFrom = ko.observable(params['from']);
+        self.dateTo = ko.observable(params['to']);
 
         self.datepickerActive = ko.observable(false);
 

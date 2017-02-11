@@ -63,7 +63,7 @@
                 <a href="#/" class="bikesurf-img"><img src="resources/logo.png" alt="Bikesurf logo"/></a>
                 <ul>
                     <li><a href="#/search">Search for a bike</a></li>
-                    <li><a href="#/add-bike">Add bike</a></li>
+                    <!--<li><a href="#/add-bike">Add bike</a></li>-->
                     <li><a href="#/reservation/3">Bike 3 reservation (dev)</a></li>
                     <li><a href="#/bike/3">View bike 3 (dev)</a></li>
                     <li><a href="#/borrow?bike=3">Borrow bike 3 (dev)</a></li>
@@ -83,8 +83,28 @@
                                 <a href="#"><i class="fa fa-id-card-o"></i></a>
                             </span>
                             <div class="reservation_menu" data-bind='visible: reservation_menu_active'>
-                                <div data-bind='foreach: reservations'>
-                                    <a class="reservation" data-bind='attr: { href: "#/reservation/" + reservation.id }'>
+                                <div data-bind='foreach: filter_lender_not_me(reservations())'>
+                                    <a class="reservation" data-bind='attr: { href: "#/reservation/" + reservation.id } '>
+                                        <div class="image">
+                                            <img data-bind='attr: { src: $parent.image_url(bike.image) }' />
+                                        </div>
+                                        <div class="info">
+                                            <div class="bike_name" data-bind='text: bike.name'></div>
+                                            <div class="period">
+                                                <span class="from" data-bind='text: $parent.format_date(reservation.from)'></span>
+                                                <span class="to" data-bind='text: $parent.format_date(reservation.to)'></span>
+                                            </div>
+                                            <div class="status" data-bind='text: reservation.status'></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <span class="reservation_menu_button" data-bind='click: lender_menu_toggle, css: { active: lender_menu_active }'>
+                                <a href="#"><i class="fa fa-id-card"></i></a>
+                            </span>
+                            <div class="reservation_menu" data-bind='visible: lender_menu_active'>
+                                <div data-bind='foreach: filter_lender_me(reservations())'>
+                                    <a class="reservation" data-bind='attr: { href: "#/reservation/" + reservation.id } '>
                                         <div class="image">
                                             <img data-bind='attr: { src: $parent.image_url(bike.image) }' />
                                         </div>

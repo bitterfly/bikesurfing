@@ -58,7 +58,12 @@ module Bikesurf
       end
 
       def get_by_user(user)
-        reservations = Models::Reservation.all(user_id: user.id)
+        my_borrows = Models::Reservation.all(user_id: user.id)
+
+        my_lends = Models::Reservation.all(
+          bike: Models::Bike.all(stand: Models::Stand.all(user_id: user.id))
+        )
+        reservations = my_borrows + my_lends
         reservations.map do |reservation|
           {
             reservation: {
@@ -71,8 +76,19 @@ module Bikesurf
               name: reservation.bike.name,
               image: Models::BikeImage.first(
                 bike_id: reservation.bike.id
-              ).image,
-              owner: reservation.bike.stand.user.username
+              ).image
+            },
+            reservor: {
+              id: reservation.user.id,
+              username: reservation.user.username,
+              name: reservation.user.name,
+              avatar: reservation.user.image
+            },
+            lender: {
+              id: reservation.bike.stand.user.id,
+              username: reservation.bike.stand.user.username,
+              name: reservation.bike.stand.user.name,
+              avatar: reservation.bike.stand.user.image
             }
           }
         end

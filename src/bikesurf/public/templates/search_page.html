@@ -100,7 +100,7 @@
                             <span data-bind="if: bike.quick_release_saddle"><i class="fa fa-check" aria-hidden="true"></i></span>
                             <span data-bind="ifnot: bike.quick_release_saddle"><i class="fa fa-times" aria-hidden="true"></i></span></span>
                         </div>
-                        <a class="info" data-bind="attr: {href: $component.borrowUrl(bike.id)}" href="#">Borrow</a>
+                        <a class="info" data-bind="attr: {href: $component.borrowUrl(bike.id)}, visible: $parents[1].me" href="#">Borrow</a>
                     </div>
                 </a>
             </div>

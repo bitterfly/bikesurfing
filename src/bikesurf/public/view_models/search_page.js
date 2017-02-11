@@ -3,7 +3,7 @@
 
     App.SearchPageViewModel = function(params) {
         var self = this;
-
+        self.me = App.me;
         // ==========================================================
 
         // form

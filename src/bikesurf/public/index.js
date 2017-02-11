@@ -30,10 +30,6 @@ $(document).ready(function() {
             componentManager.selectComponent('reservation_page', {id: this.params['id']});
         });
 
-        this.get('#/request', function() {
-            componentManager.selectComponent('request_bike');
-        });
-
         this.get('#/add-bike', function() {
             componentManager.selectComponent('add_bike');
         });

@@ -39,8 +39,12 @@
                 </div>
             </div>
             <div class="bike">
-                <div class="status">
-                    Status: <span data-bind='text: reservation.status'></span>
+                <div class="status flex-row">
+                    <div>Status: <span data-bind='text: reservation.status'></span></div>
+                    <div data-bind="if: $component.amILender()">
+                        <button class="btn btn-green btn-fill-vert" data-bind="click: $component.update_accept">Accept</button>
+                        <button class="btn btn-green btn-fill-vert" data-bind="click: $component.update_decline">Decline</button>
+                    </div>
                 </div>
                 <div class="image">
                     <div class="header">

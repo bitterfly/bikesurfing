@@ -79,10 +79,10 @@ module Bikesurf
               ).image
             },
             reservor: {
-              id: user.id,
-              username: user.username,
-              name: user.name,
-              avatar: user.image
+              id: reservation.user.id,
+              username: reservation.user.username,
+              name: reservation.user.name,
+              avatar: reservation.user.image
             },
             lender: {
               id: reservation.bike.stand.user.id,

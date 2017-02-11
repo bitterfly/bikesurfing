@@ -64,29 +64,10 @@
         .extras {
             padding: 5px 15px;
         }
-        div.img {
-            margin: 5px;
-            border: 1px solid #ccc;
-            float: left;
-        }
-
-        div.img:hover {
-            border: 1px solid #777;
-        }
-
-        div.img img {
-            width: 100%;
-            height: auto;
-        }
-
-        div.desc {
-            padding: 15px;
-            text-align: center;
-        }
         .hovereffect {
-            width: 400px;
-            // width:100%;
-            // height:100%;
+            margin: 10px;
+            width: 500px;
+            // height: 200px;
             float:left;
             overflow:hidden;
             position:relative;

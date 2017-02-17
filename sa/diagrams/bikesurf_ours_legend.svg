@@ -146,7 +146,7 @@
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-1303,-628)" stroke-linecap="butt">
       <rect fill="none" x="1348.672" width="48.8158" height="18" y="702.5186" clip-path="url(#clipPath2)"/>
-      <text x="1409.8279" xml:space="preserve" y="715.6729" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none">API</text>
+      <text x="1409.8279" xml:space="preserve" y="715.6729" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none">Controller</text>
     </g>
     <g fill="rgb(204,255,255)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-1303,-628)" stroke="rgb(204,255,255)">
       <rect x="1348.672" width="48.8158" height="18" y="677.4649" clip-path="url(#clipPath2)" stroke="none"/>

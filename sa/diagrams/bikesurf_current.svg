@@ -827,7 +827,7 @@
       <text x="1089.1499" xml:space="preserve" y="913.9582" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none">HTTP connection</text>
       <path fill="none" d="M1029.7563 930.4465 L1072.5723 930.4465" clip-path="url(#clipPath2)"/>
       <path d="M1076.5723 930.4465 L1068.5723 924.4465 L1071.5723 930.4465 L1068.5723 936.4465 Z" clip-path="url(#clipPath2)" stroke="none"/>
-      <text x="1089.1034" xml:space="preserve" y="934.4582" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none">Module connection</text>
+      <text x="1111.1669" xml:space="preserve" y="934.4582" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none">Method call</text>
     </g>
   </g>
 </svg>

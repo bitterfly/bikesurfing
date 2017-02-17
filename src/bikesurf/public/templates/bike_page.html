@@ -1,0 +1,121 @@
+<div id="bike_page" class="bike_page">
+    <div data-bind='ifnot: bike'>
+        LOADING!!!!!!1!!!!!!one!!!!!
+    </div>
+    <div data-bind='visible: bike'>
+        <div class="page_container">
+            <div class="images" data-bind='if: bike'>
+                <div class="slick_images">
+                </div>
+                <div class="operations">
+                    <div data-bind='ifnot: image_operations_busy'>
+                        <a class="btn"><i class="fa fa-minus" data-bind='click: remove_image'></i></a>
+                        <a class="btn"><i class="fa fa-plus" data-bind='click: trigger_upload_image'></i></a>
+                        <input type="file" id="bike_image_upload" data-bind='event: { change: function() { upload_image($element.files[0]) } }'></input>
+                    </div>
+                    <div data-bind='if: image_operations_busy'>
+                        please wait asdaddsfkgladf
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="name_container" data-bind='if: bike'>
+                    <div class="name" data-bind='text: bike().name'></div>
+                </div>
+                <div class="info_box">
+                    <div class="stats_bar flex-row">
+                        <div class="stats" data-bind='if: bike'>
+                            <ul data-bind='foreach: bike_stats'>
+                                <li>
+                                    <span class="stat_title" data-bind='text: title'></span>
+                                    <span class="stat" data-bind='html: text'></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="borrow">
+                            <div data-bind='if: me'>
+                                <div class="input-daterange" id="dates">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">From</div>
+                                        <input type="text" id="dateFrom" class="form-control" data-bind="value: dateFrom">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">to</div>
+                                        <input type="text" id="dateTo" class="form-control" data-bind="value: dateTo">
+                                    </div>
+                                </div>
+                                <div class="borrow_button" data-bind='if: bike'>
+                                    <div class="spacer"></div>
+                                    <div class="button_wrapper">
+                                        <button class="btn btn-green btn-fill-vert" data-bind='enable: borrow_allowed, click: borrow'>Borrow</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-bind='ifnot: me'>
+                                <label class="error">Please login to request a borrow</label>
+                            </div>
+                        </div>
+                        <div class="user userbox" data-bind='with: owner'>
+                            <a data-bind='attr: { href: "#/user/" + username }'>
+                                <div class="avatar profile_image">
+                                    <img data-bind="attr: { 'src': $parent.avatar_url(avatar) }"/>
+                                </div>
+                                <div class="name" data-bind='text: name'></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div data-bind='if: bike'>
+                        <div class="description" data-bind='text: bike().description'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="comments" data-bind='if: bike'>
+                <div data-bind='foreach: comments'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': $parent.avatar_url(user.avatar) }"/>
+                        </div>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: user' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                                <span class="timestamp" data-bind='with: $parent.comment_timestamp(post_time)'>
+                                    <span data-bind="text: human_readable, attr: { 'title': full }"></span>
+                                </span>
+                            </div>
+                            <div class="content" data-bind='text: message'></div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind='if: me'>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img data-bind="attr: { 'src': avatar_url(me().avatar) }"/>
+                        </div>
+                        <div class="right">
+                            <div class="user_info">
+                                <span data-bind='with: me' class="username">
+                                    <a data-bind="text: name, attr: { 'title': username, 'href': '#/user/' + username }"></a>
+                                </span>
+                            </div>
+                            <div class="content">
+                                <form data-bind='submit: post_comment'>
+                                    <div class="text_input">
+                                        <textarea data-bind="value: my_comment" placeholder="Hello, dear owner of a magnificent two-wheeled human-powered locomotion device, ..."></textarea>
+                                    </div>
+                                    <div class="pushright flex-row">
+                                        <div class="spacer"></div>
+                                        <div class="button_wrapper">
+                                            <button class="btn btn-green btn-fill-vert" type="submit">Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

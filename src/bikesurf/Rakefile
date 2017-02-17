@@ -1,0 +1,70 @@
+# Use require with path relative to /lib
+$LOAD_PATH.unshift('./lib').uniq!
+
+require 'bikesurf/database/dummy_data'
+require 'rubocop/rake_task'
+require 'sinatra'
+
+RuboCop::RakeTask.new(:rubocop)
+
+namespace :database do
+  task :migrate do
+    DataMapper.auto_migrate!
+    DataMapper.auto_upgrade!
+    puts 'Recreating database'
+  end
+
+  task :fill_dummy do
+    DataMapper.auto_migrate!
+    DataMapper.auto_upgrade!
+
+    puts 'Database dropped and created'
+
+    Bikesurf::Database::DummyData.new.fill_dummy_data
+
+    puts 'Database filled'
+  end
+end
+
+task :github_listener do
+  class GithubListener < Sinatra::Base
+    set :port, 1235
+
+    post '/push' do
+      puts `git pull`
+
+      'thanks'
+    end
+
+    run!
+  end
+end
+
+task :serve do
+  `guard -i`
+end
+
+task :fg_serve do
+  `rackup -p 1234 -s thin`
+end
+
+namespace :server do
+  task start: [:css] do
+    exec('rackup -p 1234 -P /tmp/bikesurf_server.pid -s thin') if fork.nil?
+  end
+
+  task :stop do
+    if File.exist?('/tmp/bikesurf_server.pid')
+      `kill $(cat /tmp/bikesurf_server.pid)`
+    end
+    sleep 1
+  end
+
+  task restart: [:stop, :start]
+end
+
+task :css do
+  `sass 'public/css/styles.scss' 'public/css/styles.css'`
+end
+
+task default: [:rubocop]

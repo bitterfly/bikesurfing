@@ -1,0 +1,57 @@
+#intro_page {
+    padding: 30px;
+    .video-container {
+        // TODO: Fix ratios for small devices in @media query
+        width: 100%;
+        height: 360px;
+        display: flex;
+        justify-content: center;
+        iframe {
+            width: 100%;
+            height: 100%;
+            max-width: 640px;
+            max-height: 360px;
+        }
+    }
+
+    #searchForm {
+        &.flex-row {
+            justify-content: space-around;
+            align-items: center;
+        }
+        margin-top: 50px;
+        margin-bottom: 300px;
+        #dates div:first-child{
+            border-left: 1px solid #ccc;
+        }
+        .input-group {
+            width: 45%;
+            &:nth-child(2) {
+                width: 35%;
+            }
+        }
+        #size {
+            width: 100px;
+        }
+
+        .submittable {
+            opacity: 1;
+        }
+
+        .btn{
+            float: left;
+            border-radius: 4px;
+            line-height: 20px;
+            background-color: #eee;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .btn-fill-vert{
+            color: black;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}

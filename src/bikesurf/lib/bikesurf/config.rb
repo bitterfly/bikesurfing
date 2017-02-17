@@ -1,5 +1,8 @@
+require 'dotenv/load'
+
 module Bikesurf
-  class Config
-    Public = 'public'
+  module Config
+    PUBLIC = './public'.freeze
+    IMAGE_SIZES = %w(100x100 900x500).freeze
   end
 end

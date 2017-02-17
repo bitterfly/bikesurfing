@@ -1,0 +1,27 @@
+.borrow_page {
+    .bike_info {
+        margin-bottom: 20px;
+    }
+
+    .comment {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 20em;
+
+        .text_input {
+            height: 100%;
+        }
+    }
+
+    .confirm_and_submit {
+        justify-content: space-between;
+        padding-right: 30px;
+        padding-top: 15px;
+        padding-bottom: 25px;
+    }
+
+    .button_wrapper {
+        margin-left: 20px;
+        display: inline-block;
+    }
+}
